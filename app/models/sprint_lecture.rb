@@ -1,0 +1,2 @@
+class SprintLecture < ApplicationRecord
+end
