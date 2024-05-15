@@ -1,0 +1,12 @@
+<div class="container text-center mt-5">
+  <h1><%= @client.name %></h1>
+  <h2>Detalhes do cliente:</h2>
+  <h5><%= "Categoria: #{@client.category}" %></h5>
+  <h5><%="Endereço: #{@client.address}"%></h5>
+  <h5><%= "E-mail: #{@client.email}" %></h5>
+  <h5><%= "Celular: #{@client.cell_phone}" %></h5>
+
+  <%= link_to "Voltar para clientes", clients_path, class: "btn btn-outline-primary my-3" %>
+  <%= link_to "Editar Cliente", edit_client_path(@client), class: "btn btn-outline-secondary my-3"%>
+  <%= link_to 'Deletar Cliente', client_path(@client), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: 'Tem certeza que deseja deletar?' }%>
+</div>

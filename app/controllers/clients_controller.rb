@@ -7,10 +7,15 @@ class ClientsController < ApplicationController
   def show
   end
 
+  def new
+    @client = Client.new
+  end
+
   def create
     @client = Client.new(client_params)
     if @client.save
-      redirect_to @client
+      redirect_to @client,
+                  notice: 'Cliente criado com sucesso'
     else
       render :new, status: :unprocessable_entity
     end
@@ -21,12 +26,13 @@ class ClientsController < ApplicationController
 
   def update
     @client.update(client_params)
-    redirect_to client_path(@client)
+    redirect_to client_path(@client),
+                notice: 'Cliente atualizado com sucesso'
   end
 
   def destroy
     @client.destroy
-    redirect_to client_path, status: :see_other
+    redirect_to clients_path, status: :see_other
   end
 
   private
