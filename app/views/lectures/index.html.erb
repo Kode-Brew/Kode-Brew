@@ -1,2 +1,8 @@
-<h1>Lectures#index</h1>
-<p>Find me in app/views/lectures/index.html.erb</p>
+<div class="container text-center">
+  <h1>Lectures#index</h1>
+  <% @lectures.each do |lecture| %>
+    <li><%= link_to lecture.title, lecture %></li>
+  <% end %>
+  <%= link_to "Create new Lecture", new_lecture_path, class: "btn btn-outline-primary my-3"%>
+
+</div>

@@ -1,2 +1,8 @@
-<h1>Lectures#new</h1>
-<p>Find me in app/views/lectures/new.html.erb</p>
+<div class="container text-center">
+  <h1>Lectures#new</h1>
+
+  <%= render 'form', lecture: @lecture %>
+
+  <%= link_to "Back Lectures", lectures_path, class: "btn btn-outline-primary my-3"%>
+
+</div>
