@@ -1,0 +1,9 @@
+<%= form_with model: @sprint do |f| %>
+  <%= f.label :date_start, "Data de Início" %>
+  <%= f.date_field :date_start %>
+  <%= f.label :date_end, "Data de fechamento" %>
+  <%= f.date_field :date_end %>
+  <%= f.label :objective, "Breve descrição do objetivo da Sprint" %>
+  <%= f.text_field :objective %>
+  <%= f.submit %>
+<% end %>

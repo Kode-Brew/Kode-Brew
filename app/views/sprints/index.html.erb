@@ -1,0 +1,14 @@
+<ul>
+  <% @sprints.each do |sprint| %>
+    <li>
+    <p>Sprint <%= sprint.id %></p>
+    <p>Data de início: <%= sprint.date_start %></p>
+    <p>Data final: <%= sprint.date_end %></p>
+    <p>Objetivo da sprint: <%= sprint.objective %></p>
+
+    <%# Botão editar e botão deletar %>
+
+    </li>
+  <% end %>
+</ul>
+
