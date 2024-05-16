@@ -4,13 +4,6 @@
       <i class='fa-solid fa-circle-left'></i>
     <% end %>
     <h1 class="form-title">Editar tarefa</h1>
-    <%= simple_form_for @task do |f| %>
-      <%= f.input :name, label: "Nome" %>
-      <%= f.input :priority, label: "Prioridade" %>
-      <%= f.input :description, label: "Descrição" %>
-      <%= f.input :status, label: "Status" %>
-       <%= f.input :points, label: "Pontos" %>
-      <%= f.button :submit, "Atualizar tarefa", class:'btn btn-primary' %>
-    <% end %>
+    <%= render 'form', task: @task %>
   </div>
 </div>
