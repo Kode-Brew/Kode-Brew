@@ -1,17 +1,21 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
+  # Displays a list of tasks
   def index
     @tasks = Task.all
   end
 
+  # Displays details of a specific task
   def show
   end
 
+  # Renders form to create a new task
   def new
     @task = Task.new
   end
 
+  # Creates a new task
   def create
     @task = Task.new(task_params)
     @task.user = current_user
@@ -25,9 +29,11 @@ class TasksController < ApplicationController
     end
   end
 
+  # Renders form to edit a task
   def edit
   end
 
+  # Updates a task
   def update
     if @task.update(task_params)
       flash[:alert] = "tarefa editada  com sucesso."
