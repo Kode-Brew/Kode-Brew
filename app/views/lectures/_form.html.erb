@@ -1,0 +1,25 @@
+<%= form_with(model: @lecture, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :source %>
+    <%= form.text_field :source %>
+  </div>
+
+  <div class="field">
+    <%= form.label :video %>
+    <%= form.text_area :video %>
+  </div>
+
+  <div class="field">
+    <%= form.label :slide %>
+    <%= form.text_area :slide %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

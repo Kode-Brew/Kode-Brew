@@ -1,0 +1,10 @@
+<div class="container text-center">
+  <%= link_to "Adicionar novo cliente", new_client_path, class: "btn btn-outline-primary mt-3 mb-3" %>
+  <h1>Clientes</h1>
+  <h3><%= "Total de clientes: #{@clients.size}" %></h3>
+  <ul style="list-style: none;">
+    <% @clients.each do |client| %>
+      <li><%= link_to client.name, client %></li>
+    <% end %>
+  </ul>
+</div>
