@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="form-shape col-md-6 mx-auto">
+    <%= link_to tasks_path, class: 'btn-back text-decoration-none' do %>
+      <i class='fa-solid fa-circle-left'></i>
+    <% end %>
+    <h2 class="form-title">Cadastrar nova tarefa</h2>
+    <%= simple_form_for @task do |f| %>
+      <%= f.input :name, label_html: { class: "label-form" }, label: "Nome da tarefa" %>
+      <%= f.input :priority, label: "Prioridade" %>
+      <%= f.input :description, label: "Descrição" %>
+      <%= f.input :status, label: "Status" %>
+      <%= f.input :points, label: "Pontos" %>
+      <%= f.button :submit, "Criar nova tarefa", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
