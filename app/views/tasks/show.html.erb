@@ -1,0 +1,13 @@
+  <div class="container">
+    <div class="title-big">
+      <h1 class="task-title"></i> Tarefa</h1>
+       <%= link_to tasks_path, class: 'btn-back text-decoration-none' do %>
+      <i class='fa-solid fa-circle-left'></i>
+    <% end %>
+    </div>
+    <h2>Nome: <%= @task.name %></h2>
+    <p>Descrição:<%= @task.description %></p>
+    <p>Status: <%= @task.status %></p>
+    <p>Prioridade: <%= @task.priority %></p>
+    <p>Pontos: <%= @task.points %></p>
+  </div>

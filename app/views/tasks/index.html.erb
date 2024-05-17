@@ -1,0 +1,25 @@
+<div class="container container-view mt-4">
+  <div class="title-big">
+    <h1 class="task-title"></i> Tarefas</h1>
+  </div>
+      <div class="row">
+        <% @tasks.each do |task| %>
+          <div class="col-sm-4 border border-dark m-2">
+              <h2><%= task.name %></h2>
+              <p><%= task.description %></p>
+              <div class="d-flex align-items-end flex-column ">
+                <div class="mt-auto  p-2">
+                  <%= link_to 'Show', task_path(task), class:"btn btn-primary" %>
+                  <%= link_to 'Edit', edit_task_path(task), class:"btn btn-success" %>
+                  <%= link_to task_path(task), data: {turbo_method: :delete}, class:'btn btn-danger' do %>
+                    <i class="far fa-trash-alt"></i>
+                  <% end %>
+                </div>
+              </div>
+          </div>
+        <% end %>
+      </div>
+</div>
+<div class="m-2 p-2">
+  <%= link_to "new".html_safe, new_task_path, class: "btn btn-warning" %>
+</div>
