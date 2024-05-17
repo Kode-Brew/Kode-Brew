@@ -12,8 +12,10 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    @member_project = current_user
+    # @client = Client.find(params[:client_id])
     @project = Project.new(project_params)
-    # @project.user = current_user
+
     if @project.save
       flash[:alert] = "Projeto criado com sucesso."
 
@@ -21,6 +23,7 @@ class ProjectsController < ApplicationController
     else
       render :new, status: :unprocessable_entity, alert: "nao rolou"
     end
+    puts @project.errors.full_messages
   end
 
   def edit; end
@@ -47,6 +50,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :category, :description, :is_active?)
+    params.require(:project).permit(:client_id, :name, :category, :description)
   end
 end
