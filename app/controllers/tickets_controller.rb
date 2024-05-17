@@ -21,7 +21,7 @@ class TicketsController < ApplicationController
     @ticket.user = current_user
     @ticket.task = Task.first
     if @ticket.save
-      flash[:alert] = "Ticket criado com sucesso."
+      flash[:notice] = "Ticket criado com sucesso."
 
       redirect_to tickets_path
     else
@@ -36,7 +36,7 @@ class TicketsController < ApplicationController
   # Updates a ticket
   def update
     if @ticket.update(ticket_params)
-      flash[:alert] = "ticket editado  com sucesso."
+      flash[:notice] = "ticket editado  com sucesso."
 
       redirect_to tickets_path
     else
