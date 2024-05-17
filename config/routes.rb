@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :projects
   end
 
+  resources :projects
   resources :project_members
   resources :sprints
   resources :sprint_lectures

@@ -1,0 +1,13 @@
+ <div class="container">
+    <div class="title-big">
+      <h1 class="project-title"></i>Projeto</h1>
+       <%= link_to projects_path, class: 'btn-back text-decoration-none' do %>
+      <i class='fa-solid fa-circle-left'></i>
+    <% end %>
+    </div>
+
+    <h2>Nome: <%= @project.name %></h2>
+    <p>Category: <%= @project.category %></p>
+    <p>Descrição:<%= @project.description %></p>
+    <p>Está ativo?:<%= @project.is_active? %></p>
+  </div>
