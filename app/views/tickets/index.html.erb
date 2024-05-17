@@ -1,0 +1,28 @@
+<div class="container container-view mt-4">
+  <div class="title-big">
+    <h1 class="ticket-title"></i> Tickets</h1>
+  </div>
+      <div icket="row">
+        <% @tickets.each do |ticket| %>
+          <div class="col-sm-4 border border-dark m-2">
+              <h2>Ticket <%= ticket.id %></h2>
+              <p>Tarefa:<%= ticket.task.name %></p>
+              <p>Descrição:<%= ticket.task.description %></p>
+              <p>Professor: <%= ticket.user.email %></p>
+              <p>Aluno:<%= ticket.task.user.email %></p>
+              <div class="d-flex align-items-end flex-column ">
+                <div class="mt-auto  p-2">
+                  <%= link_to 'Show', ticket_path(ticket), class:"btn btn-primary" %>
+                  <%= link_to 'Edit', edit_ticket_path(ticket), class:"btn btn-success" %>
+                  <%= link_to ticket_path(ticket), data: {turbo_method: :delete}, class:'btn btn-danger' do %>
+                    <i class="far fa-trash-alt"></i>
+                  <% end %>
+                </div>
+              </div>
+          </div>
+        <% end %>
+      </div>
+</div>
+<div class="m-2 p-2">
+  <%= link_to "new".html_safe, new_ticket_path, class: "btn btn-warning" %>
+</div>

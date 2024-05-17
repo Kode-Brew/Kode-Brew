@@ -21,7 +21,7 @@ class TasksController < ApplicationController
     @task.user = current_user
     @task.sprint = Sprint.first
     if @task.save
-      flash[:alert] = "Tarefa criada com sucesso."
+      flash[:notice] = "Tarefa criada com sucesso."
 
       redirect_to tasks_path
     else
@@ -36,7 +36,7 @@ class TasksController < ApplicationController
   # Updates a task
   def update
     if @task.update(task_params)
-      flash[:alert] = "tarefa editada  com sucesso."
+      flash[:notice] = "Tarefa editada  com sucesso."
 
       redirect_to tasks_path
     else
