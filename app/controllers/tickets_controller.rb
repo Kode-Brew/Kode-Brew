@@ -1,4 +1,4 @@
-class TicketController < ApplicationController
+class TicketsController < ApplicationController
   before_action :set_ticket, only: %i[show edit update destroy]
 
   # Displays a list of tickets

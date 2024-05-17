@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="form-shape col-md-6 mx-auto">
+    <%= link_to tickets_path, class: 'btn-back text-decoration-none' do %>
+      <i class='fa-solid fa-circle-left'></i>
+    <% end %>
+    <h2 class="form-title">Cadastrar novo ticket</h2>
+     <%= render 'form', ticket: @ticket %>
+  </div>
+</div>
