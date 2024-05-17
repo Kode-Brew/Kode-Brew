@@ -20,8 +20,8 @@ clients.each { |client| Client.create!(client) }
 
 # Criando Users
 users = [
-  { email: 'john@example.com', password: 'password123' },
-  { email: 'jane@example.com', password: 'password123' }
+  { email: 'john@example.com', password: 'password123', password_confirmation: 'password123', name: 'John Smith', role: 'TA', points: '0' },
+  { email: 'jane@example.com', password: 'password123', password_confirmation: 'password123', name: 'Jane Smith', role: 'Teacher', points: '37' }
 ]
 users.each { |user| User.create!(user) }
 
@@ -69,8 +69,8 @@ lectures.each { |lecture| Lecture.create!(lecture) }
 
 # Criando Sprint Lectures
 sprint_lectures = [
-  { sprint_id: Sprint.first.id, lecture_id: Lecture.first.id },
-  { sprint_id: Sprint.last.id, lecture_id: Lecture.last.id }
+  { sprint_id: Sprint.first.id, lecture_id: Lecture.first.id, project_member_id: ProjectMember.first.id },
+  { sprint_id: Sprint.last.id, lecture_id: Lecture.last.id, project_member_id: ProjectMember.last.id }
 ]
 sprint_lectures.each { |sprint_lecture| SprintLecture.create!(sprint_lecture) }
 
