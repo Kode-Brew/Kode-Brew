@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   resources :clients
 
   resources :projects do
-    resources :sprints, except: %i[show]
+    resources :sprints, only: [:index, :new, :create]
   end
+
+  resources :sprints, only: [:show, :edit, :update, :destroy]
 
   resources :project_members
 

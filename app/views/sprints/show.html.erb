@@ -1,0 +1,22 @@
+<div class = "container">
+  <h1>Sprint <%= @sprint.id %> do <%= @sprint.project.name %></h1>
+    <div>
+    <ul>
+          <li>
+          <p>Data de início: <%= @sprint.date_start %></p>
+          <p>Data final: <%= @sprint.date_end %></p>
+          <p>Objetivo: <%= @sprint.objective %></p>
+
+          <%= link_to sprint_path(@sprint), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Sprint?"} do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+
+          <%= link_to edit_sprint_path(@sprint), data: {turbo_method: :get} do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+          <% end %>
+
+          </li>
+      </ul>
+  </div>
+  <button class = "btn"><%= link_to "Voltar às Sprints", project_sprints_path(@sprint) %></button>
+</div>
