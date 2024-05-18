@@ -1,0 +1,6 @@
+ <%= simple_form_for @project_member do |f| %>
+      <%= f.input :user_id, label: "Nome" %>
+      <%= f.input :project_id, label: "Categoria" %>
+      <%= f.input :user_type, label: "Descrição" %>
+      <%= f.button :submit, class:'btn btn-primary' %>
+    <% end %>

@@ -1,0 +1,12 @@
+ <div class="container">
+    <div class="title-big">
+      <h1 class="project_member-title"></i>Projeto</h1>
+       <%= link_to project_members_path, class: 'btn-back text-decoration-none' do %>
+      <i class='fa-solid fa-circle-left'></i>
+    <% end %>
+    </div>
+
+    <h2>Nome: <%= @project_member.user_id %></h2>
+    <p>Category: <%= @project_member.project_id %></p>
+    <p>Descrição:<%= @project_member.user_type %></p>
+  </div>
