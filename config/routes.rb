@@ -9,10 +9,18 @@ Rails.application.routes.draw do
   resources :clients do
     resources :projects
   end
+  
+# Be: aceitei a minha modificação de rota, não 'embedei' o sprints dentro de clients/projects, mas não sei qual o caminho correto.
+
+  resources :projects do
+    resources :sprints, only: [:index, :new, :create]
+  end
+
+  resources :sprints, only: [:show, :edit, :update, :destroy]
 
   resources :projects
   resources :project_members
-  resources :sprints
+
   resources :sprint_lectures
   resources :lectures
   resources :tasks

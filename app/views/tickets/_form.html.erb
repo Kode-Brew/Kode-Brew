@@ -1,0 +1,4 @@
+ <%= simple_form_for @ticket do |f| %>
+      <%= f.input :status, label: "Status", as: :select, collection: [['Em aberto','Em aberto'], ['Em andamento','Em andamento'], ['Finalizada','finalizada']] %>
+      <%= f.button :submit, class:'btn btn-primary' %>
+    <% end %>
