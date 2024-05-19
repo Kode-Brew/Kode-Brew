@@ -1,6 +1,5 @@
 class ProjectMembersController < ApplicationController
   before_action :set_project_member, only: %i[show edit update destroy]
-  before_action :set_project_member, only: %i[index new create]
 
   def index
     @project_members = ProjectMember.all
@@ -14,8 +13,8 @@ class ProjectMembersController < ApplicationController
 
   def create
     @project_member = ProjectMember.new(project_member_params)
-    @project_member.user_id = current_user.id
-    @project_member.project_id = params[:project_id]
+    @project_member.user = current_user
+    @project_member.project = Project.first
 
     if @project_member.save
       flash[:alert] = "Membro do projeto adicionado com sucesso."
@@ -51,13 +50,5 @@ class ProjectMembersController < ApplicationController
 
   def project_member_params
     params.require(:project_member).permit(:user_id, :project_id, :user_type)
-  end
-
-  def set_project
-    @project = Project.find(params[:project_id])
-  end
-
-  def set_user
-    @user = User.find(params[:user_id])
   end
 end

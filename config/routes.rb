@@ -19,12 +19,7 @@ Rails.application.routes.draw do
   resources :sprints, only: [:show, :edit, :update, :destroy]
 
   resources :projects
-
-  resources :projects do
-    resources :project_members, only: [:index, :new, :create]
-  end
-
-  resources :project_members, only: [:show, :edit, :update, :destroy]
+  resources :project_members
 
   resources :sprint_lectures
   resources :lectures

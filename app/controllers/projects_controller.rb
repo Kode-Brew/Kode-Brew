@@ -12,8 +12,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @member_project = current_user
-    # @client = Client.find(params[:client_id])
+    @project_member = current_user
     @project = Project.new(project_params)
 
     if @project.save

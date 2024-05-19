@@ -1,0 +1,10 @@
+<div class="container text-center">
+  <h1>Membros de projetos</h1>
+  <h3><%= "Total de membros: #{@project_members.size}" %></h3>
+  <ul style="list-style: none;">
+    <% @project_members.each do |project_member| %>
+      <li> <%= link_to link_to project_member.user.email, project_member_path(project_member) %> </li>
+    <% end %>
+    <%= link_to "Adicionar novo membro", new_project_member_path, class: "btn btn-outline-primary mt-3 mb-3" %>
+  </ul>
+</div>
