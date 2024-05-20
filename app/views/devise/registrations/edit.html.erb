@@ -10,17 +10,26 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+    <%= f.input :name,
+                hint: "deixe em branco se não quiser alterar",
+                required: false,
+                label: 'Nome'%>
     <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
+                hint: "deixe em branco se não quiser alterar",
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
+                hint: "deixe em branco se não quiser alterar",
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
+                hint: "Insira sua senha para confirmar as mudanças",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+    <%= f.input :role,
+                hint: "deixe em branco se não quiser alterar",
+                required: false,
+                as: :select, collection: [['Sócio', 'Sócio'], ['Associado', 'Associado'],['Professor', 'Professor'], ['TA', 'TA'], ['Dev 1', 'Dev 1'], ['Dev 2', 'Dev 2'], ['Convidado', 'Convidado']] %>
   </div>
 
   <div class="form-actions">
