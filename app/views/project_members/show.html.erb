@@ -1,0 +1,25 @@
+<div class="container">
+    <%= link_to project_members_path, class: 'btn-back text-decoration-none' do %>
+      <i class='fa-solid fa-circle-left'></i>
+    <% end %>
+
+  <div class="title-big text-center">
+    <h1 class="project_member-title"></i>Membro do Projeto</h1>
+  </div>
+
+  <div class="container">
+    <h4>Email: <%= @project_member.user.email %></h4>
+    <p>Projeto: <%= @project_member.project.name %></p>
+    <p>User Type: <%= @project_member.user_type %></p>
+  </div>
+
+  <div class="mt-auto p-2">
+    <%= link_to edit_project_member_path(@project_member), class:'btn btn-success' do %>
+      <i class="fa-regular fa-pen-to-square"></i>
+    <%end%>
+
+    <%= link_to project_member_path(@project_member), data: {turbo_method: :delete}, class:'btn btn-danger' do %>
+      <i class="far fa-trash-alt"></i>
+    <% end %>
+  </div>
+</div>

@@ -4,7 +4,7 @@ class SprintsController < ApplicationController
 
 
   # Displays list of a Project's Sprint
-  def index    
+  def index
     @sprints = Sprint.all.reverse_order
   end
 
@@ -65,7 +65,6 @@ class SprintsController < ApplicationController
   end
 
   def set_project
-    @project = Project.find(params[:project_id])    
+    @project = Project.find(params[:project_id])
   end
-
 end

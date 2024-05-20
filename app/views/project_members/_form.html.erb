@@ -1,0 +1,6 @@
+ <%= simple_form_for @project_member do |f| %>
+      <%= f.input :user.name, label: "Email" %>
+      <%=f.input :project, as: :select, collection: Project.all.map { |u| [u.name, u.id] }, label: "Projeto" %>
+      <%= f.input :user_type, label: "User Type" %>
+      <%= f.button :submit, class:'btn btn-primary' %>
+    <% end %>
