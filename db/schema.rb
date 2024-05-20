@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_222453) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.bigint "client_id", null: false
+    t.bigint "client_id"
     t.string "name"
     t.string "category"
     t.string "description"

@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      flash[:alert] = "Projeto editado com sucesso."
+      flash[:notice] = "Projeto editado com sucesso."
 
       redirect_to projects_path
     else
