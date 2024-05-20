@@ -17,7 +17,7 @@ class ProjectMembersController < ApplicationController
     @project_member.project = Project.first
 
     if @project_member.save
-      flash[:alert] = "Membro do projeto adicionado com sucesso."
+      flash[:notice] = "Membro do projeto adicionado com sucesso."
 
       redirect_to project_members_path
     else
@@ -29,7 +29,7 @@ class ProjectMembersController < ApplicationController
 
   def update
     if @project_member.update(project_member_params)
-      flash[:alert] = "Membro do projeto editado com sucesso."
+      flash[:notice] = "Membro do projeto editado com sucesso."
 
       redirect_to project_members_path
     else
