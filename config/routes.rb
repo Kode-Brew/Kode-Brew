@@ -7,18 +7,17 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
   resources :clients do
-    resources :projects
+    resources :projects, only: [:index] # não há necessidade de todas routes de projects embedadas em client
   end
 
-  # Be: aceitei a minha modificação de rota, não 'embedei' o sprints dentro de clients/projects, mas não sei qual o caminho correto.
 
   resources :projects do
+    get :sprint, on: :member # route temporária para trabalhar Sprints em show de Project
     resources :sprints, only: [:index, :new, :create]
   end
 
   resources :sprints, only: [:show, :edit, :update, :destroy]
 
-  resources :projects
   resources :project_members
 
   resources :sprint_lectures

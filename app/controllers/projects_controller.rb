@@ -1,11 +1,14 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[show edit update destroy]
+  before_action :set_project, only: %i[show sprint edit update destroy]
 
   def index
     @projects = Project.all
   end
 
   def show; end
+
+  # view temporária para gerar a view de sprints e tasks no show de project
+  def sprint; end
 
   def new
     @project = Project.new
