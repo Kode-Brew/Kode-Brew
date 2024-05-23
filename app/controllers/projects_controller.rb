@@ -5,6 +5,15 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
+  def myprojects
+    @projects = current_user.projects.left_joins(sprints: :tasks)
+                                     .group('projects.id', 'project_members.user_type')
+                                     .select('projects.*, project_members.user_type,
+                                      SUM(CASE WHEN tasks.status = \'finalizada\' THEN tasks.points ELSE 0 END) AS total_points,
+                                      COUNT(CASE WHEN tasks.status = \'finalizada\' THEN 1 ELSE NULL END) AS tasks_performed')
+  end
+
+
   def show; end
 
   def new
