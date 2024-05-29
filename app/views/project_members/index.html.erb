@@ -1,33 +1,39 @@
 <div class="container text-center">
   <div class="row mt-5">
     <div class="col-sm-4 mx-5 card card_members">
-      <h1>Membros de projetos</h1>
+      <h2>Membros de projetos</h2>
       <h3><%= "Total de membros: #{@project.project_members.size}" %></h3>
         <% @project.project_members.each do |project_member| %>
           <div class="card card_project_member border-dark py-2 m-3">
-            <div class="row">
-            <div class="col-3 p-0">
-                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar" %>
+            <div class="row align-items-center">
+              <div class="col-3 p-0">
+                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-large" %>
               </div>
               <div class="col-3 p-0">
-                 <%= project_member.user.name %> <br><%= project_member.user_type %>
+                 <strong><%= project_member.user.name %></strong> <br>Professor
               </div>
               <div class="col-3 p-0">
-                 Pontos:15
+                 Pontos: 15
               </div>
-              <div class="col-3 text-danger p-0">
-                 <i class="fa-solid fa-circle-minus"></i>
+              <div class="col-3 p-0">
+                 <i class="fa-solid fa-circle-minus icon_delete"></i>
               </div>
             </div>
           </div>
         <% end %>
     </div>
     <div class="col-sm-4 mx-5">
-      <div class="col-12 card card_form mb-5">
-      <%= render 'form', project_member: @project_member %>
+      <div class="col-10 card card_form mb-4">
+        <h3> Adicionar Membro</h3>
+        <div class="mx-4">
+          <%= render 'form', project_member: @project_member %>
+        </div>
       </div>
-       <div class="col-12 card card_form mb-5">
-      <%= render 'form', project_member: @project_member %>
+       <div class="col-10 card card_form mb-4">
+        <h3> Editar Membro</h3>
+        <div class="mx-4">
+          <%= render 'form', project_member: @project_member %>
+        </div>
       </div>
 
     </div>

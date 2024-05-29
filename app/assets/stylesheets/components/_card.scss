@@ -1,16 +1,24 @@
 .card_project_member{
   border-radius: 20px;
   margin-bottom: 5px;
+  background-color: $green-light;
+  color: white;
 }
 
 .card_form{
   background-color: white;
-  border-radius: 20px;
+  border-radius: 15px;
   padding: 10px;
+  min-height: auto;
 }
 
 .card_members{
   background-color: white;
-  border-radius: 20px;
+  border-radius: 15px;
   padding: 10px;
+}
+
+.card_input_form{
+  border-radius: 20px;
+  margin-bottom: 5px;
 }
