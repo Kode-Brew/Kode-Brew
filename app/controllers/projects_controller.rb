@@ -5,6 +5,22 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
+  def myprojects
+@projects = current_user.projects
+                        .left_joins(:project_members, sprints: :tasks)
+                        .group('projects.id', 'project_members.user_type')
+                        .select('projects.*, project_members.user_type,
+                                 SUM(CASE WHEN tasks.status = \'finalizada\' THEN tasks.points ELSE 0 END) AS total_points,
+                                 COUNT(CASE WHEN tasks.status = \'finalizada\' THEN 1 ELSE NULL END) AS tasks_performed')
+
+# Aplicar o filtro de status, se presente
+if params[:filter].present?
+  @projects = @projects.select { |project| project.status == params[:filter] }
+end
+
+  end
+
+
   def show; end
 
   def new
