@@ -14,12 +14,13 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :sprints, only: [:index, :new, :create]
+    resources :project_members
   end
 
   resources :sprints, only: [:show, :edit, :update, :destroy]
 
   get "myprojects" => 'projects#myprojects'
-  resources :project_members
+  # resources :project_members
 
   resources :sprint_lectures
   resources :lectures
