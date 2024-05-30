@@ -2,7 +2,9 @@ class ProjectMembersController < ApplicationController
   before_action :set_project_member, only: %i[show edit update destroy]
 
   def index
-    @project_members = ProjectMember.all
+    @project = Project.find(params[:project_id])
+    # @project_members = ProjectMember.where(project_id: params[:project_id])
+    @project_member = ProjectMember.new
   end
 
   def show; end
