@@ -14,11 +14,14 @@ Rails.application.routes.draw do
   resources :projects do
     get :sprint, on: :member # route temporária para trabalhar Sprints em show de Project
     resources :sprints, only: [:index, :new, :create]
+    resources :project_members
   end
 
   resources :sprints, only: [:show, :edit, :update, :destroy]
 
-  resources :project_members
+  get "myprojects" => 'projects#myprojects'
+  get "dashboard" => 'projects#dashboard'
+  # resources :project_members
 
   resources :sprint_lectures
   resources :lectures

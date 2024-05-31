@@ -1,10 +1,41 @@
 <div class="container text-center">
-  <h1>Membros de projetos</h1>
-  <h3><%= "Total de membros: #{@project_members.size}" %></h3>
-  <ul style="list-style: none;">
-    <% @project_members.each do |project_member| %>
-      <li> <%= link_to link_to project_member.user.email, project_member_path(project_member) %> </li>
-    <% end %>
-    <%= link_to "Adicionar novo membro", new_project_member_path, class: "btn btn-outline-primary mt-3 mb-3" %>
-  </ul>
+  <div class="row mt-5">
+    <div class="col-sm-4 mx-5 card card_main">
+      <h2>Membros de projetos</h2>
+      <h3><%= "Total de membros: #{@project.project_members.size}" %></h3>
+        <% @project.project_members.each do |project_member| %>
+          <div class="card card_project_member border-dark py-2 m-3">
+            <div class="row align-items-center">
+              <div class="col-3 p-0">
+                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-large" %>
+              </div>
+              <div class="col-3 p-0">
+                 <strong><%= project_member.user.name %></strong> <br>Professor
+              </div>
+              <div class="col-3 p-0">
+                 Pontos: 15
+              </div>
+              <div class="col-3 p-0">
+                 <i class="fa-solid fa-circle-minus icon_delete"></i>
+              </div>
+            </div>
+          </div>
+        <% end %>
+    </div>
+    <div class="col-sm-4 mx-5">
+      <div class="col-10 card card_form mb-4">
+        <h3> Adicionar Membro</h3>
+        <div class="mx-4">
+          <%= render 'form', project_member: @project_member %>
+        </div>
+      </div>
+       <div class="col-10 card card_form mb-4">
+        <h3> Editar Membro</h3>
+        <div class="mx-4">
+          <%= render 'form', project_member: @project_member %>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
