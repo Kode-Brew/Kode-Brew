@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :sprints, only: [:show, :edit, :update, :destroy]
 
   get "myprojects" => 'projects#myprojects'
+  get "dashboard" => 'projects#dashboard'
   # resources :project_members
 
   resources :sprint_lectures
