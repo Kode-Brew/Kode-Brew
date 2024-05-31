@@ -4,8 +4,9 @@
   <%# <div class="project_navbar" %>
   <%# </div> %>
 
+
   <%# SPRINTS & THEIR RESPECTIVE TASKS %>
-  <% @project.sprints.each do |sprint| %>
+  <% @project.sprints.each do |sprint| %> <%# TODO: entender como fazer para que a sprint mais atualizada venha antes  %>
 
     <div class="d-flex justify-content-around"> <%# Cabeçalho de Sprints %>
 
@@ -35,22 +36,16 @@
           <td>Status</td>
           <td>Pontuação</td>
         </tr>
+
         <% sprint.tasks.each do |task| %>
           <tr>
             <td><%= task.name %></td>
-            <td>nome responsável</td>
+            <td>NOME DO RESPONSÁVEL</td>
             <td><%= task.status %></td>
             <td><%= task.points %></td>
-
-
           </tr>
         <% end %>
-
-
       </table>
-
-
-
     </div>
   <% end %>
 
