@@ -2,15 +2,23 @@
   <h1>Dashboard</h1>
 
   <div class= "small-cards-container">
+    <%# 1st small-card %>
     <div class= "small-card">
-      <div class= "small-card-header">
-      </div>
+      <h5><i class="fa-regular fa-star"></i> Pontuação</h5>
+      <h4 style="color:#008100;">15 pontos</h4>
+    </div>
 
-      <div class= "small-card-body">
-      </div>
+    <%# 2nd small-card %>
+    <div class= "small-card">
+      <h5><i class="fa-solid fa-mug-saucer"></i>  Projeto Atual</h5>
+      <h4>Nome do Projeto</h4>
+      <footer>detalhes</footer>
+    </div>
 
-      <div class= "small-card-footer">
-      </div>
+    <%# 3rd small-card %>
+    <div class= "small-card">
+      <h4 style="color:#008100;"><i class="fa-regular fa-comments"></i> Abrir um Ticket</h4>
+      <h5>Falar com algum Professor ou TA</h5>
     </div>
   </div>
 
@@ -22,20 +30,20 @@
           <thead>
             <tr>
               <th class='px-3'>Tarefas</th>
-              <th class= 'text-center'>Responsáveis</th>
+              <th class= 'text-right'>Responsáveis</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td class ="py-4 px-3" >CRUD projects</td>
-              <td class ="p-3 text-center">
+              <td class ="p-3 text-right">
                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/thony-vieira", class: "avatar-large mx-2" %>
                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/perrigii", class: "avatar-large mx-2" %>
               </td>
             </tr>
             <tr>
               <td class ="py-4 px-3">CRUD clients</td>
-              <td class ="p-3 text-center"><%= image_tag "https://kitt.lewagon.com/placeholder/users/CaioBrasetti", class: "avatar-large mx-2" %></td>
+              <td class ="p-3 text-right"><%= image_tag "https://kitt.lewagon.com/placeholder/users/CaioBrasetti", class: "avatar-large mx-2" %></td>
             </tr>
           </tbody>
         </table>

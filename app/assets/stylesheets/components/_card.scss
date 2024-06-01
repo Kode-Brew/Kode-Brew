@@ -1,7 +1,7 @@
 .card_project_member{
   border-radius: 20px;
   margin-bottom: 5px;
-  background-color: $green-light;
+  background-color: $light-green;
   color: white;
 }
 
@@ -17,7 +17,7 @@
   border: rgba(0, 0, 0, 0.16) 1px solid;
   border-radius: 15px;
   padding: 10px;
-  color: $gray-dark;
+  color: $dark-gray;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(5px);
 }
@@ -27,14 +27,42 @@
   margin-bottom: 5px;
 }
 
-/* small-cards (para dashboard, descrição de project, sprints)*/
+/* small-cards (para views: dashboard, descrição de project, sprints)*/
 
-.small-cards-container{}
+.small-cards-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 40px 0px;
+}
 
-.small-card{}
+.small-card{
+  width: 280px;
+  height: 160px;
+  background-color: white;
+  border: rgba(0, 0, 0, 0.16) 1px solid;
+  border-radius: 10px;
+  padding: 20px 20px 10px;
+  margin: auto 10px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(5px);
+  text-align: center;
 
-.small-card-header{}
+  h4 {
+    color: $dark-gray;
+    padding: 12px;
+  }
 
-.small-card-body{}
+  h5{
+    font-size: 12px;
+    color: $light-gray;
+  }
 
-.small-card-footer{}
+  footer{
+    color: $green;
+    font-size: 12px;
+    text-align: right;
+  }
+
+}
