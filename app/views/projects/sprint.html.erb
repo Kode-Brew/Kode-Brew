@@ -1,0 +1,53 @@
+<div class="container">
+  <%# <div class="sprint_progress_bar" %>
+  <%# </div> %>
+  <%# <div class="project_navbar" %>
+  <%# </div> %>
+
+
+  <%# SPRINTS & THEIR RESPECTIVE TASKS %>
+  <% @project.sprints.each do |sprint| %> <%# TODO: entender como fazer para que a sprint mais atualizada venha antes  %>
+
+    <div class="d-flex justify-content-around"> <%# Cabeçalho de Sprints %>
+
+      <div class="sprint_title"> <%# Sprint number %>
+        <h2>Sprint #<%= sprint.id %></h2>
+      </div>
+
+      <div class="sprint_dates"> <%# Sprint dates %>
+        <p>de <%= sprint.date_start %> a <%= sprint.date_end %></p>
+      </div>
+
+      <div class="sprint_objective"> <%# Sprint Objective %>
+        <p>Objetivos: <%= sprint.objective %></p>
+      </div>
+
+      <div class="sprint_lectures"> <%# Sprint Lectures %>
+        <%= link_to "Aulas desta semana", lectures_path %>
+      </div>
+    </div>
+
+    <div><%# Container de TASKS %>
+      <h3 style="text-align:center" >Tarefas</h3>
+      <table>
+        <tr>
+          <td>Tarefa</td>
+          <td>Responsável</td>
+          <td>Status</td>
+          <td>Pontuação</td>
+        </tr>
+
+        <% sprint.tasks.each do |task| %>
+          <tr>
+            <td><%= task.name %></td>
+            <td>NOME DO RESPONSÁVEL</td>
+            <td><%= task.status %></td>
+            <td><%= task.points %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+
+
+</div>
