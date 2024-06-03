@@ -1,8 +1,20 @@
-<%= simple_form_for @client do |f| %>
-  <%= f.input :category %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :email %>
-  <%= f.input :cell_phone %>
-  <%= f.button :submit, class: "btn btn-primary" %>
+<div class="flex items-center justify-center min-h-screen">
+  <%= simple_form_for @client do |f| %>
+    <div class="mb-4">
+      <%= f.input :category, label: "Categoria", input_html: { class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' }, label_html: { class: 'block text-gray-700 text-sm font-bold mb-2' } %>
+    </div>
+      <%= f.input :name, label: "Nome", input_html: { class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' }, label_html: { class: 'block text-gray-700 text-sm font-bold mb-2' } %>
+    <div class="mb-4">
+      <%= f.input :address, label: "Endereço", input_html: { class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' }, label_html: { class: 'block text-gray-700 text-sm font-bold mb-2' } %>
+    </div>
+    <div class="mb-4">
+      <%= f.input :email, label: "E-mail", input_html: { class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' }, label_html: { class: 'block text-gray-700 text-sm font-bold mb-2' } %>
+    </div>
+    <div class="mb-4">
+      <%= f.input :cell_phone, label: "Celular", input_html: { class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' }, label_html: { class: 'block text-gray-700 text-sm font-bold mb-2' } %>
+    </div>
+    <div class="mb-4">
+      <%= f.button :submit, (@client.persisted? ? "Atualizar Cliente" : "Criar Cliente"), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full'" %>
+    </div>
+  </div>
 <% end %>

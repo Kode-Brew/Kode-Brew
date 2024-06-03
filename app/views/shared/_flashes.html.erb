@@ -1,14 +1,36 @@
-<% if notice %>
-  <div class="alert alert-info alert-dismissible fade show m-1" role="alert">
-    <%= notice %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-    </button>
-  </div>
-<% end %>
-<% if alert %>
-  <div class="alert alert-warning alert-dismissible fade show m-1" role="alert">
-    <%= alert %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-    </button>
-  </div>
-<% end %>
+<div class="fixed bottom-0 right-0 mb-4 mr-4">
+  <% if notice %>
+    <div id="notice" class="bg-blue-100 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 shadow-md" role="alert">
+      <%= notice %>
+      <button type="button" class="close" onclick="closeAlert('notice');" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% end %>
+
+  <% if alert %>
+    <div id="alert" class="bg-yellow-100 border-t-4 border-yellow-500 rounded-b text-yellow-900 px-4 py-3 shadow-md" role="alert">
+      <%= alert %>
+      <button type="button" class="close" onclick="closeAlert('alert');" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    startAutoClose('notice', 5000); // Fecha após 5 segundos (5000 milissegundos)
+    startAutoClose('alert', 5000); // Fecha após 5 segundos (5000 milissegundos)
+  });
+
+  function startAutoClose(id, delay) {
+    var alert = document.getElementById(id);
+    if (alert) {
+      setTimeout(function() {
+        alert.style.display = 'none';
+      }, delay);
+    }
+  }
+</script>
+
