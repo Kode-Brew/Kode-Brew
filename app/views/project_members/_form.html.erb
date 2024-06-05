@@ -1,3 +1,10 @@
+ <% if @project_member.errors.any? %>
+  <div id="error_explanation">
+      <% @project_member.errors.full_messages.each do |message| %>
+        <p class= "text-danger"><%= message %></p>
+      <% end %>
+  </div>
+<% end %>
  <%= simple_form_for [@project, @project_member] do |f| %>
       <%= f.input :user.name,  as: :select, collection: User.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Membro:" %>
       <%= f.input :user_type,input_html: {class: "card_input_form"}, label: "Função:" %>

@@ -3,27 +3,28 @@ class ProjectMembersController < ApplicationController
 
   def index
     @project = Project.find(params[:project_id])
-    # @project_members = ProjectMember.where(project_id: params[:project_id])
     @project_member = ProjectMember.new
   end
 
   def show; end
 
-  def new
-    @project_member = ProjectMember.new
-  end
+  # def new
+  #   @project_member = ProjectMember.new
+  # end
 
   def create
+    @project = Project.find(params[:project_id])
     @project_member = ProjectMember.new(project_member_params)
-    @project_member.user = current_user
-    @project_member.project = Project.first
+    @project_member.user = User.find(params[:project_member][:user])
+    @project_member.project = @project
 
     if @project_member.save
       flash[:notice] = "Membro do projeto adicionado com sucesso."
 
-      redirect_to project_members_path
+      redirect_to project_project_members_path
     else
-      render :new, status: :unprocessable_entity, alert: "nao rolou"
+      flash.now[:alert] = "Erro"
+      render :index, status: :unprocessable_entity
     end
   end
 
@@ -51,6 +52,6 @@ class ProjectMembersController < ApplicationController
   end
 
   def project_member_params
-    params.require(:project_member).permit(:user_id, :project_id, :user_type)
+    params.require(:project_member).permit( :user_type)
   end
 end
