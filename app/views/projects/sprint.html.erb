@@ -42,17 +42,15 @@
               </tr>
             </thead>
             <tbody>
+            <% sprint.tasks.each do |task| %>
               <tr>
-                <td class ="py-4 px-3" >CRUD projects</td>
-                <td class ="p-3 text-right">
+                <td class ="py-4 px-3" ><%= task.name %></td>
+                <td class ="p-3 text-right"> <!-- TO DO: backend for Project Members -->
                   <%= image_tag "https://kitt.lewagon.com/placeholder/users/thony-vieira", class: "avatar-large mx-2" %>
                   <%= image_tag "https://kitt.lewagon.com/placeholder/users/perrigii", class: "avatar-large mx-2" %>
                 </td>
               </tr>
-              <tr>
-                <td class ="py-4 px-3">CRUD clients</td>
-                <td class ="p-3 text-right"><%= image_tag "https://kitt.lewagon.com/placeholder/users/CaioBrasetti", class: "avatar-large mx-2" %></td>
-              </tr>
+            <% end %>
             </tbody>
           </table>
         </div>
