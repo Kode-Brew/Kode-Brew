@@ -1,53 +1,61 @@
 <div class="container">
-  <%# <div class="sprint_progress_bar" %>
-  <%# </div> %>
-  <%# <div class="project_navbar" %>
-  <%# </div> %>
+  <h1>Dashboard</h1>
 
-
-  <%# SPRINTS & THEIR RESPECTIVE TASKS %>
-  <% @project.sprints.each do |sprint| %> <%# TODO: entender como fazer para que a sprint mais atualizada venha antes  %>
-
-    <div class="d-flex justify-content-around"> <%# Cabeçalho de Sprints %>
-
-      <div class="sprint_title"> <%# Sprint number %>
-        <h2>Sprint #<%= sprint.id %></h2>
+  <div class= "small-cards-container">
+    <%# 1st small-card %>
+    <%= link_to new_project_sprint_path(@project), target: :_blank do %>
+      <div class= "small-card">
+        <h5><i class="fa-regular fa-square-plus"></i> Criar uma</h5>
+        <h3 style="color:#008100;">Nova Sprint</h3>
       </div>
+    <% end %>
 
-      <div class="sprint_dates"> <%# Sprint dates %>
-        <p>de <%= sprint.date_start %> a <%= sprint.date_end %></p>
+    <%# 2nd small-card %>
+    <%= link_to project_path(@project), target: :_blank do %>
+      <div class= "small-card">
+        <h5><i class="fa-solid fa-mug-saucer"></i>  Projeto Atual</h5>
+        <h4><%= @project.name %></h4>
+        <footer>detalhes</footer>
       </div>
+    <% end %>
 
-      <div class="sprint_objective"> <%# Sprint Objective %>
-        <p>Objetivos: <%= sprint.objective %></p>
+    <%# 3rd small-card %>
+    <%= link_to new_ticket_path, target: :_blank do %>
+      <div class= "small-card">
+        <h5><i class="fa-regular fa-comments"></i> Tire dúvidas</h5>
+        <h4 style="color:#008100;"> Abrir um Ticket</h4>
+        <p>com um Professor ou TA</p>
       </div>
+    <% end %>
+  </div>
 
-      <div class="sprint_lectures"> <%# Sprint Lectures %>
-        <%= link_to "Aulas desta semana", lectures_path %>
-      </div>
-    </div>
-
-    <div><%# Container de TASKS %>
-      <h3 style="text-align:center" >Tarefas</h3>
-      <table>
-        <tr>
-          <td>Tarefa</td>
-          <td>Responsável</td>
-          <td>Status</td>
-          <td>Pontuação</td>
-        </tr>
-
-        <% sprint.tasks.each do |task| %>
-          <tr>
-            <td><%= task.name %></td>
-            <td>NOME DO RESPONSÁVEL</td>
-            <td><%= task.status %></td>
-            <td><%= task.points %></td>
-          </tr>
-        <% end %>
-      </table>
+  <% @project.sprints.each do |sprint| %>
+    <div class = 'card_main'>
+      <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> &nbsp;&nbsp; Sprint &nbsp;&nbsp;#3</h2>
+      <h2 class = "text-success px-2">|-----------|-----------|-----------|-----------|-----------|-----------|</h2>
+        <div class="table-responsive col-12 p-5">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class='px-3'>Tarefas</th>
+                <th class= 'text-right'>Responsáveis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class ="py-4 px-3" >CRUD projects</td>
+                <td class ="p-3 text-right">
+                  <%= image_tag "https://kitt.lewagon.com/placeholder/users/thony-vieira", class: "avatar-large mx-2" %>
+                  <%= image_tag "https://kitt.lewagon.com/placeholder/users/perrigii", class: "avatar-large mx-2" %>
+                </td>
+              </tr>
+              <tr>
+                <td class ="py-4 px-3">CRUD clients</td>
+                <td class ="p-3 text-right"><%= image_tag "https://kitt.lewagon.com/placeholder/users/CaioBrasetti", class: "avatar-large mx-2" %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
     </div>
   <% end %>
-
-
 </div>
