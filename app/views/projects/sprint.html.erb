@@ -1,12 +1,13 @@
 <div class="container">
-  <h1>Dashboard</h1>
+  <h1>Sprints</h1>
 
   <div class= "small-cards-container">
     <%# 1st small-card %>
-    <%= link_to new_project_sprint_path(@project), target: :_blank do %>
+    <%= link_to new_ticket_path, target: :_blank do %>
       <div class= "small-card">
-        <h5><i class="fa-regular fa-square-plus"></i> Criar uma</h5>
-        <h3 style="color:#008100;">Nova Sprint</h3>
+        <h5><i class="fa-regular fa-comments"></i> Tire dúvidas</h5>
+        <h4 style="color:#008100;"> Abrir um Ticket</h4>
+        <p>com um Professor ou TA</p>
       </div>
     <% end %>
 
@@ -20,18 +21,17 @@
     <% end %>
 
     <%# 3rd small-card %>
-    <%= link_to new_ticket_path, target: :_blank do %>
+    <%= link_to new_project_sprint_path(@project), target: :_blank do %>
       <div class= "small-card">
-        <h5><i class="fa-regular fa-comments"></i> Tire dúvidas</h5>
-        <h4 style="color:#008100;"> Abrir um Ticket</h4>
-        <p>com um Professor ou TA</p>
+        <h5><i class="fa-regular fa-square-plus"></i> Criar uma</h5>
+        <h3 style="color:#008100;">Nova Sprint</h3>
       </div>
     <% end %>
-  </div>
 
-  <% @project.sprints.each do |sprint| %>
+  </div>
+  <% @desc_sprints_order.each do |sprint| %>
     <div class = 'card_main'>
-      <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> &nbsp;&nbsp; Sprint &nbsp;&nbsp;#3</h2>
+      <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> Sprint #<%= sprint.id%></h2>
       <h2 class = "text-success px-2">|-----------|-----------|-----------|-----------|-----------|-----------|</h2>
         <div class="table-responsive col-12 p-5">
           <table class="table">
