@@ -34,7 +34,7 @@ class ProjectMembersController < ApplicationController
     if @project_member.update(project_member_params)
       flash[:notice] = "Membro do projeto editado com sucesso."
 
-      redirect_to project_members_path
+      redirect_to project_project_members_path(@project_member.project)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class ProjectMembersController < ApplicationController
 
   def destroy
     @project_member.destroy!
-    redirect_to project_members_path
+    redirect_to project_project_members_path(@project_member.project)
   end
 
   private

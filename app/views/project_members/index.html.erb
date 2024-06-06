@@ -10,13 +10,15 @@
                  <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-large" %>
               </div>
               <div class="col-3 p-0">
-                 <strong><%= project_member.user.name %></strong> <br>Professor
+                 <strong><%= project_member.user.name %></strong> <br>Professor <%= project_member.user_type %>
               </div>
               <div class="col-3 p-0">
                  Pontos: 15
               </div>
               <div class="col-3 p-0">
+               <%= link_to project_member_path(project_member), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer remover o usuário"} do %>
                  <i class="fa-solid fa-circle-minus icon_delete"></i>
+               <% end %>
               </div>
             </div>
           </div>
