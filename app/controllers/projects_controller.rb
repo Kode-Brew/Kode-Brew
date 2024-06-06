@@ -24,7 +24,9 @@ end
   def show; end
 
   # view temporária para gerar a view de sprints e tasks no show de project
-  def sprint; end
+  def sprint
+    @desc_sprints_order = @project.sprints.order(id: :desc)
+  end
 
   def new
     @project = Project.new
