@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
 
   resources :projects do
-    get :sprint, on: :member # route temporária para trabalhar Sprints em show de Project
     resources :sprints, only: [:index, :new, :create]
     resources :project_members
   end
