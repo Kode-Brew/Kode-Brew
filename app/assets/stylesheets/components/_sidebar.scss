@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-body{
-  background-color: red;
-}
-
 .container {
   width: 100%;
   min-height: 100vh;
@@ -21,37 +17,38 @@ body{
   background-color: #F1F3F3;
   padding: 24px;
   border-radius: 30px;
+  position: fixed;
 }
 
-.menu ul li{
+.menu ul li {
   list-style: none;
   margin-bottom: 5px;
 }
 
-.menu ul li a{
+.sidebar-link {
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 16px;
   font-weight: 400;
   color: #213A3F;
-  text-decoration: none;
   padding: 12px 8px;
   border-radius: 24px;
   transition: all 0.3s;
 }
 
-.menu ul li a:hover,
-.menu ul li.active a{
+.link-active {
   color: white;
   background-color: rgba(0,129,0,0.5);
+  text-decoration: none;
 }
 
-.menu ul li .house{
+.house{
   font-size: 30px;
 }
 
-.menu ul li .text{
+.text{
   flex: 1;
 }
 
@@ -60,14 +57,14 @@ body{
 }
 
 .menu .sub-menu{
-  display: none;
+  // display: none;
   margin-left: 20px;
   padding-left: 20px;
   padding-top: 5px;
   border-left: 1px solid #99b5ba;
 }
 
-.menu .sub-menu li a{
+.menu .sub-menu li .link{
   padding: 10px 8px;
   font-size: 13px;
 }
