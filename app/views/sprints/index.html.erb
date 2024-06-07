@@ -1,32 +1,100 @@
-<div class = "container">
-  <h1>Sprints do <%= @project.name %></h1>
+<div class="container">
+  <h1>Sprints</h1>
 
-  <div>
-    <ul>
-      <% @sprints.each do |sprint| %>
-          <li>
-          <%= link_to sprint_path(sprint) do %>
-            <p>Sprint <%= sprint.id %></p>
-          <% end %>
+  <div class= "small-cards-container">
+    <%# 1st small-card %>
+    <%= link_to new_ticket_path, target: :_blank do %>
+      <div class= "small-card">
+        <p><i class="fa-regular fa-comments"></i> Tire dúvidas</p>
+        <h4 style="color:#008100;"> Abrir um Ticket</h4>
+        <%# <p id="small-subtitle">com um Professor ou TA</p> %>
+      </div>
+    <% end %>
 
-          <p>Data de início: <%= sprint.date_start %></p>
-          <p>Data final: <%= sprint.date_end %></p>
-          <p>Objetivo da sprint: <%= sprint.objective %></p>
+    <%# 2nd small-card %>
+    <%= link_to project_path(@project), target: :_blank do %>
+      <div class= "small-card">
+        <p><i class="fa-solid fa-mug-saucer"></i>  Projeto Atual</p>
+        <h4><%= @project.name %></h4>
+        <footer>detalhes</footer>
+      </div>
+    <% end %>
 
-          <%= link_to sprint_path(sprint), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Sprint?"} do %>
-            <i class="fa-solid fa-trash"></i>
-          <% end %>
-
-          <%= link_to edit_sprint_path(sprint), data: {turbo_method: :get} do %>
-            <i class="fa-solid fa-pen-to-square"></i>
-          <% end %>
-
-          </li>
-        <% end %>
-      </ul>
+    <%# 3rd small-card %>
+    <%= link_to new_project_sprint_path(@project), target: :_blank do %>
+      <div class= "small-card">
+        <p><i class="fa-regular fa-square-plus"></i> Criar uma</p>
+        <h4 style="color:#008100;">Nova Sprint</h4>
+      </div>
+    <% end %>
   </div>
 
+  <h2 class = "text-success px-2">|-----------|-----------|-----------|-----------|-----------|-----------|</h2>
+  <% @sprints.each do |sprint| %>
+    <div class = 'card_main'>
+      <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> Sprint #<%= sprint.id%></h2>
+      <!--Div Objetivos da Sprint-->
+      <div class="objective-card">
+        <h5>Objetivo:</h5>
+        <p><%= sprint.objective %></p>
+      </div>
 
-  <button class = "btn"><%= link_to "Crie uma Sprint", new_project_sprint_path %></button>
+      <!--Div Table da Sprint-->
+      <div class="table-responsive col-12 p-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class='px-3'>
+              Tarefas
+              <%= link_to new_task_path do %>
+              <i class="fa-solid fa-circle-plus"></i>
+              <% end %>
+              </th>
+              <th class= 'text-right'>Responsável</th>
+              <th class= 'text-center'>Status</th>
+              <th class= 'text-center'>Pontuação</th>
+              <th class= 'text-right'></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% sprint.tasks.each do |task| %>
+            <tr>
+              <td class ="py-4 px-3" ><%= task.name %></td> <!--Nome Tarefa-->
+              <td class ="p-3 text-right"> <!-- TO DO: backend for Project Members -->
+                <%= image_tag "https://kitt.lewagon.com/placeholder/users/thony-vieira", class: "avatar-large mx-2" %>
+              </td>
 
+              <!--Status-->
+              <td class ="py-4 px-3 text-center">
+                <% if task.status == "Finalizada" %>
+                  <p class="green-tag"> Finalizada </p>
+                <% elsif task.status == "Em Andamento"%>
+                  <p class="light-green-tag"> Em Andamento </p>
+                <% elsif task.status == "Não Iniciada"%>
+                  <p class="gray-tag"> Não Iniciada </p>
+                <% end %>
+              </td>
+
+              <!--Pontuação-->
+              <td class ="py-4 px-3 text-center" ><%= task.points %></td>
+
+              <!--Edição e Deletar-->
+              <td>
+                <%= link_to edit_task_path(task) do %>
+                <i class="fa-solid fa-pen-to-square"></i>
+                <% end %>
+
+                <%= link_to task_path(task) do %>
+                <i class="fa-solid fa-trash"></i>
+                <% end %>
+
+              </td>
+
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
 </div>
