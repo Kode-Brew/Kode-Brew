@@ -9,18 +9,18 @@
   <% if test == 1 %>
     <h3> Adicionar Membro</h3>
     <div class="mx-4">
-      <%= simple_form_for [@project, @project_member] do |f| %>
+      <%= simple_form_for [@project, project_member] do |f| %>
         <%= f.input :user.name,  as: :select, collection: User.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Membro:" %>
-        <%= f.input :user_type,input_html: {class: "card_input_form"}, label: "Função:" %>
+         <%= f.input :user_type, as: :select, collection: ProjectMember.user_types.keys.map { |type| [type.humanize, type] },input_html: {class: "card_input_form"}, label: "Função:" %>
         <%= f.button :submit,'Adcionar', class:'button_confirm' %>
       <% end %>
     </div>
   <% else %>
     <h3> Editar Membro</h3>
     <div class="mx-4">
-      <%= simple_form_for [@project, @project_member] do |f| %>
+      <%= simple_form_for [@project, project_member] ,url:project_member_edit_path, method:  :patch do |f| %>
         <%= f.input :user.name,  as: :select, collection: @project.users.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Membro:" %>
-        <%= f.input :user_type,input_html: {class: "card_input_form"}, label: "Função:" %>
+         <%= f.input :user_type, as: :select, collection: ProjectMember.user_types.keys.map { |type| [type.humanize, type] },input_html: {class: "card_input_form"}, label: "Função:" %>
         <%= f.button :submit,'Editar', class:'button_confirm' %>
       <% end %>
     </div>
