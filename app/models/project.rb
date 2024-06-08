@@ -3,10 +3,10 @@ class Project < ApplicationRecord
   has_many :project_members
   has_many :sprints
   has_many :tasks, through: :sprints
+  has_many :users, through: :project_members
 
   validates :name, presence: true, uniqueness: true
   validates :category, :description, presence: true
-
 
   #
   def date_end_project
@@ -27,5 +27,14 @@ class Project < ApplicationRecord
     else
       "finilizado"
     end
+  end
+
+  # Calcula os pontos totais de todas as tarefas finalizadas para um membro específico do projeto
+  def total_points_for_member(user)
+    project_members
+      .where(user: user)
+      .joins(project: { sprints: :tasks })
+      .where(tasks: { status: 'finalizada' })
+      .sum('tasks.points')
   end
 end
