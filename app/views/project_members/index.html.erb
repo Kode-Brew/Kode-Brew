@@ -1,21 +1,21 @@
-<div class="container text-center">
+<div class="container ">
   <div class="row mt-5">
-    <div class="col-sm-4 mx-5 card card_main">
+    <div class="text-center col-sm-4 mx-1 card_main  mb-4">
       <h2>Membros de projetos</h2>
       <h3><%= "Total de membros: #{@project.project_members.size}" %></h3>
         <% @project.project_members.each do |project_member| %>
-          <div class="card card_project_member border-dark py-2 m-3">
-            <div class="row align-items-center">
-              <div class="col-3 p-0">
-                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-large" %>
+          <div class="card_project_member border-dark py-2 my-3">
+            <div class="row align-items-center justify-content-center mx-0">
+              <div class="col-2 p-0">
+                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar" %>
               </div>
-              <div class="col-3 p-0">
+              <div class="col-4 p-0">
                  <strong><%= project_member.user.name %></strong> <br><%= project_member.user_type %>
               </div>
-              <div class="col-3 p-0">
-                 Pontos: <%= project_member.total_points %>
+              <div class="col-2 p-0">
+                 Pontos:<br> <%= project_member.total_points %>
               </div>
-              <div class="col-3 p-0">
+              <div class="col-2 p-0">
                <%= link_to project_member_path(project_member), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer remover o usuário"} do %>
                  <i class="fa-solid fa-circle-minus icon_delete"></i>
                <% end %>
