@@ -1,41 +1,37 @@
-<div class="container text-center">
+<div class="container ">
   <div class="row mt-5">
-    <div class="col-sm-4 mx-5 card card_main">
-      <h2>Membros de projetos</h2>
+    <div class="text-center col-sm-4 mx-4 card_main mb-4">
+      <h2 class ='mt-2'>Membros de projetos</h2>
       <h3><%= "Total de membros: #{@project.project_members.size}" %></h3>
+    <div class="row justify-content-center">
+      <div class="col-10">
+
         <% @project.project_members.each do |project_member| %>
-          <div class="card card_project_member border-dark py-2 m-3">
-            <div class="row align-items-center">
-              <div class="col-3 p-0">
-                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-large" %>
+          <div class="card_project_member border-dark py-2 my-4">
+            <div class="row align-items-center justify-content-center mx-1">
+              <div class="col-2 p-1">
+                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar" %>
               </div>
-              <div class="col-3 p-0">
-                 <strong><%= project_member.user.name %></strong> <br>Professor
+              <div class="col-5 p-1">
+                 <strong><%= project_member.user.name %></strong> <br><%= project_member.user_type %>
               </div>
-              <div class="col-3 p-0">
-                 Pontos: 15
+              <div class="col-3 p-1">
+                 Pontos:<br> <%= project_member.total_points %>
               </div>
-              <div class="col-3 p-0">
+              <div class="col-2 p-1">
+               <%= link_to project_member_path(project_member), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer remover o usuário"} do %>
                  <i class="fa-solid fa-circle-minus icon_delete"></i>
+               <% end %>
               </div>
             </div>
           </div>
         <% end %>
+      </div>
+    </div>
     </div>
     <div class="col-sm-4 mx-5">
-      <div class="col-10 card card_form mb-4">
-        <h3> Adicionar Membro</h3>
-        <div class="mx-4">
-          <%= render 'form', project_member: @project_member %>
-        </div>
-      </div>
-       <div class="col-10 card card_form mb-4">
-        <h3> Editar Membro</h3>
-        <div class="mx-4">
-          <%= render 'form', project_member: @project_member %>
-        </div>
-      </div>
-
+          <%= render 'form',project_member: @project_member, test: 1  %>
+          <%# <%= render 'form', project_member: @project_member,  test: 0  %>
     </div>
   </div>
 </div>

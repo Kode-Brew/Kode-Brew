@@ -41,7 +41,8 @@ project_members.each { |project_member| ProjectMember.create!(project_member) }
 
 # Criando Sprints
 sprints = [
-  { project_id: Project.first.id, date_start: '2024-01-01', date_end: '2024-01-15', objective: 'Sprint 1 do Project Alpha' },
+  { project_id: Project.first.id, date_start: '2024-01-01', date_end: '2024-01-18', objective: 'Sprint 1 do Project Alpha' },
+  { project_id: Project.first.id, date_start: '2024-01-07', date_end: '2024-01-15', objective: 'Criar histórias usuários' },
   { project_id: Project.last.id, date_start: '2024-02-01', date_end: '2024-02-15', objective: 'Sprint 1 do Project Beta' }
 ]
 sprints.each { |sprint| Sprint.create!(sprint) }
@@ -49,6 +50,7 @@ sprints.each { |sprint| Sprint.create!(sprint) }
 # Criando Tasks
 tasks = [
   { name: 'Setup Environment', priority: 'Alta', description: 'Configuração do ambiente de desenvolvimento', status: 'Aberto', points: 3, user_id: User.first.id, sprint_id: Sprint.first.id },
+  { name: 'CRUD de Projects', priority: 'Alta', description: 'Realizar o CRUD de Projetos', status: 'Finalizado', points: 8, user_id: User.first.id, sprint_id: Sprint.first.id },
   { name: 'Research Topic A', priority: 'Média', description: 'Pesquisa sobre o tópico A', status: 'Em Progresso', points: 5, user_id: User.last.id, sprint_id: Sprint.last.id }
 ]
 tasks.each { |task| Task.create!(task) }
