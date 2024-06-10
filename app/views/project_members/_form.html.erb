@@ -1,5 +1,30 @@
- <%= simple_form_for [@project, @project_member] do |f| %>
-      <%= f.input :user.name,  as: :select, collection: User.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Membro:" %>
-      <%= f.input :user_type,input_html: {class: "card_input_form"}, label: "Função:" %>
-      <%= f.button :submit,'Add', class:'button_confirm' %>
-    <% end %>
+<div class="col-10 card_main mb-4">
+  <% if @project_member.errors.any? %>
+    <div id="error_explanation">
+        <% @project_member.errors.full_messages.each do |message| %>
+          <p class= "text-danger"><%= message %></p>
+        <% end %>
+    </div>
+  <% end %>
+  <% if test == 1 %>
+    <h3 class='text-center mt-2'> Adicionar Membro</h3>
+    <div class=" m-4">
+      <%= simple_form_for [@project, project_member] do |f| %>
+        <%= f.input :user.name,  as: :select, collection: User.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Membro:" %>
+         <%= f.input :user_type, as: :select, collection: ProjectMember.user_types.keys.map { |type| [type.humanize, type] },input_html: {class: "card_input_form"}, label: "Função:" %>
+         <div class='text-center'>
+         <%= f.button :submit,'Adcionar', class:'button_confirm' %>
+         </div>
+      <% end %>
+    </div>
+  <% else %>
+    <h3> Editar Membro</h3>
+    <div class="mx-4">
+      <%= simple_form_for [@project, project_member] ,url:project_member_edit_path, method:  :patch do |f| %>
+        <%= f.input :user.name,  as: :select, collection: @project.users.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Membro:" %>
+         <%= f.input :user_type, as: :select, collection: ProjectMember.user_types.keys.map { |type| [type.humanize, type] },input_html: {class: "card_input_form"}, label: "Função:" %>
+        <%= f.button :submit,'Editar', class:'button_confirm text-center' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
