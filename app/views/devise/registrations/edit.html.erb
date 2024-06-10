@@ -30,6 +30,7 @@
                 hint: "deixe em branco se não quiser alterar",
                 required: false,
                 as: :select, collection: [['Sócio', 'Sócio'], ['Associado', 'Associado'],['Professor', 'Professor'], ['TA', 'TA'], ['Dev 1', 'Dev 1'], ['Dev 2', 'Dev 2'], ['Convidado', 'Convidado']] %>
+    <%= f.input :photo, as: :file %>
   </div>
 
   <div class="form-actions">
