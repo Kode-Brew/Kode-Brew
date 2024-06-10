@@ -17,7 +17,15 @@
   <body>
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
-    <%= render "shared/sidebar" %>
-    <%= yield %>
+    
+  <div class="row">
+    <div class="col-3">
+     <%= render "shared/sidebar" %>
+    </div>
+
+    <div class="col-9">
+      <%= yield %>
+    </div>
+  </div>
   </body>
 </html>

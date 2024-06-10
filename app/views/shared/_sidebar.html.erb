@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container p-0">
   <div class="sidebar">
     <div class="nav">
       <div class="menu">
-        <ul>
+        <ul class="p-0">
         <%# Rotas dos links %>
           <% routes = [
             {
@@ -41,7 +41,7 @@
               <i class="arrow fa-solid fa-sort-down"></i>
             </div>
             <%# dropdown %>
-            <ul class="sub-menu">
+            <ul class="sub-menu p-0">
               <li>
                 <i class="fa-regular fa-circle-dot"></i>
                 <%= link_to "Projeto atual", @projects_id_path, class: "text" %>
