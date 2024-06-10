@@ -59,8 +59,10 @@
           <tbody>
           <% sprint.tasks.each do |task| %>
             <tr>
-              <td class ="py-4 px-3" ><%= task.name %></td> <!--Nome Tarefa-->
-              <td class ="p-3 text-right"> <!-- TO DO: backend for Project Members -->
+            <!--Nome Tarefa-->
+              <td class ="py-4 px-3" ><%= task.name %></td>
+            <!--Criador/Responsável pela tarefa-->
+              <td class ="p-3 text-right">
                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/thony-vieira", class: "avatar-large mx-2" %>
               </td>
 

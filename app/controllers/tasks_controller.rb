@@ -19,7 +19,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user = current_user
-    @task.sprint = Sprint.first
+    @task.sprint = Sprint.find(params[:sprint_id])
     if @task.save
       flash[:notice] = "Tarefa criada com sucesso."
 
