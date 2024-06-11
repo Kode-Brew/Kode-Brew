@@ -1,6 +1,7 @@
 $brand-primary: #008100;
 $white: #fff;
 $grey-light: #ededed;
+$grey: #808080;
 
 %remain-steps {
   &:before {
@@ -19,22 +20,18 @@ $grey-light: #ededed;
   table-layout: fixed;
   width: 100%;
 
-  >li {
+  > li {
     counter-increment: stepNum;
     text-align: center;
     display: table-cell;
     position: relative;
-    color: $brand-primary;
+    color: $grey;
 
     &:before {
-      content: '\f00c';
-      content: '\2713;';
-      content: '\10003';
-      content: '\10004';
       content: '\2713';
       display: block;
       margin: 0 auto 4px;
-      background-color: #008100;
+      background-color: $grey-light;
       width: 36px;
       height: 36px;
       line-height: 32px;
@@ -45,7 +42,7 @@ $grey-light: #ededed;
       border: {
         width: 2px;
         style: solid;
-        color: $brand-primary;
+        color: $grey-light;
         radius: 50%;
       }
     }
@@ -54,7 +51,7 @@ $grey-light: #ededed;
       content: '';
       height: 8px;
       width: 100%;
-      background-color: $brand-primary;
+      background-color: $grey-light;
       position: absolute;
       top: 16px;
       left: 50%;
@@ -67,22 +64,16 @@ $grey-light: #ededed;
       }
     }
 
-    &.is-active {
-      @extend %remain-steps;
+    &.is-active, &.is-completed {
+      color: $brand-primary;
 
       &:before {
-        background-color: $white;
+        background-color: $brand-primary;
         border-color: $brand-primary;
       }
 
-      ~li {
-        color: #808080;
-        @extend %remain-steps;
-
-        &:before {
-          background-color: $grey-light;
-          border-color: $grey-light;
-        }
+      &:after {
+        background-color: $brand-primary;
       }
     }
   }

@@ -17,6 +17,10 @@ class Project < ApplicationRecord
     sprints.minimum(:date_start)
   end
 
+  def total_sprints
+    sprints.count
+  end
+
   def status
     if (date_end_project || Time.now.next_day(1)) > Time.now
       if (date_start_project || Time.now.next_day(1)) < Time.now
