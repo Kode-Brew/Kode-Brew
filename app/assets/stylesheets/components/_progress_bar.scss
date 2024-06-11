@@ -2,6 +2,8 @@ $brand-primary: #008100;
 $white: #fff;
 $grey-light: #ededed;
 $grey: #808080;
+$orange: #FFA500;
+/* Laranja */
 
 %remain-steps {
   &:before {
@@ -20,7 +22,7 @@ $grey: #808080;
   table-layout: fixed;
   width: 100%;
 
-  > li {
+  >li {
     counter-increment: stepNum;
     text-align: center;
     display: table-cell;
@@ -64,8 +66,19 @@ $grey: #808080;
       }
     }
 
-    &.is-active, &.is-completed {
+    &.is-active {
+      color: $orange;
+      /* Laranja para etapa ativa */
+
+      &:before {
+        background-color: $orange;
+        border-color: $grey-light;
+      }
+    }
+
+    &.is-completed {
       color: $brand-primary;
+      /* Verde para etapa completada */
 
       &:before {
         background-color: $brand-primary;

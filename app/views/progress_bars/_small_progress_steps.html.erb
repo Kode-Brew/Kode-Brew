@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <br /><br />
   <ul class="list-unstyled multi-steps">
-    <% (1..10).each do |step| %>
+    <% (1..@project.sprints.count).each do |step| %>
       <li class="<%= 'is-completed' if step < @project.active_sprint.to_i %><%= ' is-active' if step == @project.active_sprint.to_i %>">
         <%= step %>
       </li>
