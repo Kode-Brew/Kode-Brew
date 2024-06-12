@@ -1,0 +1,75 @@
+<div class="container p-0">
+  <div class="sidebar">
+    <div class="nav">
+      <div class="menu">
+        <ul class="p-0">
+        <%# Rotas dos links %>
+          <% routes = [
+            {
+              name: "Clientes",
+              path: clients_path,
+              class: "people fa-solid fa-people-group"
+            },
+            {
+              name: "Aulas",
+              path: lectures_path,
+              class: "laptop bi bi-laptop"
+            },
+            {
+              name: "Ticket",
+              path: tickets_path,
+              class: "headset fa-solid fa-headset"
+            },
+            {
+              name: "Usuários",
+              path: "#",
+              class: "ninja fa-solid fa-user-ninja"
+            },
+          ] %>
+
+        <%# Dashboard %>
+          <li class="sidebar-link <%= "link-active" if current_page? dashboard_path %>">
+            <i class="house bi bi-house-door"></i>
+            <%= link_to "Dashboard", dashboard_path, class: "text" %>
+          </li>
+
+         <%# Projetos e dropdown %>
+          <li>
+            <div class="link">
+              <i class="kanban bi bi-kanban"></i>
+              <%= link_to "Projetos", projects_path, class: "text" %>
+              <i class="arrow fa-solid fa-sort-down"></i>
+            </div>
+            <%# dropdown %>
+            <ul class="sub-menu p-0">
+              <li>
+                <i class="fa-regular fa-circle-dot"></i>
+                <%= link_to "Projeto atual", @projects_id_path, class: "text" %>
+              </li>
+
+              <li>
+                <i class="fa-regular fa-pen-to-square"></i>
+                <%= link_to "Criar projeto [admin]", new_project_path, class: "text" %>
+              </li>
+
+              <li>
+                <i class="bi bi-easel3-fill"></i>
+                <%= link_to "Todos os projetos", projects_path, class: "text" %>
+              </li>
+            </ul>
+          </li>
+
+        <%# Lógica dos links %>
+          <% routes.each do |route| %>
+            <%= link_to route[:path] do %>
+              <li class="sidebar-link <%= "link-active" if current_page?(route[:path]) %>">
+                <i class="<%= route[:class] %>"></i>
+                <span class="text"><%= route[:name] %></span>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -58,6 +58,7 @@ end
     redirect_to projects_path
   end
 
+
   private
 
   def set_project

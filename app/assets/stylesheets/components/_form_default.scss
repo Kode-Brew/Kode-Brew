@@ -1,0 +1,89 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  max-width: 480px;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #1a202c;
+}
+
+.label {
+  color: rgb(0, 0, 0);
+  margin-bottom: 4px;
+}
+
+.input {
+  padding: 10px;
+  margin-bottom: 4px;
+  width: 100%;
+  font-size: 1rem;
+  color: #4a5568;
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.input:focus {
+  background-color: #fff;
+  box-shadow: 0 0 0 2px #cbd5e0;
+}
+
+.input:valid {
+  border: 1px solid #008100;
+}
+
+.input:invalid {
+  border: 1px solid rgba(14, 14, 14, 0.205);
+}
+
+.submit {
+  background-color: #008100;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.submit:hover {
+  background-color: #005f00;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.account_destroy {
+  background-color: #bb0000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.account_destroy:hover {
+  background-color: #e40000;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
