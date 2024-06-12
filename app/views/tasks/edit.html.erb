@@ -1,9 +1,9 @@
 <div class="container">
   <div class="form-shape col-md-6 mx-auto">
-    <%= link_to tasks_path, class: 'btn-back text-decoration-none' do %>
+    <%= link_to project_sprint_tasks_path(@project, @sprint), class: 'btn-back text-decoration-none' do %>
       <i class='fa-solid fa-circle-left'></i>
     <% end %>
     <h1 class="form-title">Editar tarefa</h1>
-    <%= render 'form', task: @task %>
+    <%= render 'form', task: @task, project: @project, sprint: @sprint %>
   </div>
 </div>

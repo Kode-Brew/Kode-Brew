@@ -46,7 +46,7 @@
             <tr>
               <th class='px-3'>
               Tarefas
-              <%= link_to new_task_path do %>
+              <%= link_to new_project_sprint_task_path(@project, sprint) do %>
               <i class="fa-solid fa-circle-plus"></i>
               <% end %>
               </th>
@@ -82,11 +82,11 @@
 
               <!--Edição e Deletar-->
               <td>
-                <%= link_to edit_task_path(task) do %>
+                <%= link_to edit_project_sprint_task_path(@project, sprint, task) do %>
                 <i class="fa-solid fa-pen-to-square"></i>
                 <% end %>
 
-                <%= link_to task_path(task) do %>
+                <%= link_to project_sprint_task_path(@project, sprint, task), { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } do %>
                 <i class="fa-solid fa-trash"></i>
                 <% end %>
 
