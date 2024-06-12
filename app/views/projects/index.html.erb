@@ -1,51 +1,45 @@
-<div class="container text-center">
-  <div id="carts">
-     <div class="card-btn  row my-4 ">
 
-  <div class="col-sm-2 ">
-    <%= link_to  "Todos os projetos",projects_path(), class:"h2 "   %>
+  <div class="card-btn  row my-4 ">
+    <div class="col-sm-3 ">
+      <%= link_to  "Todos os projetos",projects_path(), class:"h5 text-decoration-none"   %>
+    </div>
+    <div class="col-sm-3">
+      <%= link_to  "Projetos em andamento",projects_path(filter: "Em andamento"), class:"h5 text-decoration-none"   %>
+    </div>
+      <div class="col-sm-3">
+      <%= link_to  "Projetos finalizados",projects_path(filter: "finilizado"), class:"h5 text-decoration-none"   %>
+    </div>
   </div>
-  <div class="col-sm-2">
-    <%= link_to  "Projetos em andamento",projects_path(filter: "Em andamento"), class:"h2 text-decoration-none"   %>
-  </div>
-    <div class="col-sm-2">
-    <%= link_to  "Projetos finalizados",projects_path(filter: "finilizado"), class:"h2 text-decoration-none"   %>
-  </div>
-
-</div>
 
   <div  class="table-responsive col-12">
-  <table id="search-results-bottom" class="table table-bordered ">
-    <thead>
-      <tr>
-        <th class='text-center' scope="col">Nome</th>
-        <th class='text-center' scope="col">Data de início</th>
-        <th class='text-center' scope="col">Data de Fim(Prévia)</th>
-        <th class='text-center d-none d-sm-table-cell' scope="col">Status</th>
-        <th class='text-center' scope="col">Cliente</th>
-        <th class='text-center' scope="col"></th>
+    <table id="search-results-bottom" class="table card_main">
+      <thead>
+        <tr>
+          <th class='text-center' scope="col">Projetos</th>
+          <th class='text-center' scope="col">Data de início</th>
+          <th class='text-center' scope="col">Data de Fim(Prévia)</th>
+          <th class='text-center d-none d-sm-table-cell' scope="col">Status</th>
+          <th class='text-center' scope="col">Cliente</th>
+          <th class='text-center' scope="col"></th>
 
-      </tr>
-    </thead>
-    <tbody>
-      <% @projects.each do |project| %>
-          <tr>
-            <td class='text-center'><%=  link_to project.name.titleize, project_path(project), class: "text-decoration-none " %></td>
-            <td class='text-center'><%= project.date_start_project&.strftime("%d/%m/%y") || "---" %></td>
-            <td class='text-center'><%= project.date_end_project&.strftime("%d/%m/%y") || "---" %></td>
-            <td class='text-center d-none d-sm-table-cell'><%= project.status %></td>
-            <td class='text-center'><%= project.client.name || "---" %></td>
-            <td class='text-center'>
-              <%= link_to 'Edit', edit_project_path(project), class:"" %>
-              <%= link_to project_path(project), data: {turbo_method: :delete}, class:' text-danger' do %>
-                <i class="far fa-trash-alt"></i>
-              <% end %>
-              </td>
-          </tr>
-      <% end %>
-
-    </tbody>
-  </table>
-</div>
-
-</div>
+        </tr>
+      </thead>
+      <tbody>
+        <% @projects.each do |project| %>
+            <tr>
+              <td class='text-center'><%=  link_to project.name.titleize, project_path(project), class: "text-decoration-none " %></td>
+              <td class='text-center'><%= project.date_start_project&.strftime("%d/%m/%y") || "---" %></td>
+              <td class='text-center'><%= project.date_end_project&.strftime("%d/%m/%y") || "---" %></td>
+              <td class='text-center d-none d-sm-table-cell'><%= project.status %></td>
+              <td class='text-center'><%= project.client.name || "---" %></td>
+              <td class='text-center'>
+                <%= link_to 'Edit', edit_project_path(project), class:"" %>
+                <%= link_to project_path(project), data: {turbo_method: :delete}, class:' text-danger' do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
+                </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
