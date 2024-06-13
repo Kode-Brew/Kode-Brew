@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-2">
   <h1>Dashboard</h1>
 
   <div class= "small-cards-container">
@@ -9,11 +9,13 @@
     </div>
 
     <%# 2nd small-card %>
-    <div class= "small-card">
-      <p><i class="fa-solid fa-mug-saucer"></i>  Projeto Atual</p>
-      <h4><%= @project.name %></h4>
-      <footer><%= link_to "detalhes", project_path(@project), class: "text-decoration-none" %></footer>
-    </div>
+    <%= link_to project_path(@project), class: "text-decoration-none" do %>
+      <div class= "small-card">
+        <p><i class="fa-solid fa-mug-saucer"></i>  Projeto Atual</p>
+        <h4><%= @project.name %></h4>
+        <footer><%= link_to "detalhes", project_path(@project), class: "text-decoration-none" %></footer>
+      </div>
+    <% end %>
 
     <%# 3rd small-card %>
    <%= link_to new_ticket_path do %>
@@ -32,8 +34,8 @@
         <table class="table">
           <thead>
             <tr>
-              <th class='px-3'>Tarefas</th>
-              <th class= 'text-right'>Responsáveis</th>
+              <th class='b_g_white px-3'>Tarefas</th>
+              <th class= 'b_g_white text-right'>Responsáveis</th>
             </tr>
           </thead>
           <tbody>
@@ -42,9 +44,9 @@
                 <td class ="py-4 px-3" ><%= link_to task.name,task_path(task), class: "text-decoration-none"  %></td>
                 <td class ="p-3 text-right">
                   <% if task.user.photo.present?  %>
-                    <%= cl_image_tag task.user.photo.key, class: "avatar-large mx-2" %>
+                    <%= cl_image_tag task.user.photo.key, class: "avatar-large mx-5" %>
                   <% else %>
-                    <%= image_tag "not_found.jpg", class: "avatar-large mx-2" %>
+                    <%= image_tag "not_found.jpg", class: "avatar-large mx-5" %>
                   <% end %>
                 </td>
               </tr>

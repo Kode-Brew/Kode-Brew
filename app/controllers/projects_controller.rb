@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    filter_projects
   end
 
   def myprojects
@@ -13,10 +14,7 @@ class ProjectsController < ApplicationController
                                     SUM(CASE WHEN tasks.status = \'finalizada\' THEN tasks.points ELSE 0 END) AS total_points,
                                     COUNT(CASE WHEN tasks.status = \'finalizada\' THEN 1 ELSE NULL END) AS tasks_performed')
 
-    # Aplicar o filtro de status, se presente
-    if params[:filter].present?
-      @projects = @projects.select { |project| project.status == params[:filter] }
-    end
+    filter_projects
   end
 
   def dashboard
@@ -69,5 +67,11 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:client_id, :name, :category, :description)
+  end
+
+  def filter_projects
+    if params[:filter].present?
+      @projects = @projects.select { |project| project.status == params[:filter] }
+    end
   end
 end
