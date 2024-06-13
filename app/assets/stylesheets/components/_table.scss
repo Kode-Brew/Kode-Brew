@@ -2,6 +2,9 @@ th,td {
   border-bottom-color: rgba(33,58,63,0.2) !important;
   background-color: white !important;
   color :$dark-gray !important;
+  a{
+    color :$dark-gray
+  }
 }
 td{
   font-size: 22px;

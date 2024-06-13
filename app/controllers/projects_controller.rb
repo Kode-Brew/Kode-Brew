@@ -17,7 +17,10 @@ class ProjectsController < ApplicationController
     if params[:filter].present?
       @projects = @projects.select { |project| project.status == params[:filter] }
     end
+  end
 
+  def dashboard
+    @project = current_user.projects.find_by(is_active?: true)
   end
 
   def show; end
