@@ -12,14 +12,15 @@ Rails.application.routes.draw do
 
 
   resources :projects do
-    resources :sprints, only: [:index, :new, :create] do
-      resources :tasks, only: [:new, :create]
+    resources :sprints, only: %i[index new create] do
+      resources :tasks, only: %i[new create]
     end
     resources :project_members, except: %i[update destroy]
   end
 
-  resources :sprints, only: [:show, :edit, :update, :destroy]
-  resources :tasks, only: [:show, :edit, :update, :destroy]
+  resources :sprints, only: %i[show edit update destroy]
+
+  resources :tasks, only: %i[show edit update destroy]
 
   resources :project_members, only: %i[update destroy]
 

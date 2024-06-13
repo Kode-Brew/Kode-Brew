@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  before_action :set_project
-  before_action :set_sprint
+  before_action :set_project, only: %i[new create update edit]
+  before_action :set_sprint, only: %i[new create update edit]
   before_action :set_task, only: %i[show edit update destroy]
 
   # Displays a list of tasks
@@ -24,8 +24,8 @@ class TasksController < ApplicationController
     @task.sprint = @sprint
     if @task.save
       flash[:notice] = "Tarefa criada com sucesso."
-
       redirect_to project_sprints_path
+      
     else
       render :new, status: :unprocessable_entity
     end
@@ -61,7 +61,7 @@ class TasksController < ApplicationController
 
   # Sets the task instance variable based on the provided id
   def set_task
-    @task = @sprint.tasks.find(params[:id])
+    @task = @tasks.find(params[:id])
   end
 
   def set_project

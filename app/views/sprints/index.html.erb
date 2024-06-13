@@ -30,7 +30,7 @@
   </div>
 
   <h2 class = "text-success px-2">|-----------|-----------|-----------|-----------|-----------|-----------|</h2>
-  <% @sprints.each do |sprint| %>
+  <% @project.sprints.each do |sprint| %>
     <div class = 'card_main'>
       <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> Sprint #<%= sprint.id%></h2>
       <!--Div Objetivos da Sprint-->
@@ -82,11 +82,11 @@
 
               <!--Edição e Deletar-->
               <td>
-                <%= link_to edit_project_sprint_task_path(@project, sprint, task) do %>
+                <%= link_to edit_task_path(task) do %>
                 <i class="fa-solid fa-pen-to-square"></i>
                 <% end %>
 
-                <%= link_to project_sprint_task_path(@project, sprint, task), { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } do %>
+                <%= link_to task_path(task), { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } do %>
                 <i class="fa-solid fa-trash"></i>
                 <% end %>
 
