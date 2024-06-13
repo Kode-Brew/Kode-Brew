@@ -1,0 +1,86 @@
+%remain-steps {
+  &:before {
+    content: counter(stepNum);
+    font-family: inherit;
+    font-weight: 700;
+  }
+
+  &:after {
+    background-color: $light-grey-bar;
+  }
+}
+
+.multi-steps {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+
+  >li {
+    counter-increment: stepNum;
+    text-align: center;
+    display: table-cell;
+    position: relative;
+    color: $grey-bar;
+
+    &:before {
+      content: '\2713';
+      display: block;
+      margin: 0 auto 4px;
+      background-color: $light-grey-bar;
+      width: 36px;
+      height: 36px;
+      line-height: 32px;
+      text-align: center;
+      font-weight: bold;
+      color: white;
+
+      border: {
+        width: 2px;
+        style: solid;
+        color: $light-grey-bar;
+        radius: 50%;
+      }
+    }
+
+    &:after {
+      content: '';
+      height: 8px;
+      width: 100%;
+      background-color: $light-grey-bar;
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      z-index: -1;
+    }
+
+    &:last-child {
+      &:after {
+        display: none;
+      }
+    }
+
+    &.is-active {
+      color: $orange-bar;
+      /* Laranja para etapa ativa */
+
+      &:before {
+        background-color: $orange-bar;
+        border-color: $light-grey-bar;
+      }
+    }
+
+    &.is-completed {
+      color: $brand-primary;
+      /* Verde para etapa completada */
+
+      &:before {
+        background-color: $brand-primary;
+        border-color: $brand-primary;
+      }
+
+      &:after {
+        background-color: $brand-primary;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <br /><br />
+  <ul class="list-unstyled multi-steps">
+    <% total_sprints = @project.sprints.count %>
+    <% active_sprint = @project.active_sprint.to_i %>
+    <% active_sprint = total_sprints if active_sprint > total_sprints %>
+    <% (1..total_sprints).each do |step| %>
+      <li class="<%= 'is-completed' if step < active_sprint %><%= ' is-active' if step == active_sprint %>">
+        <%= step %>
+      </li>
+    <% end %>
+    <li>Finish</li>
+  </ul>
+</div>

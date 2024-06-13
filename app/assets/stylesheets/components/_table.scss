@@ -1,12 +1,42 @@
 th,td {
   border-bottom-color: rgba(33,58,63,0.2) !important;
-  background-color: white !important;
   color :$dark-gray !important;
+  a{
+    color :$dark-gray
+  }
 }
 td{
   font-size: 22px;
+  background-color: white !important;
 }
 th{
   font-size: 27px;
   border-bottom-width: 2px !important;
+}
+
+.table_main{
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(5px);
+
+  th{
+    color :$dark-gray;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 32px;
+    padding-right: 32px;
+    font-size: 20px;
+    font-weight: lighter;
+
+  }
+
+  tbody{
+    border: rgba(0, 0, 0, 0.16) 1px solid;
+  td{
+    color :$dark-gray;
+    padding: 32px;
+    font-size: 16px;
+
+  }
+  }
+
 }

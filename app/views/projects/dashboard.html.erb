@@ -1,26 +1,30 @@
-<div class="container">
+<div class="container mt-2">
   <h1>Dashboard</h1>
 
   <div class= "small-cards-container">
     <%# 1st small-card %>
     <div class= "small-card">
       <p><i class="fa-regular fa-star"></i> Pontuação</p>
-      <h3 style="color:#008100;">15 pontos</h3>
+      <h3 style="color:#008100;"><%= @project.total_points_for_member(current_user) %> pontos</h3>
     </div>
 
     <%# 2nd small-card %>
-    <div class= "small-card">
-      <p><i class="fa-solid fa-mug-saucer"></i>  Projeto Atual</p>
-      <h4>Nome do Projeto</h4>
-      <footer>detalhes</footer>
-    </div>
+    <%= link_to project_path(@project), class: "text-decoration-none" do %>
+      <div class= "small-card">
+        <p><i class="fa-solid fa-mug-saucer"></i>  Projeto Atual</p>
+        <h4><%= @project.name %></h4>
+        <footer><%= link_to "detalhes", project_path(@project), class: "text-decoration-none" %></footer>
+      </div>
+    <% end %>
 
     <%# 3rd small-card %>
-    <div class= "small-card">
-      <p><i class="fa-regular fa-comments"></i> Tire dúvidas</p>
-      <h4 style="color:#008100;"> Abrir um Ticket</h4>
-      <p>com um Professor ou TA</p>
-    </div>
+   <%= link_to new_ticket_path do %>
+      <div class= "small-card">
+        <p><i class="fa-regular fa-comments"></i> Tire dúvidas</p>
+        <h4 style="color:#008100;"> Abrir um Ticket</h4>
+        <%# <p id="small-subtitle">com um Professor ou TA</p> %>
+      </div>
+    <% end %>
   </div>
 
   <div class = 'card_main'>
@@ -30,22 +34,23 @@
         <table class="table">
           <thead>
             <tr>
-              <th class='px-3'>Tarefas</th>
-              <th class= 'text-right'>Responsáveis</th>
+              <th class='b_g_white px-3'>Tarefas</th>
+              <th class= 'b_g_white text-right'>Responsáveis</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class ="py-4 px-3" >CRUD projects</td>
-              <td class ="p-3 text-right">
-                <%= image_tag "https://kitt.lewagon.com/placeholder/users/thony-vieira", class: "avatar-large mx-2" %>
-                <%= image_tag "https://kitt.lewagon.com/placeholder/users/perrigii", class: "avatar-large mx-2" %>
-              </td>
-            </tr>
-            <tr>
-              <td class ="py-4 px-3">CRUD clients</td>
-              <td class ="p-3 text-right"><%= image_tag "https://kitt.lewagon.com/placeholder/users/CaioBrasetti", class: "avatar-large mx-2" %></td>
-            </tr>
+            <% @project.tasks.each do |task|%>
+              <tr>
+                <td class ="py-4 px-3" ><%= link_to task.name,task_path(task), class: "text-decoration-none"  %></td>
+                <td class ="p-3 text-right">
+                  <% if task.user.photo.present?  %>
+                    <%= cl_image_tag task.user.photo.key, class: "avatar-large mx-5" %>
+                  <% else %>
+                    <%= image_tag "not_found.jpg", class: "avatar-large mx-5" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       </div>

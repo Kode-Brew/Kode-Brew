@@ -1,0 +1,11 @@
+.text_dgray {
+  color :$dark-gray ;
+}
+
+.text_green {
+  color :$green;
+}
+.underline-offset {
+  text-decoration: underline;
+  text-underline-offset: 10px; /* Ajuste esse valor conforme necessário */
+}
