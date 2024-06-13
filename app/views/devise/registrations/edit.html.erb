@@ -1,44 +1,60 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2 class="title mt-4">Editar perfil</h2>
+<div class="form-container">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form" }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <div class="form-inputs">
+      <%= f.input :email, required: true, autofocus: true, input_html: { class: "input" }, label_html: { class: "label" } %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <% end %>
 
-    <%= f.input :name,
-                hint: "deixe em branco se não quiser alterar",
-                required: false,
-                label: 'Nome'%>
-    <%= f.input :password,
-                hint: "deixe em branco se não quiser alterar",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                hint: "deixe em branco se não quiser alterar",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "Insira sua senha para confirmar as mudanças",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :role,
-                hint: "deixe em branco se não quiser alterar",
-                required: false,
-                as: :select, collection: [['Sócio', 'Sócio'], ['Associado', 'Associado'],['Professor', 'Professor'], ['TA', 'TA'], ['Dev 1', 'Dev 1'], ['Dev 2', 'Dev 2'], ['Convidado', 'Convidado']] %>
-  </div>
+      <%= f.input :name,
+                  label: 'Nome',
+                  hint: "Deixe em branco se não quiser alterar",
+                  required: false,
+                  input_html: { class: "input" },
+                  label_html: { class: "label" } %>
+      <%= f.input :password,
+                  label: "Nova senha",
+                  hint: "Deixe em branco se não quiser alterar",
+                  required: false,
+                  input_html: { autocomplete: "new-password", class: "input" },
+                  label_html: { class: "label" } %>
+      <%= f.input :password_confirmation,
+                  label: "Confirmar nova senha",
+                  hint: "Deixe em branco se não quiser alterar",
+                  required: false,
+                  input_html: { autocomplete: "new-password", class: "input" },
+                  label_html: { class: "label" } %>
+      <%= f.input :current_password,
+                  label: "Senha atual",
+                  hint: "Insira sua senha para confirmar as mudanças",
+                  required: true,
+                  input_html: { autocomplete: "current-password", class: "input" },
+                  label_html: { class: "label" } %>
+      <%= f.input :role,
+                  label: "Função",
+                  hint: "Deixe em branco se não quiser alterar",
+                  required: false,
+                  as: :select, collection: [['Sócio', 'Sócio'], ['Associado', 'Associado'],['Professor', 'Professor'], ['TA', 'TA'], ['Dev 1', 'Dev 1'], ['Dev 2', 'Dev 2'], ['Convidado', 'Convidado']],
+                  input_html: { class: "input" },
+                  label_html: { class: "label" } %>
+      <%= f.input :photo,
+                  label: "Foto do perfil",
+                  hint: "Deixe em branco se não quiser alterar",
+                  input_html: { class: "input" },
+                  label_html: { class: "label" } %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+    <div class="form-actions d-flex justify-content-between">
+      <%= link_to :back do %>
+        <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
+      <% end %>
+      <%= f.button :submit, "Atualizar", class: "submit" %>
+    </div>
+  <% end %>
+</div>
+<div class="d-flex justify-content-center mt-3"><%= button_to "Excluir conta", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Deseja realmente excluir sua conta?" }, method: :delete, class: "account_destroy" %></div>
