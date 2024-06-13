@@ -19,7 +19,7 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(ticket_params)
     @ticket.user = current_user
-    @ticket.task = Task.first
+    @ticket.task = Task.find(params[:ticket][:task])
     if @ticket.save
       flash[:notice] = "Ticket criado com sucesso."
 
