@@ -39,7 +39,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       flash[:notice] = "Tarefa editada com sucesso."
 
-      redirect_to project_sprints_path(@task.sprint)
+      redirect_to project_sprints_path(@task.sprint.project)
     else
       render :edit, status: :unprocessable_entity
     end
