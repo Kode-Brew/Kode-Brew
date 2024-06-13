@@ -86,7 +86,7 @@
                 <i class="fa-solid fa-pen-to-square"></i>
                 <% end %>
 
-                <%= link_to task_path(task), { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } do %>
+                <%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Tarefa?"}  do %>
                 <i class="fa-solid fa-trash"></i>
                 <% end %>
 
