@@ -30,6 +30,7 @@
   </div>
 
   <%= render partial: 'progress_bars/sprint_progress_steps', locals: {active_sprint: @project.active_sprint} %>
+  
   <% @sprints.each do |sprint| %>
     <div class = 'card_main'>
       <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> Sprint #<%= sprint.id%></h2>

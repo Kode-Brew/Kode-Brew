@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   resources :projects do
     resources :sprints, only: [:index, :new, :create]
     resources :project_members, except: %i[update destroy]
+    member do
+      post 'advance_sprint'
+      post 'finish_project'
+    end
   end
 
   resources :project_members, only: %i[update destroy]
