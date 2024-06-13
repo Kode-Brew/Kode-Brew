@@ -27,8 +27,8 @@ users.each { |user| User.create!(user) }
 
 # Criando Projects
 projects = [
-  { client_id: Client.first.id, name: 'Project Alpha', category: 'Desenvolvimento de Software', description: 'Desenvolvimento de um novo sistema.', is_active?: true },
-  { client_id: Client.last.id, name: 'Project Beta', category: 'Pesquisa Médica', description: 'Pesquisa sobre novas terapias.', is_active?: true }
+  { client_id: Client.first.id, name: 'Project Alpha', category: 'Desenvolvimento de Software', description: 'Desenvolvimento de um novo sistema.', is_active?: true, active_sprint: 1 },
+  { client_id: Client.last.id, name: 'Project Beta', category: 'Pesquisa Médica', description: 'Pesquisa sobre novas terapias.', is_active?: true, active_sprint: 4 }
 ]
 projects.each { |project| Project.create!(project) }
 
