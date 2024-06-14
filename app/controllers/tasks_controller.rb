@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   before_action :set_sprint, only: %i[new create]
-  before_action :set_project, only: %i[new create]
 
   # Displays a list of tasks
   def index
@@ -61,10 +60,6 @@ class TasksController < ApplicationController
   # Sets the task instance variable based on the provided id
   def set_task
     @task = Task.find(params[:id])
-  end
-
-  def set_project
-    @project = Project.find(params[:project_id])
   end
 
   def set_sprint
