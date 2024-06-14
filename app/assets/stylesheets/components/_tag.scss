@@ -1,0 +1,32 @@
+.green-tag{
+  border-width: 1px;
+  border-color: $green;
+  border-style: solid;
+  box-shadow: 2px 1px 2px 0 rgba(0, 0, 0, 0.5);
+  color: $green;
+  font-size: 12px;
+  font-weight: bold;
+  white-space:nowrap;
+}
+
+.light-green-tag{
+  border-width: 1px;
+  border-color: $light-green;
+  border-style: solid;
+  box-shadow: 2px 1px 2px 0 rgba(0, 0, 0, 0.5);
+  color: $light-green;
+  font-size: 12px;
+  font-weight: bold;
+  white-space:nowrap;
+}
+
+.gray-tag{
+  border-width: 1px;
+  border-color: $gray;
+  border-style: solid;
+  box-shadow: 2px 1px 2px 0 rgba(0, 0, 0, 0.5);
+  color: $gray;
+  font-size: 12px;
+  font-weight: bold;
+  white-space:nowrap;
+}

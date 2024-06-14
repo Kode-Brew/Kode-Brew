@@ -1,9 +1,13 @@
 <div class="container">
   <div class="form-shape col-md-6 mx-auto">
-    <%= link_to tasks_path, class: 'btn-back text-decoration-none' do %>
-      <i class='fa-solid fa-circle-left'></i>
-    <% end %>
     <h1 class="form-title">Editar tarefa</h1>
-    <%= render 'form', task: @task %>
+      <%= simple_form_for @task do |f| %>
+      <%= f.input :name, label: "Nome" %>
+      <%= f.input :priority, label: "Prioridade", as: :select, collection: [['Baixa', 'baixa'], ['Média', 'media'], ['Média-Alta', 'media-alta'], ['Alta', 'alta']] %>
+      <%= f.input :description, label: "Descrição" %>
+      <%= f.input :status, label: "Status", as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Finalizada', 'Finalizada']] %>
+       <%= f.input :points, label: "Pontos" %>
+      <%= f.button :submit, class:'btn btn-primary' %>
+    <% end %>
   </div>
 </div>
