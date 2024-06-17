@@ -6,7 +6,7 @@
     <%= link_to "Projetos em andamento", projects_path(filter: "Em andamento"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == 'Em andamento'}" %>
   </div>
   <div class="col-sm-3">
-    <%= link_to "Projetos finalizados", projects_path(filter: "finilizado"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == 'finilizado'}" %>
+    <%= link_to "Projetos finalizados", projects_path(filter: "finalizado"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == 'finalizado'}" %>
   </div>
 </div>
 
@@ -36,10 +36,10 @@
               </td>
               <td class='text-center'><%= project.date_start_project&.strftime("%d/%m/%y") || "---" %></td>
               <td class='text-center'><%= project.date_end_project&.strftime("%d/%m/%y") || "---" %></td>
-              <td class='text-center  d-none d-sm-table-cell'><p class ="btn_status <%= case project.status.titleize
-                                                   when 'Não Iniciado' then 'bg-danger'
-                                                   when 'Em Andamento' then 'bg-info'
-                                                   when 'Finilizado' then 'bg-success'
+              <td class='text-center  d-none d-sm-table-cell'><p class ="tag-status <%= case project.status.titleize
+                                                   when 'Não Iniciado' then 'gray-tag'
+                                                   when 'Em Andamento' then 'light-green-tag'
+                                                   when 'Finalizado' then 'green-tag'
                                                  end %>">
                                                  <%= project.status.titleize %></p>
                                                  </td>

@@ -29,7 +29,6 @@
 
   <div class = 'card_main'>
     <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> &nbsp;&nbsp; Sprint &nbsp;&nbsp;#3</h2>
-    <h2 class = "text-success px-2">|-----------|-----------|-----------|-----------|-----------|-----------|</h2>
       <div class="table-responsive col-12 p-5">
         <table class="table">
           <thead>
@@ -42,12 +41,18 @@
             <% @project.tasks.each do |task|%>
               <tr>
                 <td class ="py-4 px-3" ><%= link_to task.name,task_path(task), class: "text-decoration-none"  %></td>
+            <!--Criador/Responsável pela tarefa-->
                 <td class ="p-3 text-right">
-                  <% if task.user.photo.present?  %>
-                    <%= cl_image_tag task.user.photo.key, class: "avatar-large mx-5" %>
-                  <% else %>
-                    <%= image_tag "not_found.jpg", class: "avatar-large mx-5" %>
-                  <% end %>
+                  <div class="td-icons-images">
+                    <span>
+                      <% if task.user.photo.present?  %>
+                        <%= cl_image_tag task.user.photo.key, class: "avatar-large" %>
+                      <% else %>
+                      <%= image_tag "not_found.jpg", class: "avatar-large" %>
+                      <% end %>
+                    </span>
+                    <p><%= task.user.name %></p>
+                  </div>
                 </td>
               </tr>
             <% end %>

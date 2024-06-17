@@ -3,7 +3,7 @@
 
   <div class= "small-cards-container">
     <%# 1st small-card %>
-    <%= link_to new_ticket_path, target: :_blank do %>
+    <%= link_to new_ticket_path do %>
       <div class= "small-card">
         <p><i class="fa-regular fa-comments"></i> Tire dúvidas</p>
         <h4 style="color:#008100;"> Abrir um Ticket</h4>
@@ -12,7 +12,7 @@
     <% end %>
 
     <%# 2nd small-card %>
-    <%= link_to project_path(@project), target: :_blank do %>
+    <%= link_to project_path(@project) do %>
       <div class= "small-card">
         <p><i class="fa-solid fa-mug-saucer"></i>  Projeto Atual</p>
         <h4><%= @project.name %></h4>
@@ -21,7 +21,7 @@
     <% end %>
 
     <%# 3rd small-card %>
-    <%= link_to new_project_sprint_path(@project), target: :_blank do %>
+    <%= link_to new_project_sprint_path(@project) do %>
       <div class= "small-card">
         <p><i class="fa-regular fa-square-plus"></i> Criar uma</p>
         <h4 style="color:#008100;">Nova Sprint</h4>
@@ -30,9 +30,22 @@
   </div>
 
   <%= render partial: 'progress_bars/sprint_progress_steps', locals: {active_sprint: @project.active_sprint} %>
-  <% @project.sprints.each do |sprint| %>
+  <%  @project.sprints.order(date_start: :desc).each_with_index do |sprint, index| %>
     <div class = 'card_main'>
-      <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> Sprint #<%= sprint.id%></h2>
+      <!--Div main card header-->
+      <div class="main-card-header">
+        <h2>
+          <i class="fa-regular fa-lightbulb"></i>
+          Sprint #<%= @project.sprints.count - index %>
+          <%= link_to edit_sprint_path(sprint) do %>
+          <i id="edit-icon-small"class="fa-solid fa-pen-to-square"></i>
+          <% end %>
+        </h2>
+        <div class="sprint-date">
+          <p><%= sprint.date_start.strftime("%d/%m/%Y") %></p> a <p><%= sprint.date_end.strftime("%d/%m/%Y") %></p>
+        </div>
+      </div>
+
       <!--Div Objetivos da Sprint-->
       <div class="objective-card">
         <h5>Objetivo:</h5>
@@ -44,52 +57,66 @@
         <table class="table">
           <thead>
             <tr class="b_g_white">
-              <th class='px-3'>
+              <th class='b_g_white px-3 px-3'>
               Tarefas
               <%= link_to new_project_sprint_task_path(@project, sprint) do %>
               <i class="fa-solid fa-circle-plus"></i>
               <% end %>
               </th>
-              <th class= 'text-right'>Responsável</th>
-              <th class= 'text-center'>Status</th>
-              <th class= 'text-center'>Pontuação</th>
-              <th class= 'text-right'></th>
+              <th class= 'b_g_white px-3 text-right'>Responsável</th>
+              <th class= 'b_g_white px-3 text-center'>Status</th>
+              <th class= 'b_g_white px-3 text-center'>Pontuação</th>
+              <th class= 'b_g_white px-3 text-right'></th>
             </tr>
           </thead>
           <tbody>
           <% sprint.tasks.each do |task| %>
             <tr>
             <!--Nome Tarefa-->
-              <td class ="py-4 px-3" ><%= task.name %></td>
+              <td class ="py-4 px-3" >
+                <%= link_to task_path(task) do %>
+                  <%= task.name %>
+                <% end %>
+              </td>
             <!--Criador/Responsável pela tarefa-->
               <td class ="p-3 text-right">
-                <%= image_tag "https://kitt.lewagon.com/placeholder/users/thony-vieira", class: "avatar-large mx-2" %>
+                <div class="td-icons-images">
+                  <span>
+                    <% if task.user.photo.present?  %>
+                      <%= cl_image_tag task.user.photo.key, class: "avatar-large" %>
+                    <% else %>
+                    <%= image_tag "not_found.jpg", class: "avatar-large" %>
+                    <% end %>
+                  </span>
+                  <p><%= task.user.name %></p>
+                </div>
               </td>
 
               <!--Status-->
               <td class ="py-4 px-3 text-center">
-                <% if task.status == "Finalizada" %>
-                  <p class="green-tag"> Finalizada </p>
-                <% elsif task.status == "Em Andamento"%>
-                  <p class="light-green-tag"> Em Andamento </p>
-                <% elsif task.status == "Não Iniciada"%>
-                  <p class="gray-tag"> Não Iniciada </p>
-                <% end %>
+                  <p class ="tag-status <%= case task.status.titleize
+                                          when 'Não Iniciada' then 'gray-tag'
+                                          when 'Em Andamento' then 'light-green-tag'
+                                          when 'Finalizada' then 'green-tag'
+                                        end %>">
+                    <%= task.status.titleize %>
+                  </p>
               </td>
 
               <!--Pontuação-->
               <td class ="py-4 px-3 text-center" ><%= task.points %></td>
 
               <!--Edição e Deletar-->
-              <td>
-                <%= link_to edit_task_path(task) do %>
-                <i class="fa-solid fa-pen-to-square"></i>
-                <% end %>
+              <td class ="py-4 px-3 text-center" >
+                <div class="td-icons-images">
+                  <%= link_to edit_task_path(task) do %>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <% end %>
 
-                <%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Tarefa?"}  do %>
-                <i class="fa-solid fa-trash"></i>
-                <% end %>
-
+                  <%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Tarefa?"}  do %>
+                  <i class="fa-solid fa-trash"></i>
+                  <% end %>
+                </div>
               </td>
 
             </tr>

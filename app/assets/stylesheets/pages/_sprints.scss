@@ -1,0 +1,15 @@
+.main-card-header #edit-icon-small{
+  font-size: 22px;
+  margin-left: 16px;
+  color: $green;
+}
+
+.sprint-date{
+  display: flex;
+  gap: 12px;
+
+  p{
+    font-weight: 500;
+  }
+
+}

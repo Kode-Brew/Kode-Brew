@@ -2,4 +2,8 @@
   <h1>Edite a Sprint</h1>
   <%= render "form", sprint: @sprint %>
 
+  <%= link_to sprint_path(@sprint), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Sprint?"}  do %>
+    <i class="fa-solid fa-trash"></i>
+  <% end %>
+
 </div>

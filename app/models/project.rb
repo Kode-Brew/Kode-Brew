@@ -29,7 +29,7 @@ class Project < ApplicationRecord
         "não iniciado"
       end
     else
-      "finilizado"
+      "finalizado"
     end
   end
 
