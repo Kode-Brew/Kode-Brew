@@ -3,7 +3,7 @@
 
   <div class= "small-cards-container">
     <%# 1st small-card %>
-    <%= link_to new_ticket_path, target: :_blank do %>
+    <%= link_to new_ticket_path do %>
       <div class= "small-card">
         <p><i class="fa-regular fa-comments"></i> Tire dúvidas</p>
         <h4 style="color:#008100;"> Abrir um Ticket</h4>
@@ -12,7 +12,7 @@
     <% end %>
 
     <%# 2nd small-card %>
-    <%= link_to project_path(@project), target: :_blank do %>
+    <%= link_to project_path(@project) do %>
       <div class= "small-card">
         <p><i class="fa-solid fa-mug-saucer"></i>  Projeto Atual</p>
         <h4><%= @project.name %></h4>
@@ -21,7 +21,7 @@
     <% end %>
 
     <%# 3rd small-card %>
-    <%= link_to new_project_sprint_path(@project), target: :_blank do %>
+    <%= link_to new_project_sprint_path(@project) do %>
       <div class= "small-card">
         <p><i class="fa-regular fa-square-plus"></i> Criar uma</p>
         <h4 style="color:#008100;">Nova Sprint</h4>
@@ -30,9 +30,14 @@
   </div>
 
   <%= render partial: 'progress_bars/sprint_progress_steps', locals: {active_sprint: @project.active_sprint} %>
-  <% @project.sprints.each do |sprint| %>
+  <%  @project.sprints.each.with_index(1) do |sprint, sprint_number| %>
     <div class = 'card_main'>
-      <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> Sprint #<%= sprint.id%></h2>
+      <!--Div main card header-->
+      <div class="main-card-header">
+        <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> Sprint #<%= sprint_number %></h2>
+        
+      </div>
+
       <!--Div Objetivos da Sprint-->
       <div class="objective-card">
         <h5>Objetivo:</h5>
@@ -63,7 +68,12 @@
               <td class ="py-4 px-3" ><%= task.name %></td>
             <!--Criador/Responsável pela tarefa-->
               <td class ="p-3 text-right">
-                <%= image_tag "https://kitt.lewagon.com/placeholder/users/thony-vieira", class: "avatar-large mx-2" %>
+                <% if task.user.photo.present?  %>
+                    <%= cl_image_tag task.user.photo.key, class: "avatar-large mx-5" %>
+                  <% else %>
+                    <%= image_tag "not_found.jpg", class: "avatar-large mx-5" %>
+                  <% end %>
+                <%= task.user.name %>
               </td>
 
               <!--Status-->
