@@ -1,14 +1,25 @@
-  <div class="row justify-content-center">
-        <%= form_with model: [@project, @sprint] do |f| %>
-          <%= f.label :date_start, "Data de Início" %>
-          <%= f.date_field :date_start %>
+<div class="row justify-content-center">
+  <%= form_with model: [@project, @sprint] do |f| %>
+    <%= f.label :date_start, "Data de Início" %>
+    <%= f.date_field :date_start %>
 
-          <%= f.label :date_end, "Data de fechamento" %>
-          <%= f.date_field :date_end %>
+    <%# <%= f.label :date_end, "Data de fechamento" %>
+    <%# <%= f.date_field :date_end %>
 
-          <%= f.label :objective, "Breve descrição do objetivo da Sprint" %>
-          <%= f.text_area :objective %>
+    <%= f.label :objective, "Breve descrição do objetivo da Sprint" %>
+    <%= f.text_area :objective %>
 
-          <%= f.submit %>
-        <% end %>
-    </div>
+    <%= f.submit %>
+  <% end %>
+
+  <% if @sprint.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @sprint.errors.each do |error| %>
+      <li><%= error.message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+</div>
