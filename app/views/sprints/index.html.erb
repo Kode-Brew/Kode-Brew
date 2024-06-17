@@ -30,18 +30,20 @@
   </div>
 
   <%= render partial: 'progress_bars/sprint_progress_steps', locals: {active_sprint: @project.active_sprint} %>
-  <%  @project.sprints.each.with_index(1) do |sprint, sprint_number| %>
+  <%  @project.sprints.order(date_start: :desc).each_with_index do |sprint, index| %>
     <div class = 'card_main'>
       <!--Div main card header-->
       <div class="main-card-header">
         <h2>
           <i class="fa-regular fa-lightbulb"></i>
-          Sprint #<%= sprint_number %>
+          Sprint #<%= @project.sprints.count - index %>
           <%= link_to edit_sprint_path(sprint) do %>
           <i id="edit-icon-small"class="fa-solid fa-pen-to-square"></i>
           <% end %>
         </h2>
-        <p><%= sprint.date_start %> a <%= sprint.date_end %></p>
+        <div class="sprint-date">
+          <p><%= sprint.date_start.strftime("%d/%m/%Y") %></p> a <p><%= sprint.date_end.strftime("%d/%m/%Y") %></p>
+        </div>
       </div>
 
       <!--Div Objetivos da Sprint-->
