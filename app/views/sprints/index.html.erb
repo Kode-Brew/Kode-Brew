@@ -93,14 +93,14 @@
               </td>
 
               <!--Status-->
-              <td class ="py-4 px-3 text-center">
-                <% if task.status == "Finalizada" %>
-                  <p class="tag-status green-tag"> Finalizada </p>
-                <% elsif task.status == "Em Andamento"%>
-                  <p class="tag-status light-green-tag"> Em Andamento </p>
-                <% elsif task.status == "Não Iniciada"%>
-                  <p class="tag-status gray-tag"> Não Iniciada </p>
-                <% end %>
+              <td class='text-center  d-none d-sm-table-cell'>
+                  <p class ="tag-status <%= case task.status.titleize
+                                          when 'Não Iniciada' then 'gray-tag'
+                                          when 'Em Andamento' then 'light-green-tag'
+                                          when 'Finalizada' then 'green-tag'
+                                        end %>">
+                    <%= task.status.titleize %>
+                  </p>
               </td>
 
               <!--Pontuação-->
