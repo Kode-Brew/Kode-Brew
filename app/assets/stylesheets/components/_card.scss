@@ -97,6 +97,20 @@
   transform: translateY(-16px);
 }
 
+/* Main-Card-Header para view de Sprints*/
+.main-card-header{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items:baseline;
+  margin: 16px 52px;
+
+  #edit-icon-small{
+    font-size: 20px;
+    margin-left: 16px;
+  }
+}
+
 /* Objective-card para view de Sprints*/
 .objective-card{
   height: auto;
@@ -115,5 +129,9 @@
     display: flex;
     align-items: center;
     margin-bottom: 0px;
+  }
+
+  p{
+    padding: 16px;
   }
 }

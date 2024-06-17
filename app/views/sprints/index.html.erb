@@ -34,8 +34,14 @@
     <div class = 'card_main'>
       <!--Div main card header-->
       <div class="main-card-header">
-        <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> Sprint #<%= sprint_number %></h2>
-        
+        <h2>
+          <i class="fa-regular fa-lightbulb"></i>
+          Sprint #<%= sprint_number %>
+          <%= link_to edit_sprint_path(sprint) do %>
+          <i id="edit-icon-small"class="fa-solid fa-pen-to-square"></i>
+          <% end %>
+        </h2>
+        <p><%= sprint.date_start %> a <%= sprint.date_end %></p>
       </div>
 
       <!--Div Objetivos da Sprint-->
@@ -65,7 +71,11 @@
           <% sprint.tasks.each do |task| %>
             <tr>
             <!--Nome Tarefa-->
-              <td class ="py-4 px-3" ><%= task.name %></td>
+              <td class ="py-4 px-3" >
+                <%= link_to task_path(task) do %>
+                  <%= task.name %>
+                <% end %>
+              </td>
             <!--Criador/Responsável pela tarefa-->
               <td class ="p-3 text-right">
                 <% if task.user.photo.present?  %>
