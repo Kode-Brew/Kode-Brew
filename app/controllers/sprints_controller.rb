@@ -5,7 +5,7 @@ class SprintsController < ApplicationController
 
   # Displays list of a Project's Sprint
   def index
-    @sprints = Sprint.all.reverse_order
+    @sprints = Sprint.all
   end
 
   # Displays detailed Sprint
