@@ -2,16 +2,25 @@ th,td {
   border-bottom-color: rgba(33,58,63,0.2) !important;
   color :$dark-gray !important;
   a{
-    color :$dark-gray
+    color: $green;
+    text-decoration: none;
   }
 }
+
+th{
+  font-size: 20px;
+  border-bottom-width: 2px !important;
+}
+
 td{
-  font-size: 22px;
+  font-size: 16px;
   background-color: white !important;
 }
-th{
-  font-size: 27px;
-  border-bottom-width: 2px !important;
+
+.td-icons-images{
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
 }
 
 .table_main{

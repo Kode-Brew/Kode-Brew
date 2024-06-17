@@ -41,12 +41,18 @@
             <% @project.tasks.each do |task|%>
               <tr>
                 <td class ="py-4 px-3" ><%= link_to task.name,task_path(task), class: "text-decoration-none"  %></td>
+            <!--Criador/Responsável pela tarefa-->
                 <td class ="p-3 text-right">
-                  <% if task.user.photo.present?  %>
-                    <%= cl_image_tag task.user.photo.key, class: "avatar-large mx-5" %>
-                  <% else %>
-                    <%= image_tag "not_found.jpg", class: "avatar-large mx-5" %>
-                  <% end %>
+                  <div class="td-icons-images">
+                    <span>
+                      <% if task.user.photo.present?  %>
+                        <%= cl_image_tag task.user.photo.key, class: "avatar-large" %>
+                      <% else %>
+                      <%= image_tag "not_found.jpg", class: "avatar-large" %>
+                      <% end %>
+                    </span>
+                    <p><%= task.user.name %></p>
+                  </div>
                 </td>
               </tr>
             <% end %>
