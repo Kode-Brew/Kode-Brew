@@ -1,3 +1,4 @@
+<h1 class="my-4">Todos projetos</h1>
 <div class="card-btn  row my-4 ">
   <div class="col-sm-3">
     <%= link_to "Todos os projetos", projects_path, class: "h5 underline-offset #{'text-decoration-none' unless params[:filter].nil?}" %>
@@ -12,14 +13,14 @@
 
 <div class="row">
   <div  class="table-responsive col-10 px-0">
-    <table id="search-results-bottom" class="table table_main ">
+    <table class="table table_main ">
       <thead>
         <tr>
           <th >Projetos</th>
-          <th class='text-center ' >Data de início</th>
-          <th class='text-center ' >Data de Fim(Prévia)</th>
-          <th class='text-center  d-none d-sm-table-cell' >Status</th>
-          <th class='text-center ' >Cliente</th>
+          <th class='text-center' >Data de início</th>
+          <th class='text-center' >Data de Fim(Prévia)</th>
+          <th class='text-center d-none d-sm-table-cell' >Status</th>
+          <th class='text-center' >Cliente</th>
 
         </tr>
       </thead>
