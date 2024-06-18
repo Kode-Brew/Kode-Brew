@@ -68,6 +68,8 @@
     font-weight: bold;
   }
 
+
+
   #small-subtitle{
     font-size: 12px;
     color: $light-gray;
@@ -91,6 +93,9 @@
       color: $green
     }
   }
+}
+.no-margin-top h4, .no-margin-top h3, .no-margin-top p {
+  margin-top: 0;
 }
 
 .small-card:hover{
