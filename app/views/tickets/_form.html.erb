@@ -1,5 +1,5 @@
  <%= simple_form_for @ticket do |f| %>
       <%= f.input :status, label: "Status", as: :select, collection: [['Em Aberto','Em Aberto'], ['Em Andamento','Em Andamento'], ['Finalizada','Finalizada']] %>
-       <%= f.input :task,  as: :select, collection: current_user.tasks.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Suas Tarefas:" %>
+      <%= f.input :task,  as: :select, collection: current_user.tasks.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Suas Tarefas:" %>
       <%= f.button :submit, class:'btn btn-primary' %>
     <% end %>
