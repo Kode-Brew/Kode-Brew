@@ -1,0 +1,28 @@
+.tag-status{
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: 2px 1px 2px 0 rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  font-weight: bold;
+  white-space:nowrap;
+  margin: 0px;
+  border-radius: 20px;
+  color: $white;
+  padding: 4px;
+}
+
+
+.green-tag{
+  border-color: $green;
+  background-color: $green;
+}
+
+.light-green-tag{
+  border-color: $light-green;
+  background-color: $light-green;
+}
+
+.gray-tag{
+  border-color: $light-gray;
+  background-color: $light-gray;
+}

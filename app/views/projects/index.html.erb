@@ -1,26 +1,52 @@
-<div class="container text-center">
-  <h1>Projects#index</h1>
-  <div class="row">
-    <% @projects.each do |project| %>
-      <div class="col-sm-4 border border-dark m-2">
-        <h2><%= project.name %></h2>
-        <p><%= project.description %></p>
-        <p><%= project.is_active? %></p>
-        <div class="d-flex align-items-end flex-column">
-          <div class="mt-auto  p-2">
-            <%= link_to 'Show', project_path(project), class:"btn btn-primary" %>
-            <%= link_to 'Edit', edit_project_path(project), class:"btn btn-success" %>
-            <%= link_to project_path(project), data: {turbo_method: :delete}, class:'btn btn-danger' do %>
-              <i class="far fa-trash-alt"></i>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+<div class="card-btn  row my-4 ">
+  <div class="col-sm-3">
+    <%= link_to "Todos os projetos", projects_path, class: "h5 underline-offset #{'text-decoration-none' unless params[:filter].nil?}" %>
   </div>
-  <div class="m-2 p-2">
-    <%= link_to "new project".html_safe, new_project_path, class: "btn btn-warning" %>
+  <div class="col-sm-3">
+    <%= link_to "Projetos em andamento", projects_path(filter: "Em andamento"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == 'Em andamento'}" %>
   </div>
+  <div class="col-sm-3">
+    <%= link_to "Projetos finalizados", projects_path(filter: "finalizado"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == 'finalizado'}" %>
+  </div>
+</div>
 
+<div class="row">
+  <div  class="table-responsive col-10 px-0">
+    <table id="search-results-bottom" class="table table_main ">
+      <thead>
+        <tr>
+          <th >Projetos</th>
+          <th class='text-center ' >Data de início</th>
+          <th class='text-center ' >Data de Fim(Prévia)</th>
+          <th class='text-center  d-none d-sm-table-cell' >Status</th>
+          <th class='text-center ' >Cliente</th>
 
+        </tr>
+      </thead>
+      <tbody>
+        <% @projects.each do |project| %>
+            <tr>
+              <td><%= link_to project.name.titleize, project_path(project), class: "text-decoration-none text_dgray" %>
+                  <%= link_to edit_project_path(project), class:"text-decoration-none text_green" do %>
+                    &nbsp;&nbsp;<i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;
+                  <% end %>
+                  <%= link_to project_path(project), data: {turbo_method: :delete}, class:'text-danger' do %>
+                    <i class="far fa-trash-alt"></i>
+                  <% end %>
+              </td>
+              <td class='text-center'><%= project.date_start_project&.strftime("%d/%m/%y") || "---" %></td>
+              <td class='text-center'><%= project.date_end_project&.strftime("%d/%m/%y") || "---" %></td>
+              <td class='text-center  d-none d-sm-table-cell'><p class ="tag-status <%= case project.status.titleize
+                                                   when 'Não Iniciado' then 'gray-tag'
+                                                   when 'Em Andamento' then 'light-green-tag'
+                                                   when 'Finalizado' then 'green-tag'
+                                                 end %>">
+                                                 <%= project.status.titleize %></p>
+                                                 </td>
+              <td class='text-center'><%= project.client.name || "---" %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

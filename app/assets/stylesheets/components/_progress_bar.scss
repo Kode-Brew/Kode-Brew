@@ -6,7 +6,7 @@
   }
 
   &:after {
-    background-color: $grey-light;
+    background-color: $light-grey-bar;
   }
 }
 
@@ -20,13 +20,13 @@
     text-align: center;
     display: table-cell;
     position: relative;
-    color: $grey;
+    color: $grey-bar;
 
     &:before {
       content: '\2713';
       display: block;
       margin: 0 auto 4px;
-      background-color: $grey-light;
+      background-color: $light-grey-bar;
       width: 36px;
       height: 36px;
       line-height: 32px;
@@ -37,7 +37,7 @@
       border: {
         width: 2px;
         style: solid;
-        color: $grey-light;
+        color: $light-grey-bar;
         radius: 50%;
       }
     }
@@ -46,7 +46,7 @@
       content: '';
       height: 8px;
       width: 100%;
-      background-color: $grey-light;
+      background-color: $light-grey-bar;
       position: absolute;
       top: 16px;
       left: 50%;
@@ -60,12 +60,12 @@
     }
 
     &.is-active {
-      color: $orange;
+      color: $orange-bar;
       /* Laranja para etapa ativa */
 
       &:before {
-        background-color: $orange;
-        border-color: $grey-light;
+        background-color: $orange-bar;
+        border-color: $light-grey-bar;
       }
     }
 

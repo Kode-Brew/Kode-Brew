@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
 
   resources :projects do
-    resources :sprints, only: [:index, :new, :create]
+    resources :sprints, only: %i[index new create] do
+      resources :tasks, only: %i[new create]
+    end
     resources :project_members, except: %i[update destroy]
     member do
       post 'advance_sprint'
@@ -20,8 +22,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :sprints, only: %i[show edit update destroy]
+
+  resources :tasks, only: %i[show edit update destroy]
+
   resources :project_members, only: %i[update destroy]
-  resources :sprints, only: [:show, :edit, :update, :destroy]
 
   get "myprojects" => 'projects#myprojects'
   get "dashboard" => 'projects#dashboard'
@@ -29,7 +34,6 @@ Rails.application.routes.draw do
 
   resources :sprint_lectures
   resources :lectures
-  resources :tasks
   resources :tickets
   # Defines the root path route ("/")
   # root "posts#index"
