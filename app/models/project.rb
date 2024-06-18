@@ -21,17 +21,19 @@ class Project < ApplicationRecord
     sprints.count
   end
 
-  def status
-    if (date_end_project || Time.now.next_day(1)) > Time.now
-      if (date_start_project || Time.now.next_day(1)) < Time.now
-        "Em andamento"
-      else
-        "não iniciado"
-      end
-    else
-      "finalizado"
-    end
-  end
+  # def status
+  #   if (date_end_project || Time.now.next_day(1)) > Time.now
+  #     if (date_start_project || Time.now.next_day(1)) < Time.now
+  #       "Em andamento"
+  #     else
+  #       "não iniciado"
+  #     end
+  #   else
+  #     "finalizado"
+  #   end
+  # end
+
+  enum status: { Pendente: 0, Iniciado: 1, Finalizado: 2 }
 
   # Calcula os pontos totais de todas as tarefas finalizadas para um membro específico do projeto
   def total_points_for_member(user)

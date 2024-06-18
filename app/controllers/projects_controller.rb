@@ -66,7 +66,8 @@ class ProjectsController < ApplicationController
   end
 
   def finish_project
-    @project.update(is_active?: false)
+    # 0 = pendent, 1 = in progress, 2 = finished
+    @project.update(status: 2)
     redirect_to project_path(@project), notice: 'Projeto finalizado com sucesso.'
   end
 
@@ -78,7 +79,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:client_id, :name, :category, :description)
+    params.require(:project).permit(:client_id, :name, :category, :description, :status)
   end
 
   def filter_projects

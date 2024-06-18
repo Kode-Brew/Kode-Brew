@@ -5,11 +5,15 @@
     <% active_sprint = @project.active_sprint.to_i %>
     <% active_sprint = total_sprints if active_sprint > total_sprints %>
     <% (1..total_sprints).each do |step| %>
-      <li class="<%= 'is-completed' if step < active_sprint %><%= ' is-active' if step == active_sprint %>">
+      <li class="<%= 'is-completed' if step < active_sprint || (step == active_sprint && @project.status == "Finalizado") %><%= ' is-active' if step == active_sprint && @project.status != "Finalizado" %>">
         <%= step %>
       </li>
     <% end %>
-    <li>Finish</li>
+    <li class="<%= 'is-completed' if active_sprint == total_sprints && @project.status == "Finalizado" %>">Finish</li>
   </ul>
-  <%= button_to 'Avançar Sprint', advance_sprint_project_path(@project), method: :post, class: 'btn btn-primary' %>
+  <% if active_sprint < total_sprints %>
+    <%= button_to 'Avançar Sprint', advance_sprint_project_path(@project), method: :post, class: 'btn btn-primary' %>
+  <% elsif active_sprint == total_sprints && @project.status != "Finalizado" && active_sprint > 2 %>
+    <%= button_to 'Finalizar Projeto', finish_project_project_path(@project), method: :post, class: 'btn btn-success' %>
+  <% end %>
 </div>
