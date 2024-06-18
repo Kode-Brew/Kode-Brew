@@ -1,15 +1,136 @@
- <div class="container">
-    <div class="title-big">
-      <h1 class="project-title"></i>Projeto</h1>
-       <%= link_to projects_path, class: 'btn-back text-decoration-none' do %>
-      <i class='fa-solid fa-circle-left'></i>
-    <% end %>
+<h1 class="project-title mt-2"></i>Projeto</h1>
+<div class= "small-cards-container">
+  <%= link_to project_sprints_path(@project) do %>
+    <div class= "small-card no-margin-top">
+      <p><i class="fa-solid fa-list-check fs-3"></i></p>
+      <h4>Sprint atual: <span style="color:#008100;">#
+        <%= @project.sprints.all.count %></span>
+      </h4>
+      <p id="small-subtitle">
+        de <strong><span style="color: #008100;">
+          <%= @project.sprints.last.date_start.strftime("%d/%m") %>
+        </span></strong>
+        à <strong><span style="color: #008100;">
+          <%= @project.sprints.last.date_end.strftime("%d/%m") %>
+        </span></strong>
+      </p>
     </div>
+  <% end %>
+  <%= link_to lectures_path do %>
+    <div class= "small-card no-margin-top">
+      <p><i class="fa-solid fa-laptop-code fs-3"></i></p>
+      <h4>Acessar <span style="color:#008100;">aulas</span> e materiais de apoio</h4>
+    </div>
+  <% end %>
+  <%= link_to new_ticket_path, target: :_blank do %>
+    <div class= "small-card no-margin-top">
+      <p><i class="fa-regular fa-comments fs-3"></i></p>
+      <h4> Abrir um <span  style="color:#008100;">Ticket</span></h4>
+      <p id="small-subtitle">com um Professor ou T.A</p>
+    </div>
+  <% end %>
+</div>
 
-    <h2>Nome: <%= @project.name %></h2>
-    <p>Category: <%= @project.category %></p>
-    <p>Descrição:<%= @project.description %></p>
-    <p>Está ativo?:<%= @project.is_active? %></p>
-
-  
+<div class='card_main'>
+  <div class="objective-card">
+    <h5>Informações do Projeto</h5>
   </div>
+  <div class="table-responsive col-12 p-5">
+    <div class="row">
+      <div class="col-md-6">
+        <h5><%= @project.name %></h5>
+        <p><%= @project.description %></p>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex align-items-center mb-3">
+          <i class="far fa-clock fa-2x me-3"></i>
+          <div class="ml-2">
+            <strong>Status</strong>
+            <p style="color:#008100;"><%= @project.status %></p>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <i class="far fa-calendar-alt fa-2x me-3"></i>
+          <div class="ml-2">
+            <strong>Data de início</strong>
+            <p style="color:#008100;"><%= @project.date_start_project.strftime("%d/%m/%y") %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= link_to client_path(@project), class: "text-decoration-none text-reset" do %>
+    <div class="objective-card">
+      <h5>Dados do Cliente</h5>
+    </div>
+  <% end %>
+  <div class="table-responsive col-12 p-5">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="d-flex align-items-center mb-3">
+          <%= link_to client_path(@project), class: "text-decoration-none text-reset" do %>
+            <img src="https://kitt.lewagon.com/placeholder/users/thony-vieira" <%# adicionar o caminho para a foto da empresa%>
+              alt="Foto do Cliente" class="me-3"
+              style="width: 100px; height: 100px; border-radius: 10px;">
+          <% end %>
+          <div>
+            <p>Contratado por</p>
+            <h5><%= @project.client.name %></h5>
+            <div class="d-flex align-items-center">
+              <i class="fa-solid fa-building fa-2x me-3"></i>
+              <p class="mt-3" style="color:#008100;"><%= @project.client.category %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex align-items-center mb-3">
+          <i class="fa-solid fa-location-dot fa-2x me-3"></i>
+          <div class="ml-2">
+            <strong>Endereço</strong>
+            <p style="color:#008100;">
+              <%= link_to @project.client.address,
+                "https://www.google.com/maps?q=#{ERB::Util.url_encode(@project.client.address)}",
+                target: "_blank", style: "color: #008100; text-decoration: none;" %>
+            </p>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <i class="fa-solid fa-envelope fa-2x me-3"></i>
+          <div class="ml-2">
+            <strong>E-mail</strong>
+            <p style="color:#008100;"><%= @project.client.email %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="objective-card">
+    <h5>Membros do projeto</h5>
+  </div>
+  <div class="table-responsive col-12 p-5">
+    <div class="row">
+      <div class="col-md-12">
+        <% @project.project_members.each do |member| %>
+          <div class="row align-items-center py-2">
+            <div class="col-md-4 d-flex align-items-center">
+              <img src="https://kitt.lewagon.com/placeholder/users/perrigii" <%# adicionar o caminho para a foto do membro%>
+                alt="Foto do Membro" class="me-3"
+                style="width: 50px; height: 50px; border-radius: 50%;">
+              <h6 class="mb-0"><%= member.user.name %></h6>
+            </div>
+            <div class="col-md-4 text-md-center">
+              <p class="mb-0"><%= member.user_type %></p>
+            </div>
+            <div class="col-md-4 text-md-end">
+              <%= link_to 'ver membro', project_project_member_path(@project.id, member.id), class: 'text-success' %>
+            </div>
+          </div>
+          <hr class="my-2">
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
