@@ -1,5 +1,5 @@
 <div class="container">
-    <%= link_to project_members_path, class: 'btn-back text-decoration-none' do %>
+    <%= link_to project_project_members_path, class: 'btn-back text-decoration-none' do %>
       <i class='fa-solid fa-circle-left'></i>
     <% end %>
 
@@ -14,7 +14,7 @@
   </div>
 
   <div class="mt-auto p-2">
-    <%= link_to edit_project_member_path(@project_member), class:'btn btn-success' do %>
+    <%= link_to edit_project_project_member_path(@project_member), class:'btn btn-success' do %>
       <i class="fa-regular fa-pen-to-square"></i>
     <%end%>
 

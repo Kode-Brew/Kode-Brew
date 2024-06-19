@@ -1,6 +1,52 @@
-<div class="container text-center">
-   <div id="carts">
-      <%= render partial: 'projects/myprojects', locals: { projects: @projects}
-      %>
+<h1 class="my-4">Meus projetos</h1>
+
+  <div class="card-btn  row my-4 ">
+
+   <div class="col-sm-3">
+    <%= link_to "Todos os projetos", myprojects_path, class: "h5 underline-offset #{'text-decoration-none' unless params[:filter].nil?}" %>
+  </div>
+  <div class="col-sm-3">
+    <%= link_to "Projetos em andamento", myprojects_path(filter: "Em andamento"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == 'Em andamento'}" %>
+  </div>
+  <div class="col-sm-3">
+    <%= link_to "Projetos finalizados", myprojects_path(filter: "finalizado"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == 'finalizado'}" %>
+  </div>
+
+
+  </div>
+  <div class="row">
+    <div class="table-responsive col-10 px-0">
+      <table class="table table_main ">
+        <thead>
+          <tr>
+            <th>Projetos</th>
+            <th class='text-center'>Data de Fim(Prévia)</th>
+            <th class='text-center d-none d-sm-table-cell'>Status</th>
+            <th class='text-center'>Função</th>
+            <th class='text-center'>Tarefas Entregues</th>
+            <th class='text-center'>Pontos</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <% @projects.each do |project| %>
+              <tr>
+                <td><%=  link_to project.name.titleize, project_sprints_path(project), class: "text-decoration-none text_dgray" %></td>
+                <td class='text-center'><%= project.date_end_project&.strftime("%d/%m/%y") || "---" %></td>
+                <td class='text-center  d-none d-sm-table-cell'><p class ="tag-status <%= case project.status.titleize
+                                                    when 'Não Iniciado' then 'gray-tag'
+                                                    when 'Em Andamento' then 'light-green-tag'
+                                                    when 'Finalizado' then 'green-tag'
+                                                  end %>">
+                                                  <%= project.status.titleize %></p>
+                                                  </td>
+                <td class='text-center'><%= ProjectMember.user_types.key(project.user_type) %> </td>
+                <td class='text-center'><%= project.tasks_performed %> </td>
+                <td class='text-center'><%= project.total_points %> </td>
+              </tr>
+          <% end %>
+
+        </tbody>
+      </table>
     </div>
-</div>
+  </div>

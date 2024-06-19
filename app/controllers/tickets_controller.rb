@@ -54,7 +54,7 @@ class TicketsController < ApplicationController
 
   # Permits ticket parameters
   def ticket_params
-    params.require(:ticket).permit(:status)
+    params.require(:ticket).permit(:status, :category, :description)
   end
 
   # Sets the ticket instance variable based on the provided id
