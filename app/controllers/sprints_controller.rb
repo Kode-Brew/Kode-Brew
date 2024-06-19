@@ -1,6 +1,7 @@
 class SprintsController < ApplicationController
   before_action :set_sprint, only: [:show, :edit, :update, :destroy]
   before_action :set_project, only: [:index, :new, :create]
+  before_action :set_breadcrumbs, except: %i[update destroy show edit]
 
 
   # Displays list of a Project's Sprint
@@ -15,6 +16,7 @@ class SprintsController < ApplicationController
 
   # Form to create new Sprint
   def new
+    add_breadcrumb "Nova Sprint", new_project_sprint_path
     @sprint = Sprint.new
   end
 
@@ -33,6 +35,9 @@ class SprintsController < ApplicationController
 
   # Form to edit a Sprint
   def edit
+    add_breadcrumb @sprint.project.name, project_path(@sprint.project)
+    add_breadcrumb "Sprints", project_sprints_path(@sprint.project)
+    add_breadcrumb "Editar Sprint", edit_sprint_path(@sprint)
   end
 
   # Updates (patch) a Sprint
@@ -66,5 +71,11 @@ class SprintsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:project_id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb "Projetos", projects_path
+    add_breadcrumb @project.name, project_path(@project)
+    add_breadcrumb "Sprints", project_sprints_path
   end
 end
