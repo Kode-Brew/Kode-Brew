@@ -52,6 +52,6 @@ class ProjectMembersController < ApplicationController
   end
 
   def project_member_params
-    params.require(:project_member).permit( :user_type)
+    params.require(:project_member).permit(:user_type)
   end
 end

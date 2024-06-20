@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[show edit update destroy]
+  before_action :set_project, only: %i[show edit update destroy advance_sprint finish_project]
+  before_action :set_breadcrumbs, except: %i[update destroy advance_sprint finish_project]
+
+  # helper :breadcrumbs
 
   def index
     @projects = Project.all
@@ -7,6 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def myprojects
+    add_breadcrumb "Meus projetos", myprojects_path
     @projects = current_user.projects
                             .left_joins(:project_members, sprints: :tasks)
                             .group('projects.id', 'project_members.user_type')
@@ -18,12 +22,16 @@ class ProjectsController < ApplicationController
   end
 
   def dashboard
+    add_breadcrumb "Dashboard", dashboard_path
     @project = current_user.projects.find_by(is_active?: true)
   end
 
-  def show; end
+  def show
+    add_breadcrumb @project.name, project_path(@project)
+  end
 
   def new
+    add_breadcrumb "Novo Projeto", new_project_path
     @project = Project.new
   end
 
@@ -41,7 +49,10 @@ class ProjectsController < ApplicationController
     puts @project.errors.full_messages
   end
 
-  def edit; end
+  def edit
+    add_breadcrumb @project.name, project_path(@project)
+    add_breadcrumb "Editar Projeto", edit_project_path(@project)
+  end
 
   def update
     if @project.update(project_params)
@@ -58,6 +69,19 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
+  def advance_sprint
+    if @project.active_sprint.to_i < @project.sprints.count
+      @project.update(active_sprint: @project.active_sprint.to_i + 1)
+    end
+    redirect_back(fallback_location: project_sprints_path(@project), notice: 'Sprint avançada com sucesso.')
+  end
+
+  def finish_project
+    # 0 = pendent, 1 = in progress, 2 = finished
+    @project.update(status: 2)
+    redirect_to project_path(@project), notice: 'Projeto finalizado com sucesso.'
+  end
+
 
   private
 
@@ -65,8 +89,12 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def set_breadcrumbs
+    add_breadcrumb "Projetos", projects_path
+  end
+
   def project_params
-    params.require(:project).permit(:client_id, :name, :category, :description)
+    params.require(:project).permit(:client_id, :name, :category, :description, :status)
   end
 
   def filter_projects

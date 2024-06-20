@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: %i[show edit update destroy]
+  before_action :set_breadcrumbs, except: %i[update destroy]
 
   # Displays a list of tickets
   def index
@@ -8,10 +9,12 @@ class TicketsController < ApplicationController
 
   # Displays details of a specific ticket
   def show
+    add_breadcrumb @ticket.id, ticket_path(@ticket)
   end
 
   # Renders form to create a new ticket
   def new
+    add_breadcrumb "Novo Ticket", new_ticket_path
     @ticket = Ticket.new
   end
 
@@ -31,6 +34,8 @@ class TicketsController < ApplicationController
 
   # Renders form to edit a ticket
   def edit
+    add_breadcrumb @ticket.id, ticket_path(@ticket)
+    add_breadcrumb "Editar Ticket", edit_ticket_path
   end
 
   # Updates a ticket
@@ -52,9 +57,13 @@ class TicketsController < ApplicationController
 
   private
 
+  def set_breadcrumbs
+    add_breadcrumb "Tickets", tickets_path
+  end
+
   # Permits ticket parameters
   def ticket_params
-    params.require(:ticket).permit(:status)
+    params.require(:ticket).permit(:status, :category, :description)
   end
 
   # Sets the ticket instance variable based on the provided id
