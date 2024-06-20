@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[show edit update destroy]
+  before_action :set_project, only: %i[show edit update destroy advance_sprint finish_project]
 
   def index
     @projects = Project.all
@@ -58,6 +58,19 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
+  def advance_sprint
+    if @project.active_sprint.to_i < @project.sprints.count
+      @project.update(active_sprint: @project.active_sprint.to_i + 1)
+    end
+    redirect_back(fallback_location: project_sprints_path(@project), notice: 'Sprint avançada com sucesso.')
+  end
+
+  def finish_project
+    # 0 = pendent, 1 = in progress, 2 = finished
+    @project.update(status: 2)
+    redirect_to project_path(@project), notice: 'Projeto finalizado com sucesso.'
+  end
+
 
   private
 
@@ -66,7 +79,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:client_id, :name, :category, :description)
+    params.require(:project).permit(:client_id, :name, :category, :description, :status)
   end
 
   def filter_projects
