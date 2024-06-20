@@ -14,8 +14,7 @@ class TasksController < ApplicationController
   # Renders form to create a new task
   def new
     @task = Task.new
-    @project_members = @sprint.project.project_members
-    @users = @project_members.map(&:user) if @project_members
+    @users = @sprint.project.users
   end
 
   # Creates a new task
@@ -23,7 +22,6 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user = User.find(params[:task][:user_id])
     @task.sprint = @sprint
-    @task.project_member = @sprint.project.project_members.find_by(user_id: @task.user)
     if @task.save
       flash[:notice] = "Tarefa criada com sucesso."
       redirect_to project_sprints_path
@@ -34,6 +32,7 @@ class TasksController < ApplicationController
 
   # Renders form to edit a task
   def edit
+    @users = @task.sprint.project.users
   end
 
   # Updates a task
