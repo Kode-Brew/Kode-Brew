@@ -1,0 +1,31 @@
+/* app/assets/stylesheets/application.css */
+
+.breadcrumbs {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  /* Centraliza os breadcrumbs */
+}
+
+.breadcrumbs li {
+  display: inline;
+  margin-right: 5px;
+}
+
+.breadcrumbs li:after {
+  content: ">";
+  margin-left: 5px;
+}
+
+.breadcrumbs li:last-child:after {
+  content: "";
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: $green;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}

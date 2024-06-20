@@ -1,13 +1,17 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[show edit update destroy]
+  before_action :set_breadcrumbs, except: %i[update destroy]
+
   def index
     @clients = Client.all
   end
 
   def show
+    add_breadcrumb @client.name, client_path(@client)
   end
 
   def new
+    add_breadcrumb "Novo cliente", new_client_path
     @client = Client.new
   end
 
@@ -22,6 +26,8 @@ class ClientsController < ApplicationController
   end
 
   def edit
+    add_breadcrumb @client.name, client_path(@client)
+    add_breadcrumb "Editar Cliente", edit_client_path(@client)
   end
 
   def update
@@ -39,6 +45,10 @@ class ClientsController < ApplicationController
 
   def set_client
     @client = Client.find(params[:id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb "Clientes", clients_path
   end
 
   def client_params
