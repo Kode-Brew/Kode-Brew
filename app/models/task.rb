@@ -3,6 +3,7 @@ class Task < ApplicationRecord
   belongs_to :sprint
   belongs_to :user
   has_many :tickets, dependent: :destroy
+  has_one :project_member, through: :user
 
   # Validations
   validates :name, :priority, :description, :status, :points, presence: true

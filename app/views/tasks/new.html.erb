@@ -5,11 +5,12 @@
     <% end %>
     <h2 class="form-title">Cadastrar nova tarefa</h2>
       <%= simple_form_for [@sprint.project, @sprint, @task] do |f| %>
-      <%= f.input :name, label: "Nome" %>
+      <%= f.input :name, label: "Tarefa" %>
       <%= f.input :priority, label: "Prioridade", as: :select, collection: [['Baixa', 'baixa'], ['Média', 'media'], ['Média-Alta', 'media-alta'], ['Alta', 'alta']] %>
       <%= f.input :description, label: "Descrição" %>
+      <%= f.collection_select :user_id, @users, :id, :name, prompt: "Selecione um membro do projeto para realizar a tarefa" %>
       <%= f.input :status, label: "Status", as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Finalizada', 'Finalizada']] %>
-       <%= f.input :points, label: "Pontos" %>
+      <%= f.input :points, label: "Pontos", as: :select, collection: [1, 3, 5, 8, 13] %>
       <%= f.button :submit, class:'btn btn-primary' %>
     <% end %>
   </div>
