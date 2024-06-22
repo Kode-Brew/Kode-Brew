@@ -30,6 +30,10 @@ class ProjectsController < ApplicationController
   def create
     @project_member = current_user
     @project = Project.new(project_params)
+    @project.client = Project.find(params[:project][:client])
+    # @project.user = Project.find(params[:project][:user])
+    @project.project_members = Project.find(params[:project][:user])
+
 
     if @project.save
       flash[:notice] = "Projeto criado com sucesso."

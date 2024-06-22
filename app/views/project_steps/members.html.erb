@@ -1,0 +1,6 @@
+<%= simple_form_for @project, url: wizard_path do |f| %>
+
+  <%= f.check_box :project_member %>
+  <%= f.submit 'Continuar', name: "next", class:'btn btn-primary' %>
+
+<% end %>

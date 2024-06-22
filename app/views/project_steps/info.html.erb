@@ -1,0 +1,8 @@
+<%= simple_form_for @project, url: wizard_path do |f| %>
+
+  <%= f.input :name, label: "Nome" %>
+  <%= f.input :category, label: "Categoria" %>
+  <%= f.input :description, label: "Descrição" %>
+  <%= f.submit 'Continuar', name: "next", class:'btn btn-primary' %>
+
+<% end %>
