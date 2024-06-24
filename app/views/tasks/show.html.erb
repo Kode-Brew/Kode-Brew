@@ -43,7 +43,7 @@
 
         <h5>Status:</h5>
         <%= simple_form_for @task do |f| %>
-          <%= f.input :status, label: "Status", as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"} %>
+          <%= f.input :status, label: "Status", as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"} %>
           <%= f.button :submit, class:'btn btn-primary' %>
         <% end %>
 
