@@ -4,7 +4,10 @@ class TicketsController < ApplicationController
 
   # Displays a list of tickets
   def index
-    @tickets = Ticket.all
+    # @tickets = Ticket.all
+    @tickets = Ticket.joins(task: { sprint: :project })
+                     .where(projects: { id: current_user.projects.ids })
+                     .where.not(status: 'Finalizada')
   end
 
   # Displays details of a specific ticket
