@@ -1,11 +1,57 @@
-  <div class="container">
-    <div class="title-big">
-      <h1 class="task-title"></i> Tarefa</h1>
+<div class="container mt-2">
+  <h1>Dashboard</h1>
 
+  <div class= "small-cards-container">
+    <%# 1st small-card %>
+    <div class= "small-card">
+      <p><i class="fa-regular fa-star"></i> Pontuação</p>
+      <h3 style="color:#008100;">5 pontos</h3>
     </div>
-    <h2>Nome: <%= @task.name %></h2>
-    <p>Descrição:<%= @task.description %></p>
-    <p>Status: <%= @task.status %></p>
-    <p>Prioridade: <%= @task.priority %></p>
-    <p>Pontos: <%= @task.points %></p>
+
+    <%# 2nd small-card %>
+    <%= link_to task_path, class: "text-decoration-none" do %>
+      <div class= "small-card">
+        <p><i class="fa-solid fa-mug-saucer"></i>  Projeto Atual</p>
+        <h4><%=  %></h4>
+        <footer><%= link_to "detalhes", task_path, class: "text-decoration-none" %></footer>
+      </div>
+    <% end %>
+
+    <%# 3rd small-card %>
+    <%= link_to task_path do %>
+      <div class= "small-card">
+        <p><i class="fa-regular fa-comments"></i> Tire dúvidas</p>
+        <h4 style="color:#008100;"> Abrir um Ticket</h4>
+        <%# <p id="small-subtitle">com um Professor ou TA</p> %>
+      </div>
+    <% end %>
   </div>
+
+
+  <div class = 'card_main'>
+    <div class="main-card-header">
+      <h2><i class="fa-solid fa-bars-progress"></i> Tarefa: <%= @task.name %></h2>
+    </div>
+
+    <div class="objective-card">
+        <h5>Descrição:</h5>
+        <p><%= @task.description %></p>
+      </div>
+
+        <h5>Responsável:</h5>
+        <p><%= @task.user.name %></p>
+
+        <h5>Status:</h5>
+        <%= simple_form_for @task do |f| %>
+          <%= f.input :status, label: "Status", as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"} %>
+          <%= f.button :submit, class:'btn btn-primary' %>
+        <% end %>
+
+        <h5>Prioridade:</h5>
+        <p><%= @task.priority %></p>
+
+        <h5>Pontuação:</h5>
+        <p><%= @task.points %></p>
+
+  </div>
+</div>
