@@ -30,20 +30,20 @@
   border: rgba(0, 0, 0, 0.16) 1px solid;
   border-radius: 15px;
   padding: 10px;
-  margin: 20px;
+  margin: 24px;
   color: $dark-gray;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(5px);
 
   p{
-    font-size: 14px;
+    font-size: 16px;
     color: $light-gray;
     // font-weight: bold;
     margin: 0;
   }
 }
 .card_tickets:hover{
-  transform: translateX(0px) scale(1.1);
+  transform: translateX(0px) scale(1.2);
 }
 
 .card_input_form{

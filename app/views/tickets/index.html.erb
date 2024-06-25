@@ -1,8 +1,8 @@
 <div class="container">
     <h1 ></i> Tickets</h1>
           <div class="row justify-content-center">
-            <div class="col-sm-6 card_main">
-            <h2>Meus Tickets <%= link_to  new_ticket_path, class: "text_green" do %>
+            <div class="col-sm-10 card_main">
+            <h2>Tickets em aberto <%= link_to  new_ticket_path, class: "text_green" do %>
                 <i class="fa-solid fa-circle-plus"></i>
               <% end %>
             </h2>
@@ -10,17 +10,18 @@
                 <%= link_to ticket_path(ticket), class:"text-decoration-none" do%>
                   <div class="card_tickets border-dark ">
                    <div class="row">
-                      <div class="col-6">
+                      <div class="col-3">
                         <p><strong>Tarefa:</strong> <%= ticket.task.name %></p>
                       </div>
-                      <div class="col-6">
-                        <p class="text-center"><strong>Projeto:</strong> <%= ticket.task.sprint.project.name %></p>
+                      <div class="col-3">
+                        <p class=""><strong>Projeto:</strong> <%= ticket.task.sprint.project.name %></p>
                       </div>
-                      <div class="col-6">
-                        <p><strong>Professor:</strong> <%= ticket.user.name || "---"%></p>
+
+                      <div class="col-3">
+                        <p><strong>Aluno:</strong> <%= ticket.task.user.name %></p>
                       </div>
-                      <div class="col-6">
-                        <p class="text-center"><strong>Status:</strong> <%= ticket.status %></p>
+                      <div class="col-3">
+                        <p class=""><strong>Categoria:</strong> <%= ticket.category %></p>
                       </div>
                     </div>
                   </div>
