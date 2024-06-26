@@ -38,7 +38,7 @@
               class: "text-decoration-none text-reset",
               title: lecture.title %>
               </h1>
-            <p><%= truncate(lecture.description, length: 100) %></p>
+            <p><%= truncate(lecture.description, length: 80) %></p>
             <p class="lecture-read-more">
               <%= link_to "Read More", lecture_path(lecture) %>
             </p>
