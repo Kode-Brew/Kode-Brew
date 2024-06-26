@@ -16,6 +16,10 @@ Rails.application.routes.draw do
       resources :tasks, only: %i[new create]
     end
     resources :project_members, except: %i[update destroy]
+    member do
+      post 'advance_sprint'
+      post 'finish_project'
+    end
   end
 
   resources :sprints, only: %i[show edit update destroy]

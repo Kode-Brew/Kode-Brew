@@ -14,12 +14,13 @@ class TasksController < ApplicationController
   # Renders form to create a new task
   def new
     @task = Task.new
+    @users = @sprint.project.users
   end
 
   # Creates a new task
   def create
     @task = Task.new(task_params)
-    @task.user = current_user
+    @task.user = User.find(params[:task][:user_id])
     @task.sprint = @sprint
     if @task.save
       flash[:notice] = "Tarefa criada com sucesso."
@@ -31,6 +32,7 @@ class TasksController < ApplicationController
 
   # Renders form to edit a task
   def edit
+    @users = @task.sprint.project.users
   end
 
   # Updates a task
@@ -54,7 +56,7 @@ class TasksController < ApplicationController
 
   # Permits task parameters
   def task_params
-    params.require(:task).permit(:name, :priority, :description, :status, :points)
+    params.require(:task).permit(:name, :priority, :description, :status, :points, :user_id)
   end
 
   # Sets the task instance variable based on the provided id
