@@ -8,10 +8,18 @@
       </h4>
       <p id="small-subtitle">
         de <strong><span style="color: #008100;">
+        <% if @project.sprints.present? %>
           <%= @project.sprints.last.date_start.strftime("%d/%m") %>
+        <% else %>
+          - <%# Condição quando não tem sprint%>
+        <% end %>
         </span></strong>
         à <strong><span style="color: #008100;">
+        <% if @project.sprints.present? %>
           <%= @project.sprints.last.date_end.strftime("%d/%m") %>
+        <% else %>
+          - <%# Condição quando não tem sprint%>
+        <% end %>
         </span></strong>
       </p>
     </div>
@@ -53,7 +61,11 @@
           <i class="far fa-calendar-alt fa-2x me-3"></i>
           <div class="ml-2">
             <strong>Data de início</strong>
-            <p style="color:#008100;"><%= @project.date_start_project.strftime("%d/%m/%y") %></p>
+            <% if @project.sprints.present? %>
+              <p style="color:#008100;"><%= @project.date_start_project.strftime("%d/%m/%y") %></p>
+            <% else %>
+              <p style="color:#008100;">-</p>
+            <% end %> <%# fazer condição para quando for nil aparecer - %>
           </div>
         </div>
       </div>
