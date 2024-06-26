@@ -5,11 +5,12 @@
     <% end %>
     <h2 class="form-title">Cadastrar nova tarefa</h2>
       <%= simple_form_for [@sprint.project, @sprint, @task] do |f| %>
-      <%= f.input :name, label: "Nome" %>
-      <%= f.input :priority, label: "Prioridade", as: :select, collection: [['Baixa', 'baixa'], ['Média', 'media'], ['Média-Alta', 'media-alta'], ['Alta', 'alta']] %>
-      <%= f.input :description, label: "Descrição" %>
-      <%= f.input :status, label: "Status", as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Finalizada', 'Finalizada']] %>
-       <%= f.input :points, label: "Pontos" %>
+      <%= f.input :name, label: "Nome", input_html: {class: "card_input_form"} %>
+      <%= f.input :priority, label: "Prioridade", as: :select, collection: [['Baixa', 'baixa'], ['Média', 'media'], ['Média-Alta', 'media-alta'], ['Alta', 'alta']], input_html: {class: "card_input_form"} %>
+      <%= f.input :description, label: "Descrição", input_html: {class: "card_input_form"} %>
+      <%= f.input :user_id,  as: :select, collection: @users.map { |u| [u.name, u.id] }, label: "Responsável pela task:", input_html: {class: "card_input_form"}%>
+      <%= f.input :status, label: "Status", as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"} %>
+      <%= f.input :points, label: "Pontos", as: :select, collection: [1, 3, 5, 8, 13], input_html: {class: "card_input_form"} %>
       <%= f.button :submit, class:'btn btn-primary' %>
     <% end %>
   </div>
