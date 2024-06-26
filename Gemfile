@@ -29,6 +29,8 @@ gem "jbuilder"
 # Image management [https://github.com/cloudinary/cloudinary_gem]
 gem "cloudinary"
 
+gem "httparty"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
