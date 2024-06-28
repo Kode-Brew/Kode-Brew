@@ -1,0 +1,46 @@
+.task-content {
+  margin: 40px 40px 24px;
+  height: auto;
+  background-color: white;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Improved responsiveness */
+  grid-gap: 48px;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 480px) { /* Adjust breakpoint as needed */
+  .task-content {
+    grid-template-columns: 1fr; /* Single column on mobile */
+  }
+
+}
+.task-item {
+  display: flex;
+  gap: 16px;
+
+  h5, p{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+  }
+
+  h5{
+    margin-left: 12px;
+  }
+}
+
+.task-inline{
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-left: 0px;
+  }
+
+  .select-input{
+    margin-bottom: -14px;
+    padding-right: 16px;
+  }
+
+}

@@ -1,5 +1,5 @@
 <div class="container mt-2">
-  <h1>Dashboard</h1>
+  <h1>Tarefa</h1>
 
   <div class= "small-cards-container">
     <%# 1st small-card %>
@@ -30,7 +30,7 @@
 
   <div class = 'card_main'>
     <div class="main-card-header">
-      <h2><i class="fa-solid fa-bars-progress"></i> Tarefa: <%= @task.name %></h2>
+      <h2><i class="fa-solid fa-bars-progress"></i>  <%= @task.name %></h2>
     </div>
 
     <div class="objective-card">
@@ -38,20 +38,44 @@
         <p><%= @task.description %></p>
       </div>
 
-        <h5>Responsável:</h5>
-        <p><%= @task.user.name %></p>
+    <div class = 'task-content'>
+      <div class = 'task-item'>
+        <p>Responsável:</p>
+        <div class = 'task-inline'>
+          <img src="https://kitt.lewagon.com/placeholder/users/perrigii" <%# adicionar o caminho para a foto do membro%>
+                alt="Foto do Membro" class="me-3"
+                style="width: 50px; height: 50px; border-radius: 50%;">
 
-        <h5>Status:</h5>
-        <%= simple_form_for @task do |f| %>
-          <%= f.input :status, label: "Status", as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"} %>
-          <%= f.button :submit, class:'btn btn-primary' %>
-        <% end %>
+          <h5><%= @task.user.name %></h5>
+        </div>
+      </div>
 
-        <h5>Prioridade:</h5>
-        <p><%= @task.priority %></p>
+      <div class = 'task-item task-central'>
+        <p>Status:</p>
 
-        <h5>Pontuação:</h5>
-        <p><%= @task.points %></p>
+          <%= simple_form_for @task do |f| %>
+            <div class="task-inline">
+              <div class="select-input">
+                <%= f.input :status, as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"}, label: false %>
+              </div>
+              <div class="submit-button">
+                <%= f.button :submit, "Atualizar", class:'button_confirm' %>
+              </div>
+            </div>
+          <% end %>
+      </div>
 
+
+      <div class = 'task-item task-central'>
+        <p>Pontuação:</p>
+
+        <h5><%= @task.points %> pontos</h5>
+      </div>
+
+      <div class = 'task-item task-central'>
+        <p>Prioridade:</p>
+        <h5><%= @task.priority %></h5>
+      </div>
+    </div>
   </div>
 </div>
