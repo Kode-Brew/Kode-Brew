@@ -31,6 +31,9 @@
                   <%= link_to edit_project_path(project), class:"text-decoration-none text_green" do %>
                     &nbsp;&nbsp;<i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;
                   <% end %>
+                  <%= link_to project_project_members_path(project), class:'text-decoration-none text_green' do %>
+                   <i class="fa-solid fa-user-group"></i>&nbsp;&nbsp;
+                  <% end %>
                   <%= link_to project_path(project), data: {turbo_method: :delete}, class:'text-danger' do %>
                     <i class="far fa-trash-alt"></i>
                   <% end %>

@@ -39,9 +39,14 @@
         <h2>
           <i class="fa-regular fa-lightbulb"></i>
           Sprint #<%= @project.sprints.count - index %>
-          <%= link_to edit_sprint_path(sprint) do %>
+          <%= link_to edit_sprint_path(sprint) , class:'text-decoration-none text_green' do %>
           <i id="edit-icon-small"class="fa-solid fa-pen-to-square"></i>
           <% end %>
+       <% if sprint.sprint_lectures.any? %>
+          <%= link_to lecture_path(sprint.lectures.first) do %>
+            <i id="edit-icon-small" class="fa-solid fa-book-open"></i>
+          <% end %>
+        <% end %>
         </h2>
         <div class="sprint-date">
           <p><%= sprint.date_start.strftime("%d/%m/%Y") %></p> a <p><%= sprint.date_end.strftime("%d/%m/%Y") %></p>

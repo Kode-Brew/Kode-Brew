@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_18_173336) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_28_164621) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,12 +87,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_173336) do
   create_table "sprint_lectures", force: :cascade do |t|
     t.bigint "sprint_id", null: false
     t.bigint "lecture_id", null: false
-    t.bigint "project_member_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lecture_id"], name: "index_sprint_lectures_on_lecture_id"
-    t.index ["project_member_id"], name: "index_sprint_lectures_on_project_member_id"
     t.index ["sprint_id"], name: "index_sprint_lectures_on_sprint_id"
+    t.index ["user_id"], name: "index_sprint_lectures_on_user_id"
   end
 
   create_table "sprints", force: :cascade do |t|
@@ -121,7 +121,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_173336) do
 
   create_table "tickets", force: :cascade do |t|
     t.string "status"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "task_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -152,7 +152,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_173336) do
   add_foreign_key "project_members", "users"
   add_foreign_key "projects", "clients"
   add_foreign_key "sprint_lectures", "lectures"
-  add_foreign_key "sprint_lectures", "project_members"
+  add_foreign_key "sprint_lectures", "project_members", column: "user_id"
   add_foreign_key "sprint_lectures", "sprints"
   add_foreign_key "sprints", "projects"
   add_foreign_key "tasks", "sprints"

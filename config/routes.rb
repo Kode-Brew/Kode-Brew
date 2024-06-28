@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :sprints, only: %i[index new create] do
       resources :tasks, only: %i[new create]
+      resources :sprint_lectures, only: %i[new create]
     end
     resources :project_members, except: %i[update destroy]
     member do
@@ -32,7 +33,7 @@ Rails.application.routes.draw do
   get "dashboard" => 'projects#dashboard'
   # resources :project_members
 
-  resources :sprint_lectures
+  resources :sprint_lectures, only: %i[show edit update destroy]
   resources :lectures
   resources :tickets
   # Defines the root path route ("/")
