@@ -41,8 +41,8 @@
               <td class='text-center'><%= project.date_start_project&.strftime("%d/%m/%y") || "---" %></td>
               <td class='text-center'><%= project.date_end_project&.strftime("%d/%m/%y") || "---" %></td>
               <td class='text-center  d-none d-sm-table-cell'><p class ="tag-status <%= case project.status.titleize
-                                                   when 'Não Iniciado' then 'gray-tag'
-                                                   when 'Em Andamento' then 'light-green-tag'
+                                                   when 'Pendente' then 'gray-tag'
+                                                   when 'Iniciado' then 'light-green-tag'
                                                    when 'Finalizado' then 'green-tag'
                                                  end %>">
                                                  <%= project.status.titleize %></p>
