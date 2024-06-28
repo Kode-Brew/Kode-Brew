@@ -43,7 +43,7 @@
         <p>Responsável:</p>
         <div class = 'task-inline'>
           <img src="https://kitt.lewagon.com/placeholder/users/perrigii" <%# adicionar o caminho para a foto do membro%>
-                alt="Foto do Membro" class="me-3"
+                alt="Foto do Membro"
                 style="width: 50px; height: 50px; border-radius: 50%;">
 
           <h5><%= @task.user.name %></h5>
@@ -54,7 +54,7 @@
         <p>Status:</p>
 
           <%= simple_form_for @task do |f| %>
-            <div class="task-inline">
+            <div class="task-inline form-alignement">
               <div class="select-input">
                 <%= f.input :status, as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"}, label: false %>
               </div>
