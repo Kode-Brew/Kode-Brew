@@ -4,7 +4,10 @@ class TicketsController < ApplicationController
 
   # Displays a list of tickets
   def index
-    @tickets = Ticket.all
+    # @tickets = Ticket.all
+    @tickets = Ticket.joins(task: { sprint: :project })
+                     .where(projects: { id: current_user.projects.ids })
+                     .where(status: 'Em Aberto')
   end
 
   # Displays details of a specific ticket
@@ -21,7 +24,6 @@ class TicketsController < ApplicationController
   # Creates a new ticket
   def create
     @ticket = Ticket.new(ticket_params)
-    @ticket.user = current_user
     @ticket.task = Task.find(params[:ticket][:task])
     if @ticket.save
       flash[:notice] = "Ticket criado com sucesso."
