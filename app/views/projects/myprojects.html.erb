@@ -31,7 +31,7 @@
         <tbody>
           <% @projects.each do |project| %>
               <tr>
-                <td><%=  link_to project.name.titleize, project_sprints_path(project), class: "text-decoration-none text_dgray" %></td>
+                <td><%=  link_to project.name.titleize, project_path(project), class: "text-decoration-none text_dgray" %></td>
                 <td class='text-center'><%= project.date_end_project&.strftime("%d/%m/%y") || "---" %></td>
                 <td class='text-center  d-none d-sm-table-cell'><p class ="tag-status <%= case project.status.titleize
                                                     when 'Não Iniciado' then 'gray-tag'

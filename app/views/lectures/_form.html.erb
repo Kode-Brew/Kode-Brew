@@ -5,19 +5,31 @@
   </div>
 
   <div class="field">
-    <%= form.label :source %>
-    <%= form.text_field :source %>
+    <%= form.label :tag %>
+    <%= form.text_field :tag %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
   </div>
 
   <div class="field">
     <%= form.label :video %>
     <%= form.text_area :video %>
   </div>
+  
+  <div class="field">
+    <%= form.label :source %>
+    <%= form.text_field :source %>
+  </div>
+
 
   <div class="field">
     <%= form.label :slide %>
     <%= form.text_area :slide %>
   </div>
+
 
   <div class="actions">
     <%= form.submit %>

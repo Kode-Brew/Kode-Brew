@@ -1,0 +1,62 @@
+.Btn-create {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 0px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: #008100;
+  border-radius: 6px;
+}
+
+.sign-create {
+  width: 100%;
+  font-size: 2em;
+  color: white;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-create {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 500;
+  transition-duration: .3s;
+}
+
+.Btn-create:hover {
+  width: 125px;
+  border-radius: 0px;
+  transition-duration: .3s;
+  border-radius: 6px;
+
+}
+
+.Btn-create:hover .sign-create {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+
+.Btn-create:hover .text-create {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 20px;
+}
+
+.Btn-create:active {
+  transform: translate(2px, 2px);
+}
