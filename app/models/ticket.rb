@@ -7,7 +7,7 @@ class Ticket < ApplicationRecord
   }
   # Associations
   belongs_to :task
-  belongs_to :user
+  belongs_to :user, optional: true
 
   # Validations
   validates :status, presence: true
