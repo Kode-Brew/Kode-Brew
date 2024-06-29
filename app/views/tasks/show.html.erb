@@ -3,10 +3,18 @@
 
   <div class= "small-cards-container">
     <%# 1st small-card %>
-    <div class= "small-card">
-      <p><i class="fa-regular fa-star"></i> Pontuação</p>
-      <h3 style="color:#008100;">5 pontos</h3>
-    </div>
+
+      <div class= "small-card">
+        <p><i class="fa-solid fa-list-check"></i> Sprint atual</p>
+        <h4>de <strong><span style="color: #008100;">
+            <%= @task.sprint.date_start.strftime("%d/%m") %>
+          </span></strong>
+          a <strong><span style="color: #008100;">
+            <%= @task.sprint.date_end.strftime("%d/%m") %>
+          </span></strong> </h4>
+        <footer>Voltar a Sprints</footer>
+      </div>
+
 
     <%# 2nd small-card %>
     <%= link_to task_path, class: "text-decoration-none" do %>

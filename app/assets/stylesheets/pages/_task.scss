@@ -18,16 +18,19 @@
 .task-item {
   display: flex;
   gap: 16px;
-  max-width: 400px;
+  max-width: 408px;
 
-  h5, p{
+  p{
     display: flex;
     align-items: center;
     margin-bottom: 0px;
   }
 
   h5{
+    display: flex;
+    align-items: center;
     margin-left: 10px;
+    margin-bottom: 1px;
   }
 }
 
