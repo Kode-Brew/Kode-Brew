@@ -31,6 +31,9 @@
                   <%= link_to edit_project_path(project), class:"text-decoration-none text_green" do %>
                     &nbsp;&nbsp;<i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;
                   <% end %>
+                  <%= link_to project_project_members_path(project), class:'text-decoration-none text_green' do %>
+                   <i class="fa-solid fa-user-group"></i>&nbsp;&nbsp;
+                  <% end %>
                   <%= link_to project_path(project), data: {turbo_method: :delete}, class:'text-danger' do %>
                     <i class="far fa-trash-alt"></i>
                   <% end %>
@@ -38,8 +41,8 @@
               <td class='text-center'><%= project.date_start_project&.strftime("%d/%m/%y") || "---" %></td>
               <td class='text-center'><%= project.date_end_project&.strftime("%d/%m/%y") || "---" %></td>
               <td class='text-center  d-none d-sm-table-cell'><p class ="tag-status <%= case project.status.titleize
-                                                   when 'Não Iniciado' then 'gray-tag'
-                                                   when 'Em Andamento' then 'light-green-tag'
+                                                   when 'Pendente' then 'gray-tag'
+                                                   when 'Iniciado' then 'light-green-tag'
                                                    when 'Finalizado' then 'green-tag'
                                                  end %>">
                                                  <%= project.status.titleize %></p>
