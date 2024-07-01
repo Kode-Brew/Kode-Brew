@@ -1,11 +1,92 @@
-  <div class="container">
-    <div class="title-big">
-      <h1 class="task-title"></i> Tarefa</h1>
+<div class="container mt-2">
+  <h1>Tarefa</h1>
 
-    </div>
-    <h2>Nome: <%= @task.name %></h2>
-    <p>Descrição:<%= @task.description %></p>
-    <p>Status: <%= @task.status %></p>
-    <p>Prioridade: <%= @task.priority %></p>
-    <p>Pontos: <%= @task.points %></p>
+  <div class= "small-cards-container">
+    <%# 1st small-card %>
+      <%= link_to project_sprints_path(@task.sprint.project) do%>
+        <div class= "small-card">
+          <p><i class="fa-solid fa-list-check"></i> Sprint atual</p>
+          <h4>de <span style="color: #008100;">
+              <%= @task.sprint.date_start.strftime("%d/%m") %>
+            </span>
+            a <span style="color: #008100;">
+              <%= @task.sprint.date_end.strftime("%d/%m") %>
+            </span> </h4>
+          <footer>Voltar a Sprints</footer>
+        </div>
+      <% end %>
+
+
+    <%# 2nd small-card %>
+    <%= link_to project_path(@task.sprint.project), class: "text-decoration-none" do %>
+      <div class= "small-card">
+        <p><i class="fa-solid fa-mug-saucer"></i>  Projeto Atual</p>
+        <h4><%= @task.sprint.project.name %></h4>
+        <footer><%= link_to "detalhes", task_path, class: "text-decoration-none" %></footer>
+      </div>
+    <% end %>
+
+    <%# 3rd small-card %>
+    <%= link_to new_ticket_path do %>
+      <div class= "small-card">
+        <p><i class="fa-regular fa-comments"></i> Tire dúvidas</p>
+        <h4 style="color:#008100;"> Abrir um Ticket</h4>
+        <%# <p id="small-subtitle">com um Professor ou TA</p> %>
+      </div>
+    <% end %>
   </div>
+
+
+  <div class = 'card_main'>
+    <div class="main-card-header">
+      <h2><i class="fa-solid fa-bars-progress"></i>  <%= @task.name %></h2>
+    </div>
+
+    <div class="objective-card">
+        <h5>Descrição:</h5>
+        <p><%= @task.description %></p>
+      </div>
+
+    <div class = 'task-content'>
+      <div class = 'task-item'>
+        <p>Responsável:</p>
+        <div class = 'task-inline'>
+          <% if @task.user.photo.present?  %>
+            <%= cl_image_tag @task.user.photo.key, class: "avatar-large" %>
+          <% else %>
+            <%= image_tag "not_found.jpg", class: "avatar-large" %>
+          <% end %>
+
+          <h5><%= @task.user.name %></h5>
+        </div>
+      </div>
+
+      <div class = 'task-item task-central'>
+        <p>Status:</p>
+
+          <%= simple_form_for @task do |f| %>
+            <div class="task-inline form-alignement">
+              <div class="select-input">
+                <%= f.input :status, as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"}, label: false %>
+              </div>
+              <div class="submit-button">
+                <%= f.button :submit, "Atualizar", class:'button_confirm' %>
+              </div>
+            </div>
+          <% end %>
+      </div>
+
+
+      <div class = 'task-item task-central'>
+        <p>Pontuação:</p>
+
+        <h5><%= @task.points %> pontos</h5>
+      </div>
+
+      <div class = 'task-item task-central'>
+        <p>Prioridade:</p>
+        <h5><%= @task.priority %></h5>
+      </div>
+    </div>
+  </div>
+</div>

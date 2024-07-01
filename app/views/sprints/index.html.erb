@@ -104,6 +104,7 @@
                   <p class ="tag-status <%= case task.status.titleize
                                           when 'Não Iniciada' then 'gray-tag'
                                           when 'Em Andamento' then 'light-green-tag'
+                                          when 'Revisão' then 'medium-green-tag'
                                           when 'Finalizada' then 'green-tag'
                                         end %>">
                     <%= task.status.titleize %>

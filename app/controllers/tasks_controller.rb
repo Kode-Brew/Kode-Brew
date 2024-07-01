@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   before_action :set_sprint, only: %i[new create]
+  before_action :set_breadcrumbs, only: %i[show]
 
   # Displays a list of tasks
   def index
@@ -9,6 +10,7 @@ class TasksController < ApplicationController
 
   # Displays details of a specific task
   def show
+    add_breadcrumb "Tarefa", task_path(@task)
   end
 
   # Renders form to create a new task
@@ -66,5 +68,11 @@ class TasksController < ApplicationController
 
   def set_sprint
     @sprint = Sprint.find(params[:sprint_id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb "Projetos", projects_path
+    add_breadcrumb @task.sprint.project.name, project_path(@task.sprint.project)
+    add_breadcrumb "Sprints", project_sprints_path(@task.sprint.project)
   end
 end
