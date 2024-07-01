@@ -17,7 +17,7 @@ class LecturesController < ApplicationController
 
   def create
     @lecture = Lecture.new(params_lecture)
-
+    @lecture.user = User.find(params[:lecture][:user_id])
     if @lecture.save
       redirect_to lecture_path(@lecture.id),
                   notice: 'Aula criado com sucesso.'
