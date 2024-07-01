@@ -51,9 +51,11 @@
       <div class = 'task-item'>
         <p>Responsável:</p>
         <div class = 'task-inline'>
-          <img src="https://kitt.lewagon.com/placeholder/users/perrigii" <%# adicionar o caminho para a foto do membro%>
-                alt="Foto do Membro"
-                style="width: 50px; height: 50px; border-radius: 50%;">
+          <% if @task.user.photo.present?  %>
+            <%= cl_image_tag @task.user.photo.key, class: "avatar-large" %>
+          <% else %>
+            <%= image_tag "not_found.jpg", class: "avatar-large" %>
+          <% end %>
 
           <h5><%= @task.user.name %></h5>
         </div>
