@@ -47,7 +47,7 @@ class LecturesController < ApplicationController
   private
 
   def params_lecture
-    params.require(:lecture).permit(:title, :source, :video, :slide)
+    params.require(:lecture).permit(:title, :source, :video, :slide, :description, :tag)
   end
 
   def set_breadcrumbs

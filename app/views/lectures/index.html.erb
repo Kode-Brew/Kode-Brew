@@ -1,8 +1,50 @@
 <div class="container text-center">
-  <h1>Lectures#index</h1>
-  <% @lectures.each do |lecture| %>
-    <li><%= link_to lecture.title, lecture %></li>
-  <% end %>
-  <%= link_to "Create new Lecture", new_lecture_path, class: "btn btn-outline-primary my-3"%>
+  <h1 class="mt-3">Aulas e materiais</h1>
+  <div class="d-flex justify-content-end">
+    <a href="<%= new_lecture_path %>" class="Btn-create text-decoration-none text-reset">
+    <div class="sign-create">+</div>
+    <div class="text-create">Create</div>
+    </a>
+  </div>
+  <div class="row">
+    <% @lectures.each do |lecture| %>
+      <% video_id = lecture.video.split(".be/").last %>
+      <% thumbnail_url = "https://img.youtube.com/vi/#{video_id}/hqdefault.jpg" %>
+      <% tempo_total = LectureHelper.obter_tempo_total_video_youtube(video_id) %>
 
+      <div class="col-sm-12 col-lg-10 col-xl-6 mb-3">
+        <div class="lecture-card">
+          <div class="lecture-meta">
+            <div class="lecture-photo" style="background-image: url(<%= thumbnail_url %>)"></div>
+            <ul class="lecture-details list-unstyled">
+              <li class="d-flex align-items-center">
+                <i class="fa-regular fa-calendar me-2"></i>
+                <%= lecture.created_at.strftime("%d.%m.%Y") %>
+              </li>
+              <li class="d-flex align-items-center">
+                <i class="fa-solid fa-video me-2"></i>
+                <%= formatar_tempo(tempo_total) %>
+              </li>
+              <li class="d-flex align-items-center">
+                <i class="fa-solid fa-tag me-2"></i>
+                <%= lecture.tag %>
+              </li>
+            </ul>
+          </div>
+          <div class="lecture-description">
+            <h1>
+              <%= link_to truncate(lecture.title,
+              length:20), lecture,
+              class: "text-decoration-none text-reset",
+              title: lecture.title %>
+              </h1>
+            <p><%= truncate(lecture.description, length: 80) %></p>
+            <p class="lecture-read-more">
+              <%= link_to "Read More", lecture_path(lecture) %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
