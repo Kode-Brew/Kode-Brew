@@ -10,7 +10,6 @@ class SprintLecturesController < ApplicationController
 
   def create
     @sprint_lecture = SprintLecture.new
-    @sprint_lecture.user = User.find(params[:sprint_lecture][:user])
     @sprint_lecture.sprint = Sprint.find(params[:sprint_id])
     @sprint_lecture.lecture = Lecture.find(params[:sprint_lecture][:lecture])
     if @sprint_lecture.save
