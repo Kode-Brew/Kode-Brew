@@ -6,14 +6,14 @@
       <h4>Sprint atual: <span style="color:#008100;">#
         <%= @project.sprints.all.count %></span>
       </h4>
-      <p id="small-subtitle">
-        de <strong><span style="color: #008100;">
-          <%= @project.sprints.last.date_start.strftime("%d/%m") %>
-        </span></strong>
-        à <strong><span style="color: #008100;">
-          <%= @project.sprints.last.date_end.strftime("%d/%m") %>
-        </span></strong>
-      </p>
+      <%# <p id="small-subtitle"> %>
+        <%# de <strong><span style="color: #008100;"> %>
+          <%#= @project.sprints.last.date_start.strftime("%d/%m") %>
+        <%# </span></strong> %>
+        <%# à <strong><span style="color: #008100;"> %>
+          <%#= @project.sprints.last.date_end.strftime("%d/%m") %>
+        <%# </span></strong> %>
+      <%# </p> %>
     </div>
   <% end %>
   <%= link_to lectures_path do %>
@@ -53,7 +53,7 @@
           <i class="far fa-calendar-alt fa-2x me-3"></i>
           <div class="ml-2">
             <strong>Data de início</strong>
-            <p style="color:#008100;"><%= @project.date_start_project.strftime("%d/%m/%y") %></p>
+            <p style="color:#008100;"><%#= @project.date_start_project.strftime("%d/%m/%y") %></p>
           </div>
         </div>
       </div>

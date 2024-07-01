@@ -16,10 +16,10 @@ class ProjectStepsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :category, :description)
+    params.require(:project).permit(:client_id, :name, :category, :description, user_ids: [])
   end
 
-  def redirect_to_finish_wizard
-    redirect_to projects_path, notice: "Projeto salvo"
-  end
+  # def redirect_to_finish_wizard
+  #   redirect_to root_url, notice: "Projeto salvo"
+  # end
 end

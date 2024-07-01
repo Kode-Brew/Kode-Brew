@@ -31,8 +31,10 @@ class ProjectsController < ApplicationController
     @project_member = current_user
     @project = Project.new(project_params)
     @project.client = Project.find(params[:project][:client])
+    # @user = User.find(params[:user_id])
+    # @project.user = User.find(params[:project_member][:user])
     # @project.user = Project.find(params[:project][:user])
-    @project.project_members = Project.find(params[:project][:user])
+    # @project.project_members = Project.find(params[:project][:user])
 
 
     if @project.save
@@ -61,7 +63,6 @@ class ProjectsController < ApplicationController
     @project.destroy!
     redirect_to projects_path
   end
-
 
   private
 
