@@ -6,7 +6,7 @@
     <h2 class="form-title">Cadastrar nova tarefa</h2>
       <%= simple_form_for [@sprint.project, @sprint, @task] do |f| %>
       <%= f.input :name, label: "Nome", input_html: {class: "card_input_form"} %>
-      <%= f.input :priority, label: "Prioridade", as: :select, collection: [['Baixa', 'baixa'], ['Média', 'media'], ['Média-Alta', 'media-alta'], ['Alta', 'alta']], input_html: {class: "card_input_form"} %>
+      <%= f.input :priority, label: "Prioridade", as: :select, collection: [['Baixa', 'Baixa'], ['Média', 'Média'], ['Média-Alta', 'Média-Alta'], ['Alta', 'Alta']], input_html: {class: "card_input_form"} %>
       <%= f.input :description, label: "Descrição", input_html: {class: "card_input_form"} %>
       <%= f.input :user_id,  as: :select, collection: @users.map { |u| [u.name, u.id] }, label: "Responsável pela task:", input_html: {class: "card_input_form"}%>
       <%= f.input :status, label: "Status", as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"} %>
