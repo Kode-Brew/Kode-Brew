@@ -3,30 +3,31 @@
 
   <div class= "small-cards-container">
     <%# 1st small-card %>
-
-      <div class= "small-card">
-        <p><i class="fa-solid fa-list-check"></i> Sprint atual</p>
-        <h4>de <strong><span style="color: #008100;">
-            <%= @task.sprint.date_start.strftime("%d/%m") %>
-          </span></strong>
-          a <strong><span style="color: #008100;">
-            <%= @task.sprint.date_end.strftime("%d/%m") %>
-          </span></strong> </h4>
-        <footer>Voltar a Sprints</footer>
-      </div>
+      <%= link_to project_sprints_path(@task.sprint.project) do%>
+        <div class= "small-card">
+          <p><i class="fa-solid fa-list-check"></i> Sprint atual</p>
+          <h4>de <span style="color: #008100;">
+              <%= @task.sprint.date_start.strftime("%d/%m") %>
+            </span>
+            a <span style="color: #008100;">
+              <%= @task.sprint.date_end.strftime("%d/%m") %>
+            </span> </h4>
+          <footer>Voltar a Sprints</footer>
+        </div>
+      <% end %>
 
 
     <%# 2nd small-card %>
-    <%= link_to task_path, class: "text-decoration-none" do %>
+    <%= link_to project_path(@task.sprint.project), class: "text-decoration-none" do %>
       <div class= "small-card">
         <p><i class="fa-solid fa-mug-saucer"></i>  Projeto Atual</p>
-        <h4><%=  %></h4>
+        <h4><%= @task.sprint.project.name %></h4>
         <footer><%= link_to "detalhes", task_path, class: "text-decoration-none" %></footer>
       </div>
     <% end %>
 
     <%# 3rd small-card %>
-    <%= link_to task_path do %>
+    <%= link_to new_ticket_path do %>
       <div class= "small-card">
         <p><i class="fa-regular fa-comments"></i> Tire dúvidas</p>
         <h4 style="color:#008100;"> Abrir um Ticket</h4>
