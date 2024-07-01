@@ -17,7 +17,9 @@ class LecturesController < ApplicationController
 
   def create
     @lecture = Lecture.new(params_lecture)
-    @lecture.user = User.find(params[:lecture][:user_id])
+    if params[:lecture][:user_id].present?
+      @lecture.user = User.find(params[:lecture][:user_id])
+    end
     if @lecture.save
       redirect_to lecture_path(@lecture.id),
                   notice: 'Aula criado com sucesso.'
@@ -32,6 +34,9 @@ class LecturesController < ApplicationController
   end
 
   def update
+    if params[:lecture][:user_id].present?
+      @lecture.user = User.find(params[:lecture][:user_id])
+    end
     if @lecture.update!(params_lecture)
       redirect_to lecture_path(@lecture), notice: "Aula atualizada com sucesso."
     else
