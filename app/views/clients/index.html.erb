@@ -1,10 +1,29 @@
-<div class="container text-center">
-  <%= link_to "Adicionar novo cliente", new_client_path, class: "btn btn-outline-primary mt-3 mb-3" %>
   <h1>Clientes</h1>
   <h3><%= "Total de clientes: #{@clients.size}" %></h3>
-  <ul style="list-style: none;">
-    <% @clients.each do |client| %>
-      <li><%= link_to client.name, client %></li>
-    <% end %>
-  </ul>
+<div class="row">
+  <div  class="table-responsive col-10 px-0">
+    <table class="table table_main ">
+      <thead>
+        <tr>
+          <th class='text-center' >Empresa</th>
+          <th class='text-center' >Categoria</th>
+          <th class='text-center d-none d-sm-table-cell' >Possui projetos ativos?</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <% @clients.each do |client| %>
+            <tr>
+              <td>
+              <%= link_to client.name.titleize, client_path(client), class: "text-decoration-none text_dgray" %>
+              </td>
+                            <td>
+              <%= client.category %>
+              </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to "Adicionar novo cliente", new_client_path, class: "btn btn-outline-primary mt-3 mb-3" %>
 </div>
