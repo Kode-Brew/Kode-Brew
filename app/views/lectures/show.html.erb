@@ -1,21 +1,24 @@
-<div class="container text-center">
+<div class="container ">
+
+  <div class="card_main col-9 mx-auto">
+    <div class="p-5">
+      <!-- Player de video -->
+      <% if @lecture.video.present? %>
+        <h2><%= @lecture.title %></h2>
+        <% if @lecture.video.include?("youtube.com") || @lecture.video.include?("youtu.be") %>
+          <% youtube_id = @lecture.video.split(/v=|\/|&/).last %>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= youtube_id %>" frameborder="0" allowfullscreen></iframe>
+        <% else %>
+          <p>Video URL is not supported.</p>
+        <% end %>
+      <% end %>
+
+      <h5>Fonte: <%= @lecture.source %></h5>
+      <p>Descrição: <%= @lecture.description %></p>
 
 
-  <!-- Player de video -->
-  <% if @lecture.video.present? %>
-    <h1>Title: <%= @lecture.title %></h1>
-    <% if @lecture.video.include?("youtube.com") || @lecture.video.include?("youtu.be") %>
-      <% youtube_id = @lecture.video.split(/v=|\/|&/).last %>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= youtube_id %>" frameborder="0" allowfullscreen></iframe>
-    <% else %>
-      <p>Video URL is not supported.</p>
-    <% end %>
-  <% end %>
-
-  <h3>Source: <%= @lecture.source %></h3>
-  <h5>Slide: <%= @lecture.slide %></h5>
-
-  <%= link_to "Back Lectures", lectures_path, class: "btn btn-outline-primary my-3"%>
-  <%= link_to "Edit Lecture", edit_lecture_path(@lecture), class: "btn btn-outline-secondary my-3"%>
-  <%= link_to 'Delete Lecture', lecture_path(@lecture), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }%>
+      <%= link_to "Edit Lecture", edit_lecture_path(@lecture), class: "btn btn-outline-secondary my-3"%>
+      <%= link_to 'Delete Lecture', lecture_path(@lecture), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }%>
+    </div>
+  </div>
 </div>

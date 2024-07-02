@@ -1,6 +1,11 @@
 class SprintLecturesController < ApplicationController
   before_action :set_sprint_lecture, only: %i[show edit update destroy]
-  before_action :set_sprint, only: %i[new create]
+  before_action :set_sprint, only: %i[new create index]
+  before_action :set_breadcrumbs
+  def index
+    add_breadcrumb "Aulas da Sprint", project_sprint_sprint_lectures_path(@sprint.project, @sprint)
+    @lectures = @sprint.lectures
+  end
 
   def show; end
 
@@ -37,7 +42,7 @@ class SprintLecturesController < ApplicationController
 
   def destroy
     @sprint_lecture.destroy!
-    redirect_to sprint_sprint_lectures_path(@sprint_lecture.sprint)
+    redirect_to project_sprints_path(@sprint_lecture.sprint.project, @sprint_lecture.sprint)
   end
 
   private
@@ -48,5 +53,9 @@ class SprintLecturesController < ApplicationController
 
   def set_sprint
     @sprint = Sprint.find(params[:sprint_id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb "Sprints", project_sprints_path(@sprint.project, @sprint)
   end
 end
