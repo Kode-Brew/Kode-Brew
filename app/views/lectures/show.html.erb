@@ -1,24 +1,34 @@
-<div class="container ">
-
-  <div class="card_main col-9 mx-auto">
-    <div class="p-5">
-      <!-- Player de video -->
-      <% if @lecture.video.present? %>
-        <h2><%= @lecture.title %></h2>
-        <% if @lecture.video.include?("youtube.com") || @lecture.video.include?("youtu.be") %>
-          <% youtube_id = @lecture.video.split(/v=|\/|&/).last %>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= youtube_id %>" frameborder="0" allowfullscreen></iframe>
-        <% else %>
-          <p>Video URL is not supported.</p>
-        <% end %>
-      <% end %>
-
-      <h5>Fonte: <%= @lecture.source %></h5>
-      <p>Descrição: <%= @lecture.description %></p>
 
 
-      <%= link_to "Edit Lecture", edit_lecture_path(@lecture), class: "btn btn-outline-secondary my-3"%>
-      <%= link_to 'Delete Lecture', lecture_path(@lecture), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }%>
-    </div>
+  <div class="card_main col-8 mx-auto">
+      <div class="row mb-3 px-5">
+          <!-- Player de video -->
+          <% if @lecture.video.present? %>
+            <h3><%= @lecture.title %></h3>
+            <p><%= @lecture.tag %></p>
+            <% if @lecture.video.include?("youtube.com") || @lecture.video.include?("youtu.be") %>
+              <% youtube_id = @lecture.video.split(/v=|\/|&/).last %>
+              <iframe class="card_video p-0" width="560" height="315" src="https://www.youtube.com/embed/<%= youtube_id %>" frameborder="0" allowfullscreen></iframe>
+            <% else %>
+              <p>Video URL is not supported.</p>
+            <% end %>
+          <% end %>
+        </div>
+      <div class="row mb-3 px-5">
+      <div class="col-6">
+        <h5>Fonte: <%= @lecture.source %></h5>
+        <p>Descrição: <%= @lecture.description %></p>
+        <br>
+        <p>Slide: </p>
+      </div>
+      <div class="col-sm-6 icon-lg-right">
+         <%= link_to edit_lecture_path(@lecture), class:'text-decoration-none text_green' do %>
+                  <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;
+                  <% end %>
+         <%= link_to  lecture_path(@lecture), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Tarefa?"}, class:'text-danger'  do %>
+                  <i class="fa-solid fa-trash"></i>
+                  <% end %>
+
+      </div>
+      </div>
   </div>
-</div>
