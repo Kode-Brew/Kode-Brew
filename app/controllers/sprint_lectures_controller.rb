@@ -56,6 +56,8 @@ class SprintLecturesController < ApplicationController
   end
 
   def set_breadcrumbs
+    add_breadcrumb "Projetos", projects_path
+    add_breadcrumb @sprint.project.name, project_path(@sprint.project)
     add_breadcrumb "Sprints", project_sprints_path(@sprint.project, @sprint)
   end
 end

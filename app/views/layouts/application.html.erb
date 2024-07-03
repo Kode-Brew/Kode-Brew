@@ -15,21 +15,6 @@
 
   <body>
     <%= render "shared/navbar" %>
-    <nav>
-      <% if breadcrumbs.any? %>
-        <ul class="breadcrumbs">
-          <% breadcrumbs.each do |crumb| %>
-            <li>
-              <% if crumb[:url].present? %>
-                <%= link_to crumb[:name], crumb[:url] %>
-              <% else %>
-                <%= crumb[:name] %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-    </nav>
 
     <%= render "shared/flashes" %>
 
@@ -39,6 +24,21 @@
       </div>
 
       <div class="col-10">
+        <nav>
+          <% if breadcrumbs.any? %>
+            <ul class="breadcrumbs mt-4">
+              <% breadcrumbs.each do |crumb| %>
+                <li>
+                  <% if crumb[:url].present? %>
+                    <%= link_to crumb[:name], crumb[:url] %>
+                  <% else %>
+                    <%= crumb[:name] %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </nav>
         <%= yield %>
       </div>
     </div>

@@ -34,7 +34,7 @@
               </h1>
             <p><%= truncate(lecture.description, length: 80) %></p>
             <p class="lecture-read-more">
-              <%= link_to "Read More", lecture_path(lecture) %>
+              <%= link_to "Read More", lecture_path(lecture ,sprint: @sprint) %>
             </p>
           </div>
         </div>

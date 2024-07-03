@@ -1,12 +1,21 @@
 class LecturesController < ApplicationController
   before_action :set_lecture, only: %i[show edit update destroy]
-  before_action :set_breadcrumbs, except: %i[update destroy]
+  before_action :set_breadcrumbs, except: %i[show update destroy]
 
   def index
     @lectures = Lecture.all
   end
 
   def show
+    if params[:sprint].present?
+      @sprint = Sprint.find(params[:sprint])
+      add_breadcrumb "Projetos", projects_path
+      add_breadcrumb @sprint.project.name, project_path(@sprint.project)
+      add_breadcrumb "Sprints", project_sprints_path(@sprint.project, @sprint)
+      add_breadcrumb "Aulas da Sprint", project_sprint_sprint_lectures_path(@sprint.project, @sprint)
+    else
+      add_breadcrumb "Aulas", lectures_path
+    end
     add_breadcrumb @lecture.title, lecture_path(@lecture)
   end
 
