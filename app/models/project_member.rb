@@ -17,9 +17,9 @@ class ProjectMember < ApplicationRecord
 
   # Calcula os pontos totais das tarefas finalizadas para o membro do projeto
   def total_points
-    project.tasks
+      user.tasks
            .joins(:sprint)
-           .where(sprints: { project_id: project.id }, tasks: { status: 'finalizada' })
+           .where(sprints: { project_id: project.id }, tasks: { status: 'Finalizada' })
            .sum(:points)
   end
 end

@@ -41,8 +41,8 @@
                                                   <%= project.status.titleize %></p>
                                                   </td>
                 <td class='text-center'><%= ProjectMember.user_types.key(project.user_type) %> </td>
-                <td class='text-center'><%= project.tasks_performed %> </td>
-                <td class='text-center'><%= project.total_points %> </td>
+                <td class='text-center'><%= project.total_task_finish_for_member(current_user) %> </td>
+                <td class='text-center'><%= project.total_points_for_member(current_user) %> </td>
               </tr>
           <% end %>
 
