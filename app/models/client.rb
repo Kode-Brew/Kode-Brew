@@ -1,3 +1,3 @@
 class Client < ApplicationRecord
-  has_many :project
+  has_many :projects
 end

@@ -7,19 +7,20 @@
         <tr>
           <th class='text-center' >Empresa</th>
           <th class='text-center' >Categoria</th>
-          <th class='text-center d-none d-sm-table-cell' >Possui projetos ativos?</th>
-
+          <th class='text-center d-none d-sm-table-cell' >Projetos Ativos</th>
+          <th class='text-center d-none d-sm-table-cell' >Projetos Concluídos</th>
+          <th class='text-center d-none d-sm-table-cell' >Projetos Pendentes</th>
         </tr>
       </thead>
       <tbody>
         <% @clients.each do |client| %>
             <tr>
               <td>
-              <%= link_to client.name.titleize, client_path(client), class: "text-decoration-none text_dgray" %>
-              </td>
-                            <td>
-              <%= client.category %>
-              </td>
+              <%= link_to client.name.titleize, client_path(client), class: "text-decoration-none text_dgray" %></td>
+              <td><%= client.category %></td>
+              <td> <% project_count_for_status(client, 1) %></td>
+              <td> <% project_count_for_status(client, 2) %></td>
+              <td> <% project_count_for_status(client, 0) %></td>
             </tr>
         <% end %>
       </tbody>
