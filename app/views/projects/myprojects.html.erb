@@ -35,7 +35,7 @@
                 <td class='text-center'><%= project.date_end_project&.strftime("%d/%m/%y") || "---" %></td>
                 <td class='text-center  d-none d-sm-table-cell'><p class ="tag-status <%= case project.status.titleize
                                                      when 'Pendente' then 'gray-tag'
-                                                     when 'Iniciado' then 'light-green-tag'
+                                                     when 'Iniciado' then 'medium-green-tag'
                                                      when 'Finalizado' then 'green-tag'
                                                   end %>">
                                                   <%= project.status.titleize %></p>
