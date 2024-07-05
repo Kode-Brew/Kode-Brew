@@ -3,8 +3,7 @@
     <h1>Aula da sprint</h1>
     <div class=" m-4">
       <%= simple_form_for [@sprint.project, @sprint,@sprint_lecture] do |f| %>
-        <%= f.input :lecture,  as: :select, collection: Lecture.all.map { |u| [u.title, u.id] }, input_html: {class: "card_input_form"}, label: "Aula" %>
-         <%= f.input :user,  as: :select, collection: User.all.map { |u| [u.name, u.id] }, label: "Responsável pela aula", input_html: {class: "card_input_form"}%>
+        <%= f.input :lecture,  as: :select, collection: @sprint.project.available_lectures.map { |u| [u.title, u.id] }, input_html: {class: "card_input_form"}, label: "Aula" %>
         <div class='text-center'>
           <%= f.button :submit,'Adcionar', class:'button_confirm' %>
         </div>
