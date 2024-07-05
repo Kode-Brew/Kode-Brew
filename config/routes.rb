@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :sprints, only: %i[index new create] do
       resources :tasks, only: %i[new create]
-      resources :sprint_lectures, only: %i[new create]
+      resources :sprint_lectures, only: %i[new create index]
     end
     resources :project_members, except: %i[update destroy]
     member do

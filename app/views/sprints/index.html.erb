@@ -43,7 +43,7 @@
           <i id="edit-icon-small"class="fa-solid fa-pen-to-square"></i>
           <% end %>
        <% if sprint.sprint_lectures.any? %>
-          <%= link_to lecture_path(sprint.lectures.first) do %>
+          <%= link_to project_sprint_sprint_lectures_path(sprint.project,sprint) do %>
             <i id="edit-icon-small" class="fa-solid fa-book-open"></i>
           <% end %>
         <% end %>
@@ -104,6 +104,7 @@
                   <p class ="tag-status <%= case task.status.titleize
                                           when 'Não Iniciada' then 'gray-tag'
                                           when 'Em Andamento' then 'light-green-tag'
+                                          when 'Revisão' then 'medium-green-tag'
                                           when 'Finalizada' then 'green-tag'
                                         end %>">
                     <%= task.status.titleize %>

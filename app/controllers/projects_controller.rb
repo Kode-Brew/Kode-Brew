@@ -11,12 +11,7 @@ class ProjectsController < ApplicationController
 
   def myprojects
     add_breadcrumb "Meus projetos", myprojects_path
-    @projects = current_user.projects
-                            .left_joins(:project_members, sprints: :tasks)
-                            .group('projects.id', 'project_members.user_type')
-                            .select('projects.*, project_members.user_type,
-                                    SUM(CASE WHEN tasks.status = \'finalizada\' THEN tasks.points ELSE 0 END) AS total_points,
-                                    COUNT(CASE WHEN tasks.status = \'finalizada\' THEN 1 ELSE NULL END) AS tasks_performed')
+    @projects = current_user.projects.select('projects.*, project_members.user_type')
 
     filter_projects
   end
