@@ -1,11 +1,5 @@
 <div class="container text-center">
-  <h1 class="mt-3">Aulas e materiais</h1>
-  <div class="d-flex justify-content-end">
-    <a href="<%= new_lecture_path %>" class="Btn-create text-decoration-none text-reset">
-    <div class="sign-create">+</div>
-    <div class="text-create">Create</div>
-    </a>
-  </div>
+  <h1 class="mt-3">Aulas da Sprint</h1>
   <div class="row">
     <% @lectures.each do |lecture| %>
       <% video_id = lecture.video.split(".be/").last %>
@@ -40,7 +34,7 @@
               </h1>
             <p><%= truncate(lecture.description, length: 80) %></p>
             <p class="lecture-read-more">
-              <%= link_to "Read More", lecture_path(lecture) %>
+              <%= link_to "Read More", lecture_path(lecture ,sprint: @sprint) %>
             </p>
           </div>
         </div>

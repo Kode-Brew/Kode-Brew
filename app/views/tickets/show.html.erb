@@ -10,4 +10,9 @@
       <%= link_to tickets_path, class: 'btn-back text-decoration-none' do %>
       <i class='fa-solid fa-circle-left'></i>
     <% end %>
+
+      <%= link_to 'Edit', edit_ticket_path(@ticket), class:"btn btn-success" %>
+                      <%= link_to ticket_path(@ticket), data: {turbo_method: :delete}, class:'btn btn-danger' do %>
+                        <i class="far fa-trash-alt"></i>
+                      <% end %>
   </div>

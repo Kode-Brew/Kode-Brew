@@ -1,25 +1,26 @@
-<%= form_with(model: @lecture, local: true) do |form| %>
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+<div class="container  text-center">
+  <div class="card_main col-md-6 mx-auto">
+    <%= simple_form_for @lecture, local: true do |form| %>
+    <div class="row">
+      <div class="col-6">
+        <%= form.input :title, input_html: { class: 'card_input_form' } %>
+      </div>
+      <div class="col-6">
+        <%= form.input :tag, input_html: { class: 'card_input_form' } %>
+      </div>
+    </div>
+        <%= form.input :description, as: :text, input_html: { class: 'card_input_form' } %>
+        <%= form.input :video, input_html: { class: 'card_input_form' } %>
+        <%= form.input :slide, as: :text, input_html: { class: 'card_input_form' } %>
+     <div class="row">
+      <div class="col-6">
+       <%= form.input :source, input_html: { class: 'card_input_form' } %>
+      </div>
+      <div class="col-6">
+         <%= form.input :user_id, as: :select, collection: User.all.map { |u| [u.name, u.id] }, label: "Responsável pela aula", input_html: { class: "card_input_form" } %>
+      </div>
+    </div>
+        <%= form.button :submit, 'Submit', class: 'button_confirm' %>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= form.label :source %>
-    <%= form.text_field :source %>
-  </div>
-
-  <div class="field">
-    <%= form.label :video %>
-    <%= form.text_area :video %>
-  </div>
-
-  <div class="field">
-    <%= form.label :slide %>
-    <%= form.text_area :slide %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

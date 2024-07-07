@@ -37,7 +37,7 @@
 
 
     <div class = 'card_main'>
-      <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> &nbsp;&nbsp; Sprint &nbsp;&nbsp;#3</h2>
+      <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> &nbsp;&nbsp; Sprint &nbsp;&nbsp;#<%= @project.active_sprint %></h2>
         <div class="table-responsive col-12 p-5">
           <table class="table">
             <thead>
@@ -47,7 +47,7 @@
               </tr>
             </thead>
             <tbody>
-              <% @project.tasks.each do |task|%>
+              <% @project.sprints[@project.active_sprint-1].tasks.each do |task|%>
                 <tr>
                   <td class ="py-4 px-3" ><%= link_to task.name,task_path(task), class: "text-decoration-none"  %></td>
               <!--Criador/Responsável pela tarefa-->

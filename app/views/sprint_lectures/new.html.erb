@@ -1,0 +1,16 @@
+<div class="container  text-center">
+  <div class="card_main col-md-5 mx-auto">
+    <h1>Aula da sprint</h1>
+    <div class=" m-4">
+      <%= simple_form_for [@sprint.project, @sprint,@sprint_lecture] do |f| %>
+        <%= f.input :lecture,  as: :select, collection: @sprint.project.available_lectures.map { |u| [u.title, u.id] }, input_html: {class: "card_input_form"}, label: "Aula" %>
+        <div class='text-center'>
+          <%= f.button :submit,'Adcionar', class:'button_confirm' %>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to project_sprints_path(@sprint.project, @sprint), class: 'btn-back text-decoration-none' do %>
+        <i class='fa-solid fa-circle-left'></i>
+      <% end %>
+  </div>
+</div>

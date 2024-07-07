@@ -4,16 +4,24 @@
     <div class= "small-card no-margin-top">
       <p><i class="fa-solid fa-list-check fs-3"></i></p>
       <h4>Sprint atual: <span style="color:#008100;">#
-        <%= @project.sprints.all.count %></span>
+        <%= @project.active_sprint %></span>
       </h4>
-      <%# <p id="small-subtitle"> %>
-        <%# de <strong><span style="color: #008100;"> %>
-          <%#= @project.sprints.last.date_start.strftime("%d/%m") %>
-        <%# </span></strong> %>
-        <%# à <strong><span style="color: #008100;"> %>
-          <%#= @project.sprints.last.date_end.strftime("%d/%m") %>
-        <%# </span></strong> %>
-      <%# </p> %>
+      <p id="small-subtitle">
+        de <strong><span style="color: #008100;">
+        <% if @project.sprints.present? %>
+          <%= @project.sprints.last.date_start.strftime("%d/%m") %>
+        <% else %>
+          - <%# Condição quando não tem sprint%>
+        <% end %>
+        </span></strong>
+        a <strong><span style="color: #008100;">
+        <% if @project.sprints.present? %>
+          <%= @project.sprints.last.date_end.strftime("%d/%m") %>
+        <% else %>
+          - <%# Condição quando não tem sprint%>
+        <% end %>
+        </span></strong>
+      </p>
     </div>
   <% end %>
   <%= link_to lectures_path do %>
@@ -22,7 +30,7 @@
       <h4>Acessar <span style="color:#008100;">aulas</span> e materiais de apoio</h4>
     </div>
   <% end %>
-  <%= link_to new_ticket_path, target: :_blank do %>
+  <%= link_to new_ticket_path do %>
     <div class= "small-card no-margin-top">
       <p><i class="fa-regular fa-comments fs-3"></i></p>
       <h4> Abrir um <span  style="color:#008100;">Ticket</span></h4>
@@ -30,7 +38,6 @@
     </div>
   <% end %>
 </div>
-
 <div class='card_main'>
   <div class="objective-card">
     <h5>Informações do Projeto</h5>
@@ -53,7 +60,11 @@
           <i class="far fa-calendar-alt fa-2x me-3"></i>
           <div class="ml-2">
             <strong>Data de início</strong>
-            <p style="color:#008100;"><%#= @project.date_start_project.strftime("%d/%m/%y") %></p>
+            <% if @project.sprints.present? %>
+              <p style="color:#008100;"><%= @project.date_start_project.strftime("%d/%m/%y") %></p>
+            <% else %>
+              <p style="color:#008100;">-</p>
+            <% end %>
           </div>
         </div>
       </div>

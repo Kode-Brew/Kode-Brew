@@ -1,15 +1,19 @@
 class Project < ApplicationRecord
+  enum status: { Pendente: 0, Iniciado: 1, Finalizado: 2 }
+
   belongs_to :client
   has_many :project_members, dependent: :destroy
   has_many :sprints, dependent: :destroy
   has_many :tasks, through: :sprints
   has_many :users, through: :project_members
-
+  has_many :tasks, through: :sprints
+  has_many :sprint_lectures, through: :sprints
+  has_many :lectures, through: :sprint_lectures
 
   validates :name, presence: true, uniqueness: true
   validates :category, :description, presence: true
 
-  #
+  #Métodos
   def date_end_project
     sprints.maximum(:date_end)
   end
@@ -22,16 +26,8 @@ class Project < ApplicationRecord
     sprints.count
   end
 
-  def status
-    if (date_end_project || Time.now.next_day(1)) > Time.now
-      if (date_start_project || Time.now.next_day(1)) < Time.now
-        "Em andamento"
-      else
-        "não iniciado"
-      end
-    else
-      "finalizado"
-    end
+  def available_lectures
+    Lecture.where.not(id: lectures.pluck(:id))
   end
 
   # Calcula os pontos totais de todas as tarefas finalizadas para um membro específico do projeto
@@ -39,7 +35,16 @@ class Project < ApplicationRecord
     project_members
       .where(user: user)
       .joins(project: { sprints: :tasks })
-      .where(tasks: { status: 'finalizada' })
+      .where(tasks: { status: 'Finalizada' })
       .sum('tasks.points')
+  end
+
+  # Calcula os pontos totais de todas as tarefas finalizadas para um membro específico do projeto
+  def total_task_finish_for_member(user)
+    project_members
+      .where(user: user)
+      .joins(project: { sprints: :tasks })
+      .where(tasks: { status: 'Finalizada' })
+      .count
   end
 end

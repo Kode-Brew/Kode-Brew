@@ -28,8 +28,10 @@
       </div>
     <% end %>
   </div>
-
+  <%# Progress bar %>
   <%= render partial: 'progress_bars/sprint_progress_steps', locals: {active_sprint: @project.active_sprint} %>
+  <h1><%= @project.status %></h1>
+
   <%  @project.sprints.order(date_start: :desc).each_with_index do |sprint, index| %>
     <div class = 'card_main'>
       <!--Div main card header-->
@@ -37,9 +39,14 @@
         <h2>
           <i class="fa-regular fa-lightbulb"></i>
           Sprint #<%= @project.sprints.count - index %>
-          <%= link_to edit_sprint_path(sprint) do %>
+          <%= link_to edit_sprint_path(sprint) , class:'text-decoration-none text_green' do %>
           <i id="edit-icon-small"class="fa-solid fa-pen-to-square"></i>
           <% end %>
+       <% if sprint.sprint_lectures.any? %>
+          <%= link_to project_sprint_sprint_lectures_path(sprint.project,sprint) do %>
+            <i id="edit-icon-small" class="fa-solid fa-book-open"></i>
+          <% end %>
+        <% end %>
         </h2>
         <div class="sprint-date">
           <p><%= sprint.date_start.strftime("%d/%m/%Y") %></p> a <p><%= sprint.date_end.strftime("%d/%m/%Y") %></p>
@@ -97,6 +104,7 @@
                   <p class ="tag-status <%= case task.status.titleize
                                           when 'Não Iniciada' then 'gray-tag'
                                           when 'Em Andamento' then 'light-green-tag'
+                                          when 'Revisão' then 'medium-green-tag'
                                           when 'Finalizada' then 'green-tag'
                                         end %>">
                     <%= task.status.titleize %>

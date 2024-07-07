@@ -1,24 +1,29 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: %i[show edit update destroy]
+  before_action :set_breadcrumbs, except: %i[update destroy]
 
   # Displays a list of tickets
   def index
-    @tickets = Ticket.all
+    # @tickets = Ticket.all
+    @tickets = Ticket.joins(task: { sprint: :project })
+                     .where(projects: { id: current_user.projects.ids })
+                     .where(status: 'Em Aberto')
   end
 
   # Displays details of a specific ticket
   def show
+    add_breadcrumb @ticket.id, ticket_path(@ticket)
   end
 
   # Renders form to create a new ticket
   def new
+    add_breadcrumb "Novo Ticket", new_ticket_path
     @ticket = Ticket.new
   end
 
   # Creates a new ticket
   def create
     @ticket = Ticket.new(ticket_params)
-    @ticket.user = current_user
     @ticket.task = Task.find(params[:ticket][:task])
     if @ticket.save
       flash[:notice] = "Ticket criado com sucesso."
@@ -31,6 +36,8 @@ class TicketsController < ApplicationController
 
   # Renders form to edit a ticket
   def edit
+    add_breadcrumb @ticket.id, ticket_path(@ticket)
+    add_breadcrumb "Editar Ticket", edit_ticket_path
   end
 
   # Updates a ticket
@@ -51,6 +58,10 @@ class TicketsController < ApplicationController
   end
 
   private
+
+  def set_breadcrumbs
+    add_breadcrumb "Tickets", tickets_path
+  end
 
   # Permits ticket parameters
   def ticket_params
