@@ -2,7 +2,7 @@
       <%= f.input :name, label: "Nome" %>
       <%= f.input :category, label: "Categoria" %>
       <%= f.input :description, label: "Descrição" %>
-      <%= f.input :client,  as: :select, collection: Client.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Cliente" %>
+      <%= f.input :client_id,  as: :select, collection: Client.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Cliente" %>
       <%= f.input :is_active?, label: "Está ativo?", as: :radio_buttons %>
       <%= f.button :submit, class:'btn btn-primary' %>
     <% end %>

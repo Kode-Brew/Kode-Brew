@@ -1,4 +1,4 @@
-<%= simple_form_for @project, url: wizard_path do |f| %>
+<%= simple_form_for @project, url: wizard_path, method: :put do |f| %>
 
   <%= f.input :client,  as: :select, collection: Client.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Cliente" %>
   <%= f.submit 'Continuar', name: "next", class:'btn btn-primary' %>

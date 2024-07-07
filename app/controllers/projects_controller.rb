@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
+  include Wicked::Wizard
+  steps :info, :customer, :members
 
   def index
     @projects = Project.all
@@ -25,22 +27,19 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+
+    # @project.save! validate: false
+    # redirect_to project_steps_path(@project, Project.form_steps.keys.first)
   end
 
   def create
     @project_member = current_user
     @project = Project.new(project_params)
-    @project.client = Project.find(params[:project][:client])
-    # @user = User.find(params[:user_id])
-    # @project.user = User.find(params[:project_member][:user])
-    # @project.user = Project.find(params[:project][:user])
-    # @project.project_members = Project.find(params[:project][:user])
-
 
     if @project.save
       flash[:notice] = "Projeto criado com sucesso."
 
-      redirect_to projects_path
+      redirect_to project_steps_path(@project.id)
     else
       render :new, status: :unprocessable_entity, alert: "nao rolou"
     end

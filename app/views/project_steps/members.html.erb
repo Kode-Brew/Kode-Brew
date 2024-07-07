@@ -12,15 +12,15 @@
 <%# end %>
 
 
-<%#= simple_form_for @project, url: wizard_path, method:  :patch do |f| %>
-  <%#= f.input :users.name,  as: :select, collection: @project.users.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Membro:" %>
+<%= simple_form_for @project, url: wizard_path, method: :patch do |f| %>
+  <%= f.input :users.name,  as: :select, collection: @project.users.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Membro:" %>
     <%#= f.input :user_type, as: :select, collection: ProjectMember.user_types.keys.map { |type| [type.humanize, type] },input_html: {class: "card_input_form"}, label: "Função:" %>
-  <%#= f.button :submit,'Editar', class:'button_confirm text-center' %>
-<%# end %>
+  <%= f.button :submit,'Editar', class:'button_confirm text-center' %>
+<% end %>
 
 <!-- app/views/project_steps/members.html.erb -->
 
-<%= simple_form_for @project, url: wizard_path, method: :patch do |f| %>
-  <%= f.input :users, as: :select, collection: User.all, input_html: { class: "card_input_form" }, label: "Membro:" %>
-  <%= f.button :submit, 'Associar Usuário', class: 'button_confirm text-center' %>
-<% end %>
+<%#= simple_form_for @project, url: wizard_path, method: :patch do |f| %>
+  <%#= f.input :users, as: :select, collection: User.all, input_html: { class: "card_input_form" }, label: "Membro:" %>
+  <%#= f.button :submit, 'Associar Usuário', class: 'button_confirm text-center' %>
+<%# end %>

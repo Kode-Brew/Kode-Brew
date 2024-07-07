@@ -1,9 +1,10 @@
 class Project < ApplicationRecord
   belongs_to :client
-  has_many :project_members
-  has_many :sprints
+  has_many :project_members, dependent: :destroy
+  has_many :sprints, dependent: :destroy
   has_many :tasks, through: :sprints
   has_many :users, through: :project_members
+
 
   validates :name, presence: true, uniqueness: true
   validates :category, :description, presence: true
