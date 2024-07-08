@@ -29,9 +29,7 @@ Rails.application.routes.draw do
 
   resources :project_members, only: %i[update destroy]
 
-  resources :project_steps do
-    resources :projects, only: %i[show create edit update destroy]
-  end
+  resources :projects, only: %i[show edit update destroy]
 
   get "myprojects" => 'projects#myprojects'
   get "dashboard" => 'projects#dashboard'

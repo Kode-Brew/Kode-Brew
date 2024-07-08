@@ -13,7 +13,7 @@ class Project < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :category, :description, presence: true
 
-  #Métodos
+  # Métodos
   def date_end_project
     sprints.maximum(:date_end)
   end

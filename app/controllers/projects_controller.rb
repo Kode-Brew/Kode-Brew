@@ -2,9 +2,6 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy advance_sprint finish_project]
   before_action :set_breadcrumbs, except: %i[update destroy advance_sprint finish_project]
 
-  include Wicked::Wizard
-  steps :info, :customer, :members
-  
   # helper :breadcrumbs
 
   def index
@@ -30,10 +27,9 @@ class ProjectsController < ApplicationController
 
   def new
     add_breadcrumb "Novo Projeto", new_project_path
-    @project = Project.new
 
-    # @project.save! validate: false
-    # redirect_to project_steps_path(@project, Project.form_steps.keys.first)
+    @project = Project.new
+    redirect_to projects_path
   end
 
   def create
@@ -43,7 +39,7 @@ class ProjectsController < ApplicationController
     if @project.save
       flash[:notice] = "Projeto criado com sucesso."
 
-      redirect_to project_steps_path(@project.id)
+      redirect_to projects_path
     else
       render :new, status: :unprocessable_entity, alert: "nao rolou"
     end
