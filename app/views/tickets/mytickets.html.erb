@@ -1,0 +1,38 @@
+<div class="container">
+    <h1 ></i> Meus Tickets</h1>
+          <div class="row justify-content-center">
+             <div class="card-btn  row my-4 ">
+
+            <div class="col-sm-3">
+              <%= link_to "Tickets em andamento", mytickets_path, class: "h5 underline-offset #{'text-decoration-none' unless params[:filter].nil?}" %>
+            </div>
+            <div class="col-sm-3">
+              <%= link_to "Tickets Finalizados", mytickets_path(filter: 1), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" %>
+            </div>
+            <div class="col-sm-10 card_main">
+            <h2>Tickets  (<%= @tickets.count %>)
+            </h2>
+              <% @tickets.each do |ticket| %>
+                <%= link_to ticket_path(ticket), class:"text-decoration-none" do%>
+                  <div class="card_tickets border-dark ">
+                   <div class="row">
+                      <div class="col-3">
+                        <p><strong>Tarefa:</strong> <%= ticket.task.name %></p>
+                      </div>
+                      <div class="col-3">
+                        <p class=""><strong>Projeto:</strong> <%= ticket.task.sprint.project.name %></p>
+                      </div>
+
+                      <div class="col-3">
+                        <p><strong>Aluno:</strong> <%= ticket.task.user.name %></p>
+                      </div>
+                      <div class="col-3">
+                        <p class=""><strong>Categoria:</strong> <%= ticket.category %></p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+</div>

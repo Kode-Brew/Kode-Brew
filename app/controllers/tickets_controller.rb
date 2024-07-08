@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: %i[show edit update destroy]
-  before_action :set_breadcrumbs, except: %i[update destroy]
+  before_action :set_breadcrumbs, except: %i[ mytickets update destroy]
 
   # Displays a list of tickets
   def index
@@ -8,6 +8,15 @@ class TicketsController < ApplicationController
     @tickets = Ticket.joins(task: { sprint: :project })
                      .where(projects: { id: current_user.projects.ids })
                      .where(status: 'Em Aberto')
+  end
+
+  def mytickets
+    add_breadcrumb "Meus Tickets", mytickets_path
+    if params[:filter].present?
+      @tickets = current_user.tickets.where(status: 'Finalizada')
+    else
+      @tickets = current_user.tickets.where(status: 'Em Andamento')
+    end
   end
 
   # Displays details of a specific ticket
