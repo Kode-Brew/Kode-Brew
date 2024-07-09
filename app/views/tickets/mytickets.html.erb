@@ -32,7 +32,7 @@
         </div>
         <% if params[:filter].nil? %>
           <div class="col-md-2 my-auto p-0 text-center">
-            <%= link_to ticket_path(ticket,status: 1), data: {turbo_method: :patch}, class:'text-decoration-none button_confirm py-2 px-3' do %>
+            <%= link_to ticket_path(ticket,ticket:{status: "Finalizado"}), data: {turbo_method: :patch}, class:'text-decoration-none button_confirm py-2 px-3' do %>
                       Finalizar
                 <% end %>
            </div>

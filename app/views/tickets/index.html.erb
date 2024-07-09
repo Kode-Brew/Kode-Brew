@@ -1,31 +1,40 @@
 <div class="container">
     <h1 ></i> Tickets</h1>
           <div class="row justify-content-center">
-            <div class="col-sm-10 card_main">
-            <h2>Tickets em aberto <%= link_to  new_ticket_path, class: "text_green" do %>
-                <i class="fa-solid fa-circle-plus"></i>
-              <% end %>
+            <div class="col-md-10 card_main">
+            <h2>Tickets em aberto
             </h2>
               <% @tickets.each do |ticket| %>
-                <%= link_to ticket_path(ticket), class:"text-decoration-none" do%>
-                  <div class="card_tickets border-dark ">
-                   <div class="row">
-                      <div class="col-3">
-                        <p><strong>Tarefa:</strong> <%= ticket.task.name %></p>
-                      </div>
-                      <div class="col-3">
-                        <p class=""><strong>Projeto:</strong> <%= ticket.task.sprint.project.name %></p>
-                      </div>
+               <div class="row m-1">
+                <div class="col-sm-10  mx-auto">
+                  <%= link_to ticket_path(ticket), class:"text-decoration-none" do%>
+                    <div class="card_tickets border-dark ">
+                    <div class="row">
+                        <div class="col-md-3">
+                          <p><strong>Tarefa:</strong> <%= ticket.task.name %></p>
+                        </div>
+                        <div class="col-md-3">
+                          <p class=""><strong>Projeto:</strong> <%= ticket.task.sprint.project.name %></p>
+                        </div>
 
-                      <div class="col-3">
-                        <p><strong>Aluno:</strong> <%= ticket.task.user.name %></p>
-                      </div>
-                      <div class="col-3">
-                        <p class=""><strong>Categoria:</strong> <%= ticket.category %></p>
+                        <div class="col-md-3">
+                          <p><strong>Aluno:</strong> <%= ticket.task.user.name %></p>
+                        </div>
+                        <div class="col-md-3">
+                          <p class=""><strong>Categoria:</strong> <%= ticket.category %></p>
+                        </div>
                       </div>
                     </div>
+                  <% end %>
+                </div>
+                <% if params[:filter].nil? %>
+                  <div class="col-md-2 my-auto p-0 text-center">
+                    <%= link_to ticket_path(ticket,ticket:{status: "Em Andamento"}), data: {turbo_method: :patch}, class:'text-decoration-none button_confirm py-2 px-3' do %>
+                              Assumir
+                        <% end %>
                   </div>
                 <% end %>
+                    </div>
               <% end %>
             </div>
           </div>

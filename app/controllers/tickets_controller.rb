@@ -51,12 +51,9 @@ class TicketsController < ApplicationController
 
   # Updates a ticket
   def update
-    update_status
-    raise
+    @ticket.user = current_user if params[:ticket][:status] == "Em Andamento"
     if @ticket.update(ticket_params)
-      flash[:notice] = "ticket editado  com sucesso."
-
-      redirect_to tickets_path
+      redirect_to mytickets_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -82,14 +79,5 @@ class TicketsController < ApplicationController
   # Sets the ticket instance variable based on the provided id
   def set_ticket
     @ticket = Ticket.find(params[:id])
-  end
-
-  def update_status
-    case params[:status]
-    when "0"
-      @ticket.status = "Em Andamento"
-    when "1"
-      @ticket.status = "Finalizado"
-    end
   end
 end
