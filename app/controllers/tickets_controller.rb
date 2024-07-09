@@ -13,7 +13,7 @@ class TicketsController < ApplicationController
   def mytickets
     add_breadcrumb "Meus Tickets", mytickets_path
     if params[:filter].present?
-      @tickets = current_user.tickets.where(status: 'Finalizada')
+      @tickets = current_user.tickets.where(status: 'Finalizado')
     else
       @tickets = current_user.tickets.where(status: 'Em Andamento')
     end
@@ -51,6 +51,8 @@ class TicketsController < ApplicationController
 
   # Updates a ticket
   def update
+    update_status
+    raise
     if @ticket.update(ticket_params)
       flash[:notice] = "ticket editado  com sucesso."
 
@@ -80,5 +82,14 @@ class TicketsController < ApplicationController
   # Sets the ticket instance variable based on the provided id
   def set_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def update_status
+    case params[:status]
+    when "0"
+      @ticket.status = "Em Andamento"
+    when "1"
+      @ticket.status = "Finalizado"
+    end
   end
 end
