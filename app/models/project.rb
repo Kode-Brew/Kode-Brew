@@ -13,6 +13,8 @@ class Project < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :category, :description, presence: true
 
+  accepts_nested_attributes_for :project_members
+
   # Métodos
   def date_end_project
     sprints.maximum(:date_end)

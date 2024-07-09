@@ -29,15 +29,21 @@ class ProjectsController < ApplicationController
     add_breadcrumb "Novo Projeto", new_project_path
 
     @project = Project.new
-    redirect_to projects_path
+    @project.project_members.build # Isso cria um objeto vazio para o nested form
   end
 
   def create
-    @project_member = current_user
     @project = Project.new(project_params)
-
+    # @project.user = User.find(params[:user_id])
+    @project_member = ProjectMember.new
+    raise
+    @project_member.user = User.find(params[:project][:project_member][:user_id])
+    @project_member.user_type = params[:project][:project_member][:user_type]
     if @project.save
       flash[:notice] = "Projeto criado com sucesso."
+      @project_member.project = @project
+      @project_member.save
+      # raise
 
       redirect_to projects_path
     else
@@ -91,7 +97,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:client_id, :name, :category, :description, :status)
+    params.require(:project).permit(:client_id, :name, :category, :description, :status, project_members_attributes: [:user_type, user_id: []])
   end
 
   def filter_projects

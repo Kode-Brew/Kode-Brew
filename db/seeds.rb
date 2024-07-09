@@ -21,7 +21,9 @@ clients.each { |client| Client.create!(client) }
 # Criando Users
 users = [
   { email: 'john@example.com', password: 'password123', password_confirmation: 'password123', name: 'John Smith', role: 'TA', points: '0' },
-  { email: 'jane@example.com', password: 'password123', password_confirmation: 'password123', name: 'Jane Smith', role: 'Teacher', points: '37' }
+  { email: 'jane@example.com', password: 'password123', password_confirmation: 'password123', name: 'Jane Smith', role: 'Teacher', points: '37' },
+  { email: 'karina@example.com', password: 'password123', password_confirmation: 'password123', name: 'Karina Smith', role: 'TA', points: '0' }
+
 ]
 users.each { |user| User.create!(user) }
 
@@ -42,7 +44,7 @@ project_members.each { |project_member| ProjectMember.create!(project_member) }
 # Criando Sprints
 sprints = [
   { project_id: Project.first.id, date_start: '2024-01-01', date_end: '2024-01-18', objective: 'Sprint 1 do Project Alpha' },
-  { project_id: Project.first.id, date_start: '2024-01-07', date_end: '2024-01-15', objective: 'Criar histórias usuários' },
+  { project_id: Project.first.id, date_start: '2024-02-07', date_end: '2024-01-15', objective: 'Criar histórias usuários' },
   { project_id: Project.last.id, date_start: '2024-02-01', date_end: '2024-02-15', objective: 'Sprint 1 do Project Beta' }
 ]
 sprints.each { |sprint| Sprint.create!(sprint) }
