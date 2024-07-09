@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: %i[show edit update destroy]
-  before_action :set_breadcrumbs, except: %i[ mytickets update destroy]
+  before_action :set_breadcrumbs, except: %i[mytickets update destroy]
 
   # Displays a list of tickets
   def index
@@ -33,6 +33,7 @@ class TicketsController < ApplicationController
   # Creates a new ticket
   def create
     @ticket = Ticket.new(ticket_params)
+    @ticket.status = "Em Aberto"
     @ticket.task = Task.find(params[:ticket][:task])
     if @ticket.save
       flash[:notice] = "Ticket criado com sucesso."
