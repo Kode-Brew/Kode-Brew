@@ -8,8 +8,8 @@
           <th class='text-center' >Empresa</th>
           <th class='text-center' >Categoria</th>
           <th class='text-center d-none d-sm-table-cell' >Projetos Ativos</th>
-          <th class='text-center d-none d-sm-table-cell' >Projetos Concluídos</th>
-          <th class='text-center d-none d-sm-table-cell' >Projetos Pendentes</th>
+          <th class='text-center d-none d-sm-table-cell' >Projetos Finalizados</th>
+          <th class='text-center d-none d-sm-table-cell' >Projetos Inativos</th>
         </tr>
       </thead>
       <tbody>
@@ -18,9 +18,9 @@
               <td>
               <%= link_to client.name.titleize, client_path(client), class: "text-decoration-none text_dgray" %></td>
               <td><%= client.category %></td>
-              <td> <% project_count_for_status(client, 1) %></td>
-              <td> <% project_count_for_status(client, 2) %></td>
-              <td> <% project_count_for_status(client, 0) %></td>
+              <td><%=ongoing_projects_count(client)%></td>
+              <td><%=finished_projects_count(client)%></td>
+              <td><%=inactive_projects_count(client)%></td>
             </tr>
         <% end %>
       </tbody>
