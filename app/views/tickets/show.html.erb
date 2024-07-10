@@ -5,7 +5,7 @@
     </div>
     <h2>Tarefa: <%= @ticket.task.name %></h2>
     <p>Descrição:<%= @ticket.task.description %></p>
-    <p>Professor: <%= @ticket.user.email %></p>
+    <p>Professor: <%= @ticket.user&.email || "---"%></p>
     <p>Aluno:<%= @ticket.task.user.email %></p>
       <%= link_to tickets_path, class: 'btn-back text-decoration-none' do %>
       <i class='fa-solid fa-circle-left'></i>
