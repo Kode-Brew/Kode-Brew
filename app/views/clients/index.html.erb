@@ -1,30 +1,29 @@
+<div class="container">
   <h1>Clientes</h1>
-  <h3><%= "Total de clientes: #{@clients.size}" %></h3>
-<div class="row">
-  <div  class="table-responsive col-10 px-0">
-    <table class="table table_main ">
-      <thead>
-        <tr>
-          <th class='text-center' >Empresa</th>
-          <th class='text-center' >Categoria</th>
-          <th class='text-center d-none d-sm-table-cell' >Projetos Ativos</th>
-          <th class='text-center d-none d-sm-table-cell' >Projetos Finalizados</th>
-          <th class='text-center d-none d-sm-table-cell' >Projetos Inativos</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @clients.each do |client| %>
-            <tr>
-              <td>
-              <%= link_to client.name.titleize, client_path(client), class: "text-decoration-none text_dgray" %></td>
-              <td><%= client.category %></td>
-              <td><%=ongoing_projects_count(client)%></td>
-              <td><%=finished_projects_count(client)%></td>
-              <td><%=inactive_projects_count(client)%></td>
-            </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <div class="row">
+    <div  class="table-responsive col-10 px-0">
+      <table class="table table_main ">
+        <thead>
+          <tr>
+            <th class='text-center' >Empresa</th>
+            <th class='text-center' >Categoria</th>
+            <th class='text-center d-none d-sm-table-cell' >Projetos Ativos</th>
+            <th class='text-center d-none d-sm-table-cell' >Projetos Finalizados</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @clients.each do |client| %>
+              <tr>
+                <td>
+                <%= link_to client.name.titleize, client_path(client), class: "text-decoration-none text_dgray" %></td>
+                <td class='text-center d-none d-sm-table-cell'><%= client.category %></td>
+                <td class='text-center d-none d-sm-table-cell'><%=ongoing_projects_count(client)%></td>
+                <td class='text-center d-none d-sm-table-cell'><%=finished_projects_count(client)%></td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= link_to "Adicionar novo cliente", new_client_path, class: "btn btn-outline-primary mt-3 mb-3" %>
   </div>
-  <%= link_to "Adicionar novo cliente", new_client_path, class: "btn btn-outline-primary mt-3 mb-3" %>
 </div>
