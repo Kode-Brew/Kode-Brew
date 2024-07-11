@@ -1,4 +1,4 @@
-<h2 class="title mt-4 text-center"> Novo Cliente</h2>
+<h2 class="title mt-4 text-center"> Editar Cliente</h2>
 
 <div class="form-container">
   <%= simple_form_for @client, html: {class:"form"} do |f| %>
@@ -7,31 +7,36 @@
       <%= f.input :category,
                   label: 'Categoria',
                   collection: Client::CATEGORIES,
-                  required: true,
-                  autofocus: true,
+                  hint: "Deixe em branco se não quiser alterar",
                   include_blank: false,
+                  required: false,
+                  autofocus: true,
                   input_html: { class: "input" },
                   label_html: { class: "label" } %>
       <%= f.input :name,
                   label: 'Nome',
-                  required: true,
+                  required: false,
+                  hint: "Deixe em branco se não quiser alterar",
                   input_html: {class: 'input'},
                   label_html: {class: 'label'} %>
       <%= f.input :address,
                   label: 'Endereço',
-                  required: true,
+                  required: false,
+                  hint: "Deixe em branco se não quiser alterar",
                   input_html: {class: 'input'},
                   label_html: {class: 'label'} %>
       <%= f.input :email,
                   label: 'E-mail',
-                  required: true,
+                  required: false,
+                  hint: "Deixe em branco se não quiser alterar",
                   placeholder: 'exemplo@dominio.com',
                   type: 'email',
                   input_html: {class: 'input'},
                   label_html: {class: 'label'} %>
       <%= f.input :cell_phone,
                   label: 'Celular',
-                  required: true,
+                  required: false,
+                  hint: "Deixe em branco se não quiser alterar",
                   placeholder: '(XX) XXXXX-XXXX',
                   input_html: {class: 'input', placeholder: 'DDD Telefone'},
                   label_html: {class: 'label'}%>
@@ -46,7 +51,7 @@
       <%= link_to :back do %>
         <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
       <% end %>
-      <%= f.button :submit, 'Novo Cliente', class: "submit" %>
+      <%= f.button :submit, 'Editar Cliente', class: "submit" %>
     </div>
   <% end %>
 </div>
