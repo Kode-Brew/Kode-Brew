@@ -7,7 +7,6 @@
       <%= f.input :category,
                   label: 'Categoria',
                   collection: Client::CATEGORIES,
-                  hint: "Deixe em branco se não quiser alterar",
                   include_blank: false,
                   required: false,
                   autofocus: true,
@@ -16,19 +15,16 @@
       <%= f.input :name,
                   label: 'Nome',
                   required: false,
-                  hint: "Deixe em branco se não quiser alterar",
                   input_html: {class: 'input'},
                   label_html: {class: 'label'} %>
-      <%= f.input :address,
+      <%= f.input :address, as: :text,
                   label: 'Endereço',
                   required: false,
-                  hint: "Deixe em branco se não quiser alterar",
                   input_html: {class: 'input'},
                   label_html: {class: 'label'} %>
       <%= f.input :email,
                   label: 'E-mail',
                   required: false,
-                  hint: "Deixe em branco se não quiser alterar",
                   placeholder: 'exemplo@dominio.com',
                   type: 'email',
                   input_html: {class: 'input'},
@@ -36,7 +32,6 @@
       <%= f.input :cell_phone,
                   label: 'Celular',
                   required: false,
-                  hint: "Deixe em branco se não quiser alterar",
                   placeholder: '(XX) XXXXX-XXXX',
                   input_html: {class: 'input', placeholder: 'DDD Telefone'},
                   label_html: {class: 'label'}%>
@@ -44,7 +39,7 @@
                   label: 'Foto do cliente',
                   input_html: {class: "input"},
                   label_html: {class: 'label'}%>
-      <p>Campos marcados com "*" são obrigatórios.</p>
+      <p>Altere os campos que desejar.</p>
     </div>
 
     <div class="form-actions d-flex justify-content-between">

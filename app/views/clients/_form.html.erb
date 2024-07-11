@@ -7,9 +7,8 @@
       <%= f.input :category,
                   label: 'Categoria',
                   collection: Client::CATEGORIES,
-                  required: true,
                   autofocus: true,
-                  include_blank: false,
+                  required: true,
                   input_html: { class: "input" },
                   label_html: { class: "label" } %>
       <%= f.input :name,
@@ -17,7 +16,7 @@
                   required: true,
                   input_html: {class: 'input'},
                   label_html: {class: 'label'} %>
-      <%= f.input :address,
+      <%= f.input :address, as: :text
                   label: 'Endereço',
                   required: true,
                   input_html: {class: 'input'},
@@ -46,7 +45,7 @@
       <%= link_to :back do %>
         <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
       <% end %>
-      <%= f.button :submit, 'Novo Cliente', class: "submit" %>
+      <%= f.button :submit, 'Criar Cliente', class: "submit" %>
     </div>
   <% end %>
 </div>
