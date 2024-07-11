@@ -42,7 +42,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="d-flex align-items-center mb-3">
-              <% if @ticket.user.photo.present? %>
+              <% if @ticket.user.present? && @ticket.user.photo.present? %>
                 <%= cl_image_tag @ticket.user.photo.key, class: "me-3",
                 style: "width: 100px; height: 100px; border-radius: 10px;" %>
               <% else %>
@@ -52,12 +52,14 @@
               <div>
                 <strong>Responsável</strong>
                 <p style="color:#008100;">
-                  <%= @ticket.user.name %>
+                  <%= @ticket.user.present? ? @ticket.user.name : "-" %>
                 </p>
                 <div class="d-flex align-items-center">
                   <div class="ml-2">
                     <strong>E-mail</strong>
-                    <p style="color:#008100;"><%= @ticket.user.email %></p>
+                    <p style="color:#008100;">
+                      <%= @ticket.user.present? ? @ticket.user.email : "-" %>
+                    </p>
                   </div>
                 </div>
               </div>
