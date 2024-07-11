@@ -1,0 +1,31 @@
+<div class='form-container'>
+  <%= simple_form_for @ticket, html: {class:'form'} do |f| %>
+    <%= f.error_notification %>
+    <div class='form-inputs'>
+      <% if f.object.new_record? %>
+        <%= f.input :task,  as: :select,
+                    label: "Suas Tarefas:",
+                    collection: current_user.tasks.all.map { |u| [u.name, u.id] },
+                    input_html: { class: "input" },
+                    label_html: { class: "label" }%>
+      <% end %>
+      <%= f.input :category,
+                  label: "Categoria",
+                  collection: Ticket.categories.keys.map { |type| [type.humanize, type] },
+                  input_html: { class: "input" },
+                  label_html: { class: "label" }%>
+    <%= f.input :description, as: :text,
+                label: "Descrição",
+                input_html: { class: "input" },
+                label_html: { class: "label" }%>
+    <p class='text-center'>Altere os campos que desejar</p>
+    </div>
+
+    <div class="form-actions d-flex justify-content-between">
+      <%= link_to :back do %>
+        <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
+      <% end %>
+      <%= f.button :submit, 'Editar Ticket', class: "submit" %>
+    </div>
+  <% end %>
+</div>
