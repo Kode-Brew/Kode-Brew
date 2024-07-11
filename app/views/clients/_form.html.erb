@@ -1,8 +1,51 @@
-<%= simple_form_for @client do |f| %>
-  <%= f.input :category %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :email %>
-  <%= f.input :cell_phone %>
-  <%= f.button :submit, class: "btn btn-primary" %>
-<% end %>
+<h2 class="title mt-4 text-center"> Novo Cliente</h2>
+
+<div class="form-container">
+  <%= simple_form_for @client, html: {class:"form"} do |f| %>
+    <%= f.error_notification %>
+    <div class="form-inputs">
+      <%= f.input :category,
+                  label: 'Categoria',
+                  collection: Client::CATEGORIES,
+                  required: true,
+                  autofocus: true,
+                  input_html: { class: "input" },
+                  label_html: { class: "label" } %>
+      <%= f.input :name,
+                  label: 'Nome',
+                  required: true,
+                  input_html: {class: 'input'},
+                  label_html: {class: 'label'} %>
+      <%= f.input :address,
+                  label: 'Endereço',
+                  required: true,
+                  input_html: {class: 'input'},
+                  label_html: {class: 'label'} %>
+      <%= f.input :email,
+                  label: 'E-mail',
+                  required: true,
+                  placeholder: 'exemplo@dominio.com',
+                  type: 'email',
+                  input_html: {class: 'input'},
+                  label_html: {class: 'label'} %>
+      <%= f.input :cell_phone,
+                  label: 'Celular',
+                  required: true,
+                  placeholder: '(XX) XXXXX-XXXX',
+                  input_html: {class: 'input', placeholder: 'DDD Telefone'},
+                  label_html: {class: 'label'}%>
+      <%= f.input :photo,
+                  label: 'Foto do cliente',
+                  input_html: {class: "input"},
+                  label_html: {class: 'label'}%>
+      <p>Campos marcados com "*" são obrigatórios.</p>
+    </div>
+
+    <div class="form-actions d-flex justify-content-between">
+      <%= link_to :back do %>
+        <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
+      <% end %>
+      <%= f.button :submit, "Criar", class: "submit" %>
+    </div>
+  <% end %>
+</div>

@@ -61,7 +61,6 @@
 
     &.is-active {
       color: $orange-bar;
-      /* Laranja para etapa ativa */
 
       &:before {
         background-color: $orange-bar;
@@ -71,7 +70,6 @@
 
     &.is-completed {
       color: $brand-primary;
-      /* Verde para etapa completada */
 
       &:before {
         background-color: $brand-primary;
