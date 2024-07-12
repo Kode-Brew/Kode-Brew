@@ -1,0 +1,48 @@
+<div class="form-container">
+  <%= simple_form_for @lecture, local: true, html: {class:'form'} do |form| %>
+  <%= form.error_notification %>
+  <div class='form-inputs'>
+    <%= form.input :title,
+                    label: "Título",
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+
+    <%= form.input :tag,
+                    label: 'Tags',
+                    collection: Lecture::TAGS,
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+
+    <%= form.input :description, as: :text,
+                    label: 'Descrição',
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+    <%= form.input :video,
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+    <%= form.input :slide, as: :text,
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+
+    <%= form.input :source,
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+
+      <%= form.input :user_id, as: :select,
+                      collection: User.all.map { |u| [u.name, u.id] },
+                      label: "Responsável pela aula",
+
+                      input_html: { class: "input" },
+                      label_html: { class: "label" } %>
+  <p class='text-center'>Altere os campos que desejar</p>
+  </div>
+
+      <div class="form-actions d-flex justify-content-between">
+      <%= link_to :back do %>
+        <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
+      <% end %>
+      <%= form.button :submit, 'Editar Aula', class: "submit" %>
+    </div>
+</div>
+  <div class="d-flex justify-content-center mt-3"><%= button_to "Deletar Aula", lecture_path(@lecture), data: { turbo_confirm: "Deseja realmente excluir a aula?" }, method: :delete, class: "account_destroy" %></div>
+  <% end %>

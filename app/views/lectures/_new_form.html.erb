@@ -1,0 +1,51 @@
+<div class="form-container">
+  <%= simple_form_for @lecture, local: true, html: {class:'form'} do |form| %>
+  <%= form.error_notification %>
+  <div class='form-inputs'>
+    <%= form.input :title,
+                    label: "Título",
+                    autofocus: true,
+                    required: true,
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+
+    <%= form.input :tag,
+                    label: 'Tags',
+                    collection: Lecture::TAGS,
+                    required: true,
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+
+    <%= form.input :description, as: :text,
+                    label: 'Descrição',
+                    required: true,
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+    <%= form.input :video,
+                    required: true,
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+    <%= form.input :slide, as: :text,
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+
+    <%= form.input :source,
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+
+      <%= form.input :user_id, as: :select,
+                      collection: User.all.map { |u| [u.name, u.id] },
+                      label: "Responsável pela aula",
+                      required: true,
+                      input_html: { class: "input" },
+                      label_html: { class: "label" } %>
+  </div>
+
+      <div class="form-actions d-flex justify-content-between">
+      <%= link_to :back do %>
+        <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
+      <% end %>
+      <%= form.button :submit, 'Criar Aula', class: "submit" %>
+    </div>
+  <% end %>
+</div>

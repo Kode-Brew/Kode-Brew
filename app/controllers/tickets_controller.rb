@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: %i[show edit update destroy]
-  before_action :set_breadcrumbs, except: %i[update destroy]
+  before_action :set_breadcrumbs, except: %i[mytickets update destroy]
 
   # Displays a list of tickets
   def index
@@ -8,6 +8,15 @@ class TicketsController < ApplicationController
     @tickets = Ticket.joins(task: { sprint: :project })
                      .where(projects: { id: current_user.projects.ids })
                      .where(status: 'Em Aberto')
+  end
+
+  def mytickets
+    add_breadcrumb "Meus Tickets", mytickets_path
+    if params[:filter].present?
+      @tickets = current_user.tickets.where(status: 'Finalizado')
+    else
+      @tickets = current_user.tickets.where(status: 'Em Andamento')
+    end
   end
 
   # Displays details of a specific ticket
@@ -24,6 +33,7 @@ class TicketsController < ApplicationController
   # Creates a new ticket
   def create
     @ticket = Ticket.new(ticket_params)
+    @ticket.status = "Em Aberto"
     @ticket.task = Task.find(params[:ticket][:task])
     if @ticket.save
       flash[:notice] = "Ticket criado com sucesso."
@@ -42,10 +52,9 @@ class TicketsController < ApplicationController
 
   # Updates a ticket
   def update
+    @ticket.user = current_user if params[:ticket][:status] == "Em Andamento"
     if @ticket.update(ticket_params)
-      flash[:notice] = "ticket editado  com sucesso."
-
-      redirect_to tickets_path
+      redirect_to mytickets_path
     else
       render :edit, status: :unprocessable_entity
     end

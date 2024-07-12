@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   get "myprojects" => 'projects#myprojects'
   get "dashboard" => 'projects#dashboard'
+  get "mytickets" => 'tickets#mytickets'
   # resources :project_members
 
   resources :sprint_lectures, only: %i[show edit update destroy]

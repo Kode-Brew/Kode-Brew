@@ -1,18 +1,102 @@
-  <div class="container">
-    <div class="title-big">
-      <h1 class="ticket-title"></i> Ticket <%= @ticket.id %></h1>
-      <p>Status: <%= @ticket.status %></p>
+<div class="container">
+  <div class="container mt-2">
+    <div class='card_main'>
+      <div class="main-card-header">
+        <h1><i class="fa-solid fa-ticket-simple"></i> Ticket <%= @ticket.id %></h1>
+      </div>
+      <div class="objective-card">
+        <h5>Informações</h5>
+      </div>
+      <div class="table-responsive col-12 p-5">
+        <div class="row">
+          <div class="col-md-6">
+            <h5>Tarefa <%= @ticket.task.id %>:</h5>
+            <%= link_to task_path(@ticket.task), class: "text-decoration-none text-reset" do %>
+              <p style="color:#008100;"><%= @ticket.task.name %></p>
+            <% end %>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex align-items-center mb-3">
+              <i class="far fa-clock fa-2x me-3"></i>
+              <div class="ml-2">
+                <strong>Status</strong>
+                <p style="color:#008100;"><%= @ticket.status %></p>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="fa-solid fa-diagram-project fa-2x me-3"></i>
+              <div class="ml-2">
+                <strong>Categoria</strong>
+                <p style="color:#008100;"><%= @ticket.category %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h5 class="mt-2">Descrição</h5>
+        <p><%= @ticket.description %></p>
+      </div>
+      <div class="objective-card">
+        <h5>Dados</h5>
+      </div>
+      <div class="table-responsive col-12 p-5">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="d-flex align-items-center mb-3">
+              <% if @ticket.user.present? && @ticket.user.photo.present? %>
+                <%= cl_image_tag @ticket.user.photo.key, class: "me-3",
+                style: "width: 100px; height: 100px; border-radius: 10px;" %>
+              <% else %>
+                <%= image_tag "not_found.jpg", class: "me-3",
+                style: "width: 100px; height: 100px; border-radius: 10px;" %>
+              <% end %>
+              <div>
+                <strong>Responsável</strong>
+                <p style="color:#008100;">
+                  <%= @ticket.user.present? ? @ticket.user.name : "-" %>
+                </p>
+                <div class="d-flex align-items-center">
+                  <div class="ml-2">
+                    <strong>E-mail</strong>
+                    <p style="color:#008100;">
+                      <%= @ticket.user.present? ? @ticket.user.email : "-" %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex align-items-center mb-3">
+              <% if @ticket.task.user.photo.present? %>
+                <%= cl_image_tag @ticket.task.user.photo.key, class: "avatar-large me-3" %>
+              <% else %>
+                <%= image_tag "not_found.jpg", class: "avatar-large me-3" %>
+              <% end %>
+              <div class="ml-2">
+                <strong>Aluno</strong>
+                <p style="color:#008100;"><%= @ticket.task.user.name %></p>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="fa-solid fa-envelope fa-2x me-3"></i>
+              <div class="ml-2">
+                <strong>E-mail</strong>
+                <p style="color:#008100;"><%= @ticket.task.user.email %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <h2>Tarefa: <%= @ticket.task.name %></h2>
-    <p>Descrição:<%= @ticket.task.description %></p>
-    <p>Professor: <%= @ticket.user.email %></p>
-    <p>Aluno:<%= @ticket.task.user.email %></p>
-      <%= link_to tickets_path, class: 'btn-back text-decoration-none' do %>
-      <i class='fa-solid fa-circle-left'></i>
-    <% end %>
-
-      <%= link_to 'Edit', edit_ticket_path(@ticket), class:"btn btn-success" %>
-                      <%= link_to ticket_path(@ticket), data: {turbo_method: :delete}, class:'btn btn-danger' do %>
-                        <i class="far fa-trash-alt"></i>
-                      <% end %>
+    <%# Não sei se é necessario o codigo a baixo, mas vou manter comentado %>
+    <%# <div class="d-flex justify-content-center mt-3"> %>
+      <%# <%= link_to tickets_path do %>
+        <%# <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i> %>
+      <%# <% end %>
+      <%# <%= link_to 'Editar', edit_ticket_path(@ticket), class:"btn btn-success ms-2 me-2" %>
+      <%# <%= link_to ticket_path(@ticket), data: {turbo_method: :delete}, class:'btn btn-danger' do %>
+        <%# <i class="far fa-trash-alt"></i> %>
+      <%# <% end %>
+    </div>
   </div>
+</div>
