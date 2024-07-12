@@ -11,4 +11,14 @@ class Ticket < ApplicationRecord
 
   # Validations
   validates :status, presence: true
+
+  validate :user_id_cannot_be_equal_to_task_user_id
+
+  private
+
+  def user_id_cannot_be_equal_to_task_user_id
+    if user_id.present? && task.present? && user_id == task.user_id
+      errors.add(:user_id, 'não pode assumir sua própria task')
+    end
+  end
 end

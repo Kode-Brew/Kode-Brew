@@ -1,11 +1,14 @@
 <div class="container">
     <h1 ></i> Meus Tickets</h1>
   <div class="row justify-content-center my-3">
-    <div class="col-md-3 my-2">
-      <%= link_to "Tickets em andamento", mytickets_path, class: "h5 underline-offset #{'text-decoration-none' unless params[:filter].nil?}" %>
+    <div class="col-md-4 my-2">
+      <%= link_to "Tickets em andamento (Professor)", mytickets_path, class: "h5 underline-offset #{'text-decoration-none' unless params[:filter].nil?}" %>
     </div>
-    <div class="col-md-3 my-2">
-      <%= link_to "Tickets Finalizados", mytickets_path(filter: 1), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" %>
+    <div class="col-md-2 my-2">
+      <%= link_to "Tickets (Aluno)", mytickets_path(filter: 0), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == "0"}" %>
+    </div>
+    <div class="col-md-4 my-2">
+      <%= link_to "Tickets Finalizados (Professor)", mytickets_path(filter: 1), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" %>
     </div>
     <div class="col-md-10 card_main">
       <h2>Tickets  (<%= @tickets.count %>)
