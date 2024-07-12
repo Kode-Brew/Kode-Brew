@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 ></i> Meus Tickets</h1>
+  <h1 class= "text-center"> <i class="fa-solid fa-ticket"> &nbsp;</i>Meus Tickets</h1>
   <div class="row card_main justify-content-center my-3">
 
     <div class="col-md-4 my-3">
@@ -18,15 +18,14 @@
         <h2>Tickets  (<%= @tickets.count %>)</h2>
       </div>
       <div class="col-6">
-        <p> <% if offset > 0 %>
-              <%= link_to mytickets_path(filter: params[:filter],set: offset-5), class: " underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" do %>
+        <p class="icon-lg-right "> <% if offset > 0 %>
+              <%= link_to mytickets_path(filter: params[:filter],set: offset-5), class: "text_green underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" do %>
                 <i class="fa-solid fa-arrow-left"></i>
               <% end %>
             <% end %>
         Página <%=(offset/5)+1 %>
-
-          <% if offset < @tickets.count %>
-            <%= link_to mytickets_path(filter: params[:filter],set: offset+5), class: " underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" do %>
+          <% if offset+5 < @tickets.count %>
+            <%= link_to mytickets_path(filter: params[:filter],set: offset+5), class: "text_green underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" do %>
               <i class="fa-solid fa-arrow-right"></i>
             <% end %>
           <% end %>
