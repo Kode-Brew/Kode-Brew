@@ -42,3 +42,4 @@
     </div>
   <% end %>
 </div>
+<div class="d-flex justify-content-center mt-3"><%= button_to "Deletar a Tarefa", task_path(task), data: { turbo_confirm: "Deseja realmente excluir a tarefa?" }, method: :delete, class: "account_destroy" %></div>
