@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   resources :project_members, only: %i[update destroy]
 
+  resources :projects, only: %i[show edit update destroy]
+
   get "myprojects" => 'projects#myprojects'
   get "dashboard" => 'projects#dashboard'
   get "mytickets" => 'tickets#mytickets'

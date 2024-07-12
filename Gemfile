@@ -29,6 +29,9 @@ gem "jbuilder"
 # Image management [https://github.com/cloudinary/cloudinary_gem]
 gem "cloudinary"
 
+# Wicked is a Rails engine for producing easy wizard controllers [https://rubygems.org/gems/wicked/versions/1.3.4]
+gem 'wicked', '~> 1.3', '>= 1.3.4'
+
 gem "httparty"
 
 # Use Redis adapter to run Action Cable in production
