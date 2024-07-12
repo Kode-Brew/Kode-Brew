@@ -1,40 +1,56 @@
-<%= simple_form_for @project do |f| %>
-    <%= f.input :name, label: "Nome" %>
-    <%= f.input :category, label: "Categoria" %>
-    <%= f.input :description, label: "Descrição" %>
-    <%= f.input :client_id,  as: :select, collection: Client.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Cliente" %>
 
-    <%#= f.association :users, :as => :check_boxes %>
+  <h2 class="title mt-4 text-center"> Novo Projeto</h2>
 
-    <%#= f.association :project_members, :as => :check_boxes, collection: User.all, input_html: { class: "card_input_form" }, label: "Membro:" %>
+  <div class="form-container">
+    <%= simple_form_for @project, local: true, html: { class:"form" } do |f| %>
+    <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :name,
+                    label: 'Nome',
+                    required: true,
+                    input_html: {class: 'input'},
+                    label_html: {class: 'label'} %>
 
-      <%#= f.input :users.name,  as: :check_boxes, collection: User.all, input_html: { class: "card_input_form" }, label: "Membro:" %>
+        <%= f.input :category, as: :select,
+                    label: 'Categoria',
+                    collection: Client::CATEGORIES,
+                    required: true,
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
 
-    <%= f.simple_fields_for :project_member do |pm| %>
-      <!-- Campos do project_member (name, role, etc.) -->
-        <%= pm.input :user_id,  as: :check_boxes, collection: User.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Membro:" %>
+        <%= f.input :description, as: :text,
+                    label: 'Descrição',
+                    required: true,
+                    input_html: {class: 'input'},
+                    label_html: {class: 'label'} %>
 
-      <%#= pm.input :user.name, as: :check_boxes, collection: User.all, input_html: { class: "card_input_form" }, label: "Membro:" %>
-      <%= pm.input :user_type, as: :select, collection: ProjectMember.user_types.keys.map { |type| [type.humanize, type] },input_html: {class: "card_input_form"}, label: "Função:" %>
+        <%= f.input :client_id, as: :select,
+                    label: 'Cliente',
+                    collection: Client.all.map { |u| [u.name, u.id] },
+                    required: true,
+                    input_html: { class: "input" },
+                    label_html: { class: "label" } %>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <%= f.simple_fields_for :project_member do |pm| %>
+                <%= pm.input :user_id, as: :check_boxes,
+                              collection: User.all.map { |u| [u.name, u.id] },
+                              label: 'Selecione os membros',
+                              required: true,
+                              label_html: {class: 'label'}%>
+              <% end %>
+            </div>
+          </div>
+
+        <p class='text-center'>Campos marcados com "*" são obrigatórios.</p>
+      </div>
+
+      <div class="form-actions d-flex justify-content-between">
+        <%= link_to :back do %>
+          <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
+        <% end %>
+        <%= f.button :submit, 'Criar Projeto', class: "submit" %>
+      </div>
     <% end %>
-
-    <%= f.button :submit, class:'btn btn-primary' %>
-    <%= f.button :submit %>
-<% end %>
-
-
-<%#= simple_form_for [@sprint.project, @sprint, @sprint_lecture] do |f| %>
-  <%#= f.input :lecture,  as: :select, collection: @sprint.project.available_lectures.map { |u| [u.title, u.id] }, input_html: {class: "card_input_form"}, label: "Aula" %>
-  <%# <div class='text-center'> %>
-    <%#= f.button :submit,'Adcionar', class:'button_confirm' %>
-  <%# </div> %>
-<%# end %>
-
-
-<%#= simple_form_for [@project, project_member] do |f| %>
-  <%#= f.input :user.name,  as: :select, collection: User.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Membro:" %>
-  <%#= f.input :user_type, as: :select, collection: ProjectMember.user_types.keys.map { |type| [type.humanize, type] },input_html: {class: "card_input_form"}, label: "Função:" %>
-  <%# <div class='text-center'> %>
-    <%#= f.button :submit,'Adcionar', class:'button_confirm' %>
-  <%# </div> %>
-<%# end %>
+  </div>

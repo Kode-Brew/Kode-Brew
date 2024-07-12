@@ -13,8 +13,8 @@ User.delete_all
 
 # Criando Clients
 clients = [
-  { category: 'Tecnologia', name: 'Tech Innovators Inc.', address: '123 Tech Lane', email: 'contact@techinnovators.com', cell_phone: '555-1234' },
-  { category: 'Saúde', name: 'Healthcare Solutions Ltd.', address: '456 Health Blvd', email: 'info@healthsolutions.com', cell_phone: '555-5678' }
+  { category: 'Tecnologia', name: 'Tech Innovators Inc.', address: '123 Tech Lane', email: 'contact@techinnovators.com', cell_phone: '1155512344' },
+  { category: 'Saúde', name: 'Healthcare Solutions Ltd.', address: '456 Health Blvd', email: 'info@healthsolutions.com', cell_phone: '1155556788' }
 ]
 clients.each { |client| Client.create!(client) }
 

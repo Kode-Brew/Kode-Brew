@@ -34,16 +34,17 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    # @project.user = User.find(params[:user_id])
     @project_member = ProjectMember.new
-    raise
-    @project_member.user = User.find(params[:project][:project_member][:user_id])
-    @project_member.user_type = params[:project][:project_member][:user_type]
     if @project.save
-      flash[:notice] = "Projeto criado com sucesso."
-      @project_member.project = @project
-      @project_member.save
-      # raise
+      if params[:project][:project_member][:user_id].present?
+        params[:project][:project_member][:user_id].each do |user_id|
+          ProjectMember.create(
+            user_id: user_id,
+            project: @project,
+            user_type: params[:project][:project_member][:user_type]
+          )
+        end
+      end
 
       redirect_to projects_path
     else
