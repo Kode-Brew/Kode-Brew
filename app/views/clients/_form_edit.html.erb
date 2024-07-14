@@ -1,4 +1,4 @@
-<h2 class="title mt-4 text-center"> Novo Cliente</h2>
+<h2 class="title mt-4 text-center"> Editar Cliente</h2>
 
 <div class="form-container">
   <%= simple_form_for @client, html: {class:"form"} do |f| %>
@@ -7,30 +7,31 @@
       <%= f.input :category,
                   label: 'Categoria',
                   collection: Client::CATEGORIES,
+                  include_blank: false,
+                  required: false,
                   autofocus: true,
-                  required: true,
                   input_html: { class: "input" },
                   label_html: { class: "label" } %>
       <%= f.input :name,
                   label: 'Nome',
-                  required: true,
+                  required: false,
                   input_html: {class: 'input'},
                   label_html: {class: 'label'} %>
       <%= f.input :address, as: :text,
                   label: 'Endereço',
-                  required: true,
+                  required: false,
                   input_html: {class: 'input'},
                   label_html: {class: 'label'} %>
       <%= f.input :email,
                   label: 'E-mail',
-                  required: true,
+                  required: false,
                   placeholder: 'exemplo@dominio.com',
                   type: 'email',
                   input_html: {class: 'input'},
                   label_html: {class: 'label'} %>
       <%= f.input :cell_phone,
                   label: 'Celular',
-                  required: true,
+                  required: false,
                   placeholder: '(XX) XXXXX-XXXX',
                   input_html: {class: 'input', placeholder: 'DDD Telefone'},
                   label_html: {class: 'label'}%>
@@ -38,14 +39,15 @@
                   label: 'Foto do cliente',
                   input_html: {class: "input"},
                   label_html: {class: 'label'}%>
-      <p class='text-center'>Campos marcados com "*" são obrigatórios.</p>
+      <p class='text-center'>Altere os campos que desejar.</p>
     </div>
 
     <div class="form-actions d-flex justify-content-between">
       <%= link_to :back do %>
         <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
       <% end %>
-      <%= f.button :submit, 'Criar Cliente', class: "submit" %>
+      <%= f.button :submit, 'Editar Cliente', class: "submit" %>
     </div>
   <% end %>
 </div>
+<div class="d-flex justify-content-center mt-3"><%= button_to "Deletar cliente", client_path(@client), data: { turbo_confirm: "Deseja realmente excluir a sprint?" }, method: :delete, class: "account_destroy" %></div>

@@ -1,35 +1,43 @@
-<div class="card_main col-md-5 mx-auto p-4">
-  <%= simple_form_for [@project, @sprint] do |f| %>
-    <%= f.input :date_start, as: :date, order: [:day, :month, :year], input_html: {class: "card_input_form"}, label: "Data de Início"%>
-    <%= f.input :objective, :as => :text, input_html: {class: "card_input_form"}, label: "Breve descrição do objetivo da Sprint" %>
-   <div class='text-center'>
-          <%= f.button :submit, class:'button_confirm' %>
-        </div>
-  <% end %>
+  <div class='form-container'>
+    <%= simple_form_for [@project, @sprint], html: {class:'form'} do |f| %>
+      <%= f.input :date_start, as: :date,
+                  label: "Data de Início",
+                  order: [:day, :month, :year],
+                  required: true,
+                  input_html: { class: "input" },
+                  label_html: { class: "label" } %>
+      <%= f.input :objective, as: :text,
+                  label: "Breve descrição do objetivo da Sprint",
+                  required: true,
+                  input_html: { class: "input" },
+                  label_html: { class: "label" }%>
+      <p class='text-center'>Campos marcados com "*" são obrigatórios.</p>
+      <div class="form-actions d-flex justify-content-between">
+        <%= link_to :back do %>
+          <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
+        <% end %>
+        <%= f.button :submit, 'Criar Sprint', class: "submit" %>
+      </div>
+    <% end %>
 
   <% if @sprint.errors.any? %>
-  <div id="error_explanation">
-    <ul>
-    <% @sprint.errors.each do |error| %>
-      <li><%= error.message %></li>
-    <% end %>
-    </ul>
+    <div id="error_explanation">
+      <ul>
+      <% @sprint.errors.each do |error| %>
+        <li><%= error.message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   </div>
-<% end %>
 
   <% if @sprint.persisted? %>
   <div class="row mt-4">
-    <div class="col-6">
+    <div class="d-flex justify-content-center mt-3">
       <%= link_to new_project_sprint_sprint_lecture_path(@sprint.project, @sprint),class:'text-decoration-none text_green' do %>
         <i class="fa-solid fa-book-open"></i> Aula+
       <% end %>
     </div>
-    <div class="col-6">
-    <%= link_to sprint_path(@sprint), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Sprint?"},class:'text-decoration-none text-danger'  do %>
-      <i class="fa-solid fa-trash"></i> Remover Sprint
-    <% end %>
-    </div>
+    <div class="d-flex justify-content-center mt-3"><%= button_to "Deletar Sprint", sprint_path(@sprint), data: { turbo_confirm: "Deseja realmente excluir a sprint?" }, method: :delete, class: "account_destroy" %></div>
   </div>
   <% end %>
-
-</div>

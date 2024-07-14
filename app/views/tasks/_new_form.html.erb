@@ -1,0 +1,51 @@
+<h2 class="form-title mt-4 text-center">Cadastrar nova tarefa</h2>
+
+<div class="form-container">
+  <%= simple_form_for [@sprint.project, @sprint, @task], html: {class:'form'} do |f| %>
+    <%= f.error_notification %>
+    <div class='form-inputs'>
+    <%= f.input :name,
+                label: "Nome",
+                required: true,
+                autofocus: true,
+                input_html: {class: "input"},
+                label_html: { class: "label" }%>
+    <%= f.input :priority,
+                label: "Prioridade", as: :select, collection: [['Baixa', 'Baixa'], ['Média', 'Média'], ['Média-Alta', 'Média-Alta'], ['Alta', 'Alta']],
+                required: true,
+                required: true,
+                input_html: { class: "input" },
+                label_html: { class: "label" } %>
+    <%= f.input :description, as: :text,
+                label: "Descrição",
+                required: true,
+                input_html: {class: 'input'},
+                label_html: {class: 'label'} %>
+    <%= f.input :user_id,  as: :select,
+                collection: @users.map { |u| [u.name, u.id] },
+                label: "Responsável pela task:",
+                required: true,
+                input_html: {class: 'input'},
+                label_html: {class: 'label'}%>
+    <%= f.input :status, as: :select,
+                label: "Status",
+                collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']],
+                required: true,
+                input_html: {class: 'input'},
+                label_html: {class: 'label'} %>
+    <%= f.input :points, as: :select,
+                label: "Pontos",
+                collection: [1, 3, 5, 8, 13],
+                required: true,
+                input_html: {class: 'input'},
+                label_html: {class: 'label'} %>
+    <p class='text-center'>Campos marcados com "*" são obrigatórios.</p>
+  </div>
+  <div class="form-actions d-flex justify-content-between">
+      <%= link_to :back do %>
+        <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
+      <% end %>
+      <%= f.button :submit, 'Criar Task', class: "submit" %>
+    </div>
+  <% end %>
+</div>

@@ -2,8 +2,9 @@ class Project < ApplicationRecord
   enum status: { Pendente: 0, Iniciado: 1, Finalizado: 2 }
 
   belongs_to :client
-  has_many :project_members
-  has_many :sprints
+  has_many :project_members, dependent: :destroy
+  has_many :sprints, dependent: :destroy
+  has_many :tasks, through: :sprints
   has_many :users, through: :project_members
   has_many :tasks, through: :sprints
   has_many :sprint_lectures, through: :sprints
@@ -12,7 +13,9 @@ class Project < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :category, :description, presence: true
 
-  #Métodos
+  accepts_nested_attributes_for :project_members
+
+  # Métodos
   def date_end_project
     sprints.maximum(:date_end)
   end
