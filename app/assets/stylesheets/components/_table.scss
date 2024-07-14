@@ -54,18 +54,15 @@ td{
 /* Client's Show table */
 
 .low-profile-table {
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
   table-layout: fixed;
 
   th, td {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: wrap;
     padding: 32px;
-  }
-
-  th:first-child {
-    width: 25%;
   }
 }
 

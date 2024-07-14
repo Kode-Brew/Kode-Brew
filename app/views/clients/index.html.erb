@@ -4,7 +4,12 @@
     <table class="low-profile-table">
       <thead>
         <tr>
-          <th class="col text-center">Empresa</th>
+          <th class="col text-left">
+          Empresa
+          <%= link_to new_client_path do %>
+              <i class="fa-solid fa-circle-plus"></i>
+              <% end %>
+          </th>
           <th class="col text-center">Categoria</th>
           <th class="col text-center">Projetos Ativos</th>
           <th class='col text-center'>Projetos Finalizados</th>
@@ -15,7 +20,7 @@
         <% @clients.each do |client| %>
           <tr>
             <td>
-              <%= link_to client.name.titleize, client_path(client), class: "text-decoration-none"%>
+              <%= link_to client.name.titleize, client_path(client), class: "text-decoration-none text-left"%>
             </td>
             <td class='text-center d-none d-sm-table-cell'><%= client.category %></td>
             <td class='text-center d-none d-sm-table-cell'><%=ongoing_projects_count(client)%></td>
@@ -25,5 +30,4 @@
       </tbody>
     </table>
   </div>
-    <%= link_to "Adicionar novo cliente", new_client_path, class: "btn btn-outline-primary mt-3 mb-3" %>
 </div>
