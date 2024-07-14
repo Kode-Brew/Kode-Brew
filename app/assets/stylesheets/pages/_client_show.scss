@@ -1,0 +1,34 @@
+.client-content {
+  margin: 40px 40px 24px;
+  height: auto;
+  background-color: white;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Improved responsiveness */
+  grid-gap: 48px;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 480px) { /* Adjust breakpoint as needed */
+  .client-content {
+    grid-template-columns: 1fr; /* Single column on mobile */
+  }
+
+}
+.client-item {
+  display: flex;
+  gap: 8px;
+  max-width: 408px;
+
+  p{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+  }
+
+  h5{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1px;
+  }
+}

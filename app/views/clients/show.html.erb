@@ -1,12 +1,63 @@
-<div class="container text-center mt-5">
-  <h1><%= @client.name %></h1>
-  <h2>Detalhes do cliente:</h2>
-  <h5><%= "Categoria: #{@client.category}" %></h5>
-  <h5><%="Endereço: #{@client.address}"%></h5>
-  <h5><%= "E-mail: #{@client.email}" %></h5>
-  <h5><%= "Celular: #{@client.cell_phone}" %></h5>
+<div class="container mt-">
+  <div class = 'card_main'>
+    <div class="main-card-header">
+      <h2><i class="fa-solid fa-bars-progress"></i>  <%= @client.name %></h2>
+    </div>
 
-  <%= link_to "Voltar para clientes", clients_path, class: "btn btn-outline-primary my-3" %>
-  <%= link_to "Editar Cliente", edit_client_path(@client), class: "btn btn-outline-secondary my-3"%>
-  <%= link_to 'Deletar Cliente', client_path(@client), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: 'Tem certeza que deseja deletar?' }%>
+
+    <div class = 'client-content'>
+      <div class = 'client-item client-central'>
+        <p>Categoria:</p>
+        <h5><%= @client.category %></h5>
+      </div>
+
+      <div class = 'client-item client-central'>
+        <p>Endereço:</p>
+        <h5><%= @client.address %></h5>
+      </div>
+
+
+      <div class = 'client-item client-central'>
+        <p>Email:</p>
+        <h5><%= @client.email %></h5>
+      </div>
+
+      <div class = 'client-item client-central'>
+        <p>Telefone para Contato:</p>
+        <h5><%= @client.cell_phone %></h5>
+      </div>
+    </div>
+
+    <div class="objective-card">
+      <h5 style="padding-right: 12px;">Projetos:</h5>
+        <table class="low-profile-table">
+          <thead>
+            <tr>
+              <th class="col text-center"></th>
+              <th class="col text-center">Status</th>
+              <th class="col text-center">Data de Início</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @client.projects.each do |project| %>
+              <tr>
+                <td><%= link_to project.name.titleize, project_path(project), class: "text-decoration-none" %></td>
+                <td class="text-center align-middle">
+                  <div class="d-inline-block">
+                    <p class="py-1 px-3 tag-status <%= case project.status.titleize
+                            when 'Pendente' then 'gray-tag'
+                            when 'Iniciado' then 'medium-green-tag'
+                            when 'Finalizado' then 'green-tag'
+                          end %>">
+                      <%= project.status.titleize %>
+                    </p>
+                  </div>
+                </td>
+                <td class='text-center'><%= project.date_start_project&.strftime("%d/%m/%y") || "---" %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+      </div>
+  </div>
 </div>

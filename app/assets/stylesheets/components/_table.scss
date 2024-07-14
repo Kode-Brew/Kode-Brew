@@ -49,3 +49,61 @@ td{
   }
 
 }
+
+
+/* Client's Show table */
+
+.low-profile-table {
+  width: 100%;
+  table-layout: fixed;
+
+  th, td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 32px;
+  }
+
+  th:first-child {
+    width: 25%;
+  }
+}
+
+/* Responsive Table Styles */
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  .objective-card {
+    flex-direction: column; /* Stack elements vertically on small screens */
+  }
+
+  .low-profile-table {
+    display: block; /* Allow table to scroll horizontally if needed */
+    overflow-x: auto;
+    white-space: nowrap; /* Keep table cells on a single line */
+  }
+
+  .low-profile-table thead {
+    display: table; /* Ensure header stays in a row */
+  }
+
+  .low-profile-table th,
+  .low-profile-table td {
+    width: 150px; /* Minimum width for each column on small screens */
+    min-width: 150px;
+  }
+
+  .low-profile-table td {
+    text-align: left; /* Adjust alignment for smaller screens */
+  }
+
+  .text-center {
+    text-align: center !important; /* Override Bootstrap text-center on small screens */
+  }
+
+  .align-middle {
+    align-items: flex-start !important; /* Override Bootstrap align-middle on small screens */
+  }
+
+  .d-inline-block {
+    display: inline-block !important; /* Override Bootstrap d-inline-block on small screens */
+  }
+}
