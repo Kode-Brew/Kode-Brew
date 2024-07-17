@@ -66,9 +66,11 @@
             <tr class="b_g_white">
               <th class='b_g_white px-3 px-3'>
               Tarefas
-              <%= link_to new_project_sprint_task_path(@project, sprint) do %>
-              <i class="fa-solid fa-circle-plus"></i>
-              <% end %>
+              <%if sprint.date_end.strftime("%d/%m/%Y") >= Time.now%>
+                 <%= link_to new_project_sprint_task_path(@project, sprint) do %>
+                  <i class="fa-solid fa-circle-plus"></i>
+                  <% end %>
+              <%end%>
               </th>
               <th class= 'b_g_white px-3 text-right'>Responsável</th>
               <th class= 'b_g_white px-3 text-center'>Status</th>
