@@ -11,6 +11,7 @@
                 label_html: { class: "label" }%>
     <%= f.input :priority,
                 label: "Prioridade", as: :select, collection: [['Baixa', 'Baixa'], ['Média', 'Média'], ['Média-Alta', 'Média-Alta'], ['Alta', 'Alta']],
+                prompt: "Selecione a prioridade",
                 input_html: { class: "input" },
                 label_html: { class: "label" } %>
     <%= f.input :description, as: :text,
@@ -20,15 +21,18 @@
     <%= f.input :user_id,  as: :select,
                 collection: @users.map { |u| [u.name, u.id] },
                 label: "Responsável pela task:",
+                prompt: "Selecione o responsável"
                 input_html: {class: 'input'},
                 label_html: {class: 'label'}%>
     <%= f.input :status, as: :select,
                 label: "Status",
                 collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']],
+                prompt: "Selecione o status",
                 input_html: {class: 'input'},
                 label_html: {class: 'label'} %>
     <%= f.input :points, as: :select,
                 label: "Pontos",
+                prompt: "Selecione a pontuação",
                 collection: [1, 3, 5, 8, 13],
                 input_html: {class: 'input'},
                 label_html: {class: 'label'} %>
