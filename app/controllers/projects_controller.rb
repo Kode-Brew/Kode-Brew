@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy advance_sprint finish_project]
-  before_action :set_breadcrumbs, except: %i[update destroy advance_sprint finish_project]
+  before_action :set_breadcrumbs, except: %i[myprojects update destroy advance_sprint finish_project]
 
   # helper :breadcrumbs
 
