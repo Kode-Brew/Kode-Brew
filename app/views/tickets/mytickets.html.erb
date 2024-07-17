@@ -1,44 +1,76 @@
 <div class="container">
-    <h1 ></i> Meus Tickets</h1>
-  <div class="row justify-content-center my-3">
-    <div class="col-md-3 my-2">
-      <%= link_to "Tickets em andamento", mytickets_path, class: "h5 underline-offset #{'text-decoration-none' unless params[:filter].nil?}" %>
+  <h1 class= "text-center"> <i class="fa-solid fa-ticket"> &nbsp;</i>Meus Tickets</h1>
+  <div class="row card_main justify-content-center my-3">
+
+    <div class="col-md-4 my-3">
+      <%= link_to "Tickets em andamento (Professor)", mytickets_path, class: "h5 underline-offset #{'text-decoration-none' unless params[:filter].nil?}" %>
     </div>
-    <div class="col-md-3 my-2">
-      <%= link_to "Tickets Finalizados", mytickets_path(filter: 1), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" %>
+    <div class="col-md-2 my-3">
+      <%= link_to "Tickets (Aluno)", mytickets_path(filter: 0), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == "0"}" %>
     </div>
-    <div class="col-md-10 card_main">
-      <h2>Tickets  (<%= @tickets.count %>)
-      </h2>
-      <% @tickets.each do |ticket| %>
-      <div class="row m-1">
-        <div class="col-sm-10  mx-auto">
-          <%= link_to ticket_path(ticket), class:"text-decoration-none" do%>
-            <div class="card_tickets border-dark row">
-                <div class="col-md-2 px-2">
-                  <p><strong>Tarefa:</strong> <%= ticket.task.name %></p>
-                </div>
-                <div class="col-md-4 px-2">
-                  <p class=""><strong>Projeto:</strong> <%= ticket.task.sprint.project.name %></p>
-                </div>
-                <div class="col-md-3 px-2">
-                  <p><strong>Aluno:</strong> <%= ticket.task.user.name %></p>
-                </div>
-                <div class="col-md-3 px-2">
-                  <p class=""><strong>Categoria:</strong> <%= ticket.category %></p>
-                </div>
+    <div class="col-md-4 my-3">
+      <%= link_to "Tickets Finalizados (Professor)", mytickets_path(filter: 1), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" %>
+    </div>
+
+    <% offset = params[:set].to_i || 0 %>
+    <div class="row mt-4 ">
+      <div class="col-6">
+        <h2>Tickets  (<%= @tickets.count %>)
+          <% if params[:filter] == "0" %>
+            <%= link_to  new_ticket_path, class: "text_green" do %>
+                  <i class="fa-solid fa-circle-plus"></i>
+                <% end %>
+          <% end %>
+        </h2>
+      </div>
+      <div class="col-6">
+        <p class="icon-lg-right "> <% if offset > 0 %>
+              <%= link_to mytickets_path(filter: params[:filter],set: offset-5), class: "text_green underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" do %>
+                <i class="fa-solid fa-arrow-left"></i>
+              <% end %>
+            <% end %>
+        Página <%=(offset/5)+1 %>
+          <% if offset+5 < @tickets.count %>
+            <%= link_to mytickets_path(filter: params[:filter],set: offset+5), class: "text_green underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" do %>
+              <i class="fa-solid fa-arrow-right"></i>
+            <% end %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+
+      <% @tickets.limit(5).offset(offset).each do |ticket| %>
+        <div class="row m-1">
+          <div class="col-sm-10  mx-auto">
+            <%= link_to ticket_path(ticket), class:"text-decoration-none" do%>
+              <div class="card_tickets border-dark row">
+                  <div class="col-md-2 px-2">
+                    <p><strong>Tarefa:</strong> <%= ticket.task.name %></p>
+                  </div>
+                  <div class="col-md-4 px-2">
+                    <p class=""><strong>Projeto:</strong> <%= ticket.task.sprint.project.name %></p>
+                  </div>
+                  <div class="col-md-3 px-2">
+                    <p><strong>Aluno:</strong> <%= ticket.task.user.name %></p>
+                  </div>
+                  <div class="col-md-3 px-2">
+                    <p class=""><strong>Categoria:</strong> <%= ticket.category %></p>
+                  </div>
+              </div>
+            <% end %>
+          </div>
+          <% if params[:filter].nil? %>
+            <div class="col-md-2 my-auto p-0 text-center">
+              <%= link_to ticket_path(ticket,ticket:{status: "Finalizado"}), data: {turbo_method: :patch}, class:'text-decoration-none button_confirm py-2 px-3' do %>
+                        Finalizar
+                  <% end %>
             </div>
           <% end %>
         </div>
-        <% if params[:filter].nil? %>
-          <div class="col-md-2 my-auto p-0 text-center">
-            <%= link_to ticket_path(ticket,ticket:{status: "Finalizado"}), data: {turbo_method: :patch}, class:'text-decoration-none button_confirm py-2 px-3' do %>
-                      Finalizar
-                <% end %>
-           </div>
-        <% end %>
-      </div>
       <% end %>
+
+      <div class="col-sm-3 my-4 text-center">
+        5 Tickets por página
+      </div>
     </div>
-  </div>
 </div>

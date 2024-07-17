@@ -8,14 +8,19 @@ class TicketsController < ApplicationController
     @tickets = Ticket.joins(task: { sprint: :project })
                      .where(projects: { id: current_user.projects.ids })
                      .where(status: 'Em Aberto')
+                     .where.not(tasks: { user_id: current_user.id })
   end
 
   def mytickets
     add_breadcrumb "Meus Tickets", mytickets_path
-    if params[:filter].present?
-      @tickets = current_user.tickets.where(status: 'Finalizado')
+    # if params[:filter].present?
+    case params[:filter]
+    when "0"
+      @tickets = current_user.student_tickets.order(status: :asc)
+    when "1"
+      @tickets = current_user.teacher_tickets.where(status: 'Finalizado')
     else
-      @tickets = current_user.tickets.where(status: 'Em Andamento')
+      @tickets = current_user.teacher_tickets.where(status: 'Em Andamento')
     end
   end
 
