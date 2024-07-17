@@ -4,10 +4,10 @@
     <%= link_to "Todos os projetos", projects_path, class: "h5 underline-offset #{'text-decoration-none' unless params[:filter].nil?}" %>
   </div>
   <div class="col-sm-3">
-    <%= link_to "Projetos em andamento", projects_path(filter: "Em andamento"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == 'Em andamento'}" %>
+    <%= link_to "Projetos em andamento", projects_path(filter: "Iniciado"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == "Iniciado"}" %>
   </div>
   <div class="col-sm-3">
-    <%= link_to "Projetos finalizados", projects_path(filter: "finalizado"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == 'finalizado'}" %>
+    <%= link_to "Projetos finalizados", projects_path(filter: "Finalizado"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == "Finalizado"}" %>
   </div>
 </div>
 
