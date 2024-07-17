@@ -80,7 +80,7 @@
       <div class = 'task-item task-central'>
         <p>Pontuação:</p>
 
-        <h5><%= @task.points %> pontos</h5>
+        <h5><%= pluralize(@task.points, 'ponto') %></h5>
       </div>
 
       <div class = 'task-item task-central'>
