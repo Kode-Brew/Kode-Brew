@@ -131,6 +131,9 @@
   flex-wrap: wrap;
   align-items: baseline;
   margin: 16px 52px;
+  a{
+    text-decoration: $white;
+  }
 }
 
 /* Objective-card para view de Sprints*/
