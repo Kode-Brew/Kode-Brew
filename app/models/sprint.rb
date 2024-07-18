@@ -14,7 +14,6 @@ class Sprint < ApplicationRecord
     self.date_end = date_start + 6.days if date_start
   end
 
-
   def date_start_after_previous_sprint
     if date_start && project
       previous_sprint = project.sprints.where.not(id: self.id).order(date_end: :desc).first
@@ -24,4 +23,9 @@ class Sprint < ApplicationRecord
     end
   end
 
+  # contem bug nesse arquivo
+  # def position
+  #   project_sprints = project.sprints.order(:date_start)
+  #   project_sprints.index(self) + 1
+  # end
 end
