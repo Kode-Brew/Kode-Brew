@@ -5,13 +5,13 @@
       <h3><%= "Total de membros: #{@project.project_members.size}" %></h3>
      <% offset = params[:set].to_i || 0 %>
      <p class ="m-0"> <% if offset > 0 %>
-            <%= link_to project_project_members_path(set: offset-5), class: "text_green underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" do %>
+            <%= link_to project_project_members_path(set: offset-10), class: "text_green" do %>
               <i class="fa-solid fa-arrow-left"></i>
             <% end %>
           <% end %>
           Página <%=(offset/10)+1 %>
           <% if offset+10 < @project.project_members.count %>
-            <%= link_to project_project_members_path(set: offset+5), class: "text_green underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" do %>
+            <%= link_to project_project_members_path(set: offset+10), class: "text_green" do %>
               <i class="fa-solid fa-arrow-right"></i>
             <% end %>
           <% end %>

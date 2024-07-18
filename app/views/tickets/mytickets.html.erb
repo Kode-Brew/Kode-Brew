@@ -25,13 +25,13 @@
       </div>
       <div class="col-6">
         <p class="icon-lg-right "> <% if offset > 0 %>
-              <%= link_to mytickets_path(filter: params[:filter],set: offset-5), class: "text_green underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" do %>
+              <%= link_to mytickets_path(filter: params[:filter],set: offset-5), class: "text_green" do %>
                 <i class="fa-solid fa-arrow-left"></i>
               <% end %>
             <% end %>
         Página <%=(offset/5)+1 %>
           <% if offset+5 < @tickets.count %>
-            <%= link_to mytickets_path(filter: params[:filter],set: offset+5), class: "text_green underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" do %>
+            <%= link_to mytickets_path(filter: params[:filter],set: offset+5), class: "text_green" do %>
               <i class="fa-solid fa-arrow-right"></i>
             <% end %>
           <% end %>
