@@ -36,7 +36,7 @@
                   <% end %>
                 <% end %>
                 Página <%=(offset/10)+1 %>
-                <% if offset+1 < @clients.count %>
+                <% if offset+10 < @clients.count %>
                   <%= link_to clients_path(set: offset+10), class: "text_green" do %>
                     <i class="fa-solid fa-arrow-right"></i>
                   <% end %>
