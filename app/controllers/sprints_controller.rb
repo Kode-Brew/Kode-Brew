@@ -24,8 +24,8 @@ class SprintsController < ApplicationController
   def create
     @sprint = Sprint.new(sprint_params)
     @sprint.project = @project
-
     if @sprint.save
+      first_sprint
       flash[:notice] = "Nova Sprint criada com sucesso."
       redirect_to project_sprints_path
     else
@@ -77,5 +77,12 @@ class SprintsController < ApplicationController
     add_breadcrumb "Projetos", projects_path
     add_breadcrumb @project.name, project_path(@project)
     add_breadcrumb "Sprints", project_sprints_path
+  end
+
+  def first_sprint
+    return if @project.sprints.count != 1
+
+    @project.status = 1
+    @project.save
   end
 end

@@ -30,7 +30,6 @@
   </div>
   <%# Progress bar %>
   <%= render partial: 'progress_bars/sprint_progress_steps', locals: {active_sprint: @project.active_sprint} %>
-  <h1><%= @project.status %></h1>
 
   <%  @project.sprints.order(date_start: :desc).each_with_index do |sprint, index| %>
     <div class = 'card_main'>
@@ -67,7 +66,7 @@
               <th class='b_g_white px-3 px-3'>
               Tarefas
               <%if sprint.date_end.strftime("%d/%m/%Y") >= Time.now%>
-                 <%= link_to new_project_sprint_task_path(@project, sprint) do %>
+                  <%= link_to new_project_sprint_task_path(@project, sprint) do %>
                   <i class="fa-solid fa-circle-plus"></i>
                   <% end %>
               <%end%>
