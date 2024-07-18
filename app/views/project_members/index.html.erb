@@ -1,24 +1,36 @@
-<div class="container ">
-  <div class="row mt-5">
-    <div class="text-center col-sm-4 mx-4 card_main mb-4">
-      <h2 class ='mt-2'>Membros de projetos</h2>
+<div class="container">
+      <h1 class ='text-center mt-2'>Membros de projetos</h1>
+  <div class="row justify-content-center mt-2">
+    <div class="text-center col-lg-4 mx-5 card_main ">
       <h3><%= "Total de membros: #{@project.project_members.size}" %></h3>
+     <% offset = params[:set].to_i || 0 %>
+     <p class ="m-0"> <% if offset > 0 %>
+            <%= link_to project_project_members_path(set: offset-5), class: "text_green underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" do %>
+              <i class="fa-solid fa-arrow-left"></i>
+            <% end %>
+          <% end %>
+          Página <%=(offset/10)+1 %>
+          <% if offset+10 < @project.project_members.count %>
+            <%= link_to project_project_members_path(set: offset+5), class: "text_green underline-offset #{'text-decoration-none' unless params[:filter] == "1"}" do %>
+              <i class="fa-solid fa-arrow-right"></i>
+            <% end %>
+          <% end %>
+      </p>
     <div class="row justify-content-center">
-      <div class="col-10">
-
-        <% @project.project_members.each do |project_member| %>
+      <div class="col-sm-10">
+        <% @project.project_members.limit(10).offset(offset).each do |project_member| %>
           <div class="card_project_member border-dark py-2 my-4">
             <div class="row align-items-center justify-content-center mx-1">
-              <div class="col-2 p-1">
+              <div class="col-sm-2 p-1">
                  <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar" %>
               </div>
-              <div class="col-5 p-1">
+              <div class="col-md-5 p-1">
                  <strong><%= project_member.user.name %></strong> <br><%= project_member.user_type %>
               </div>
-              <div class="col-3 p-1">
+              <div class="col-md-3 p-1">
                  Pontos:<br> <%= project_member.total_points %>
               </div>
-              <div class="col-2 p-1">
+              <div class="col-sm-2 p-1">
                <%= link_to project_member_path(project_member), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer remover o usuário"} do %>
                  <i class="fa-solid fa-circle-minus icon_delete"></i>
                <% end %>
