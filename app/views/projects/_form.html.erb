@@ -16,7 +16,8 @@
                     collection: Client::CATEGORIES,
                     required: true,
                     input_html: { class: "input" },
-                    label_html: { class: "label" } %>
+                    label_html: { class: "label" },
+                    prompt: "Selecione a categoria" %>
 
         <%= f.input :description, as: :text,
                     label: 'Descrição',
@@ -28,6 +29,7 @@
                     label: 'Cliente',
                     collection: Client.all.map { |u| [u.name, u.id] },
                     required: true,
+                    promt: "Selecione o cliente"
                     input_html: { class: "input" },
                     label_html: { class: "label" } %>
 

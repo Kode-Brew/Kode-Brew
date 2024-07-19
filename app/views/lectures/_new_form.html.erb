@@ -36,6 +36,7 @@
       <%= form.input :user_id, as: :select,
                       collection: User.all.map { |u| [u.name, u.id] },
                       label: "Responsável pela aula",
+                      prompt: "Selecione o responsável",
                       required: true,
                       input_html: { class: "input" },
                       label_html: { class: "label" } %>
