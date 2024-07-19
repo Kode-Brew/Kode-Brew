@@ -1,22 +1,117 @@
 <div class = "container">
-  <h1>Sprint <%= @sprint.id %> do <%= @sprint.project.name %></h1>
-    <div>
-    <ul>
-          <li>
-          <p>Data de início: <%= @sprint.date_start %></p>
-          <p>Data final: <%= @sprint.date_end %></p>
-          <p>Objetivo: <%= @sprint.objective %></p>
-
-          <%= link_to sprint_path(@sprint), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Sprint?"} do %>
-            <i class="fa-solid fa-trash"></i>
+  <div class = 'card_main'>
+    <!--Div main card header-->
+    <h1 class="text-center text-capitalize"><%= @sprint.project.name %></h1>
+    <div class="main-card-header">
+      <h2>
+        <i class="fa-regular fa-lightbulb"></i>
+        Sprint #<%= @sprint.project.position(@sprint) %>
+        <%# <% if current_user.is_admin? %>
+          <%= link_to edit_sprint_path(@sprint) , class:'text-decoration-none text_green' do %>
+          <i id="edit-icon-small"class="fa-solid fa-pen-to-square"></i>
           <% end %>
+        <%# <% end %>
+      <% if @sprint.sprint_lectures.any? %>
+        <%= link_to project_sprint_sprint_lectures_path(@sprint.project,@sprint) do %>
+          <i id="edit-icon-small" class="fa-solid fa-book-open"></i>
+        <% end %>
+      <% end %>
+      </h2>
+      <div class="sprint-date">
+        <p><%= @sprint.date_start.strftime("%d/%m/%Y") %></p> a <p><%= @sprint.date_end.strftime("%d/%m/%Y") %></p>
+      </div>
+    </div>
 
-          <%= link_to edit_sprint_path(@sprint), data: {turbo_method: :get} do %>
-            <i class="fa-solid fa-pen-to-square"></i>
-          <% end %>
+    <!--Div Objetivos da Sprint-->
+    <div class="objective-card">
+      <h5>Objetivo</h5>
+      <p><%= @sprint.objective %></p>
+    </div>
 
-          </li>
-      </ul>
+    <!--Div Table da Sprint-->
+    <div class="table-responsive col-12 p-5">
+      <table class="table">
+        <thead>
+          <tr class="b_g_white">
+            <th class='b_g_white px-3 px-3'>
+            Tarefas
+            </th>
+            <th class= 'b_g_white px-3 text-right'>Responsável</th>
+            <th class= 'b_g_white px-3 text-center'>Status</th>
+            <th class= 'b_g_white px-3 text-center'>Pontuação</th>
+            <th class= 'b_g_white px-3 text-right'></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% offset = params[:set].to_i || 0 %>
+        <% limit = 10 %>
+        <% @sprint.tasks.limit(limit).offset(offset).each do |task| %>
+          <tr>
+          <!--Nome Tarefa-->
+            <td class ="py-4 px-3" >
+              <%= link_to task_path(task) do %>
+                <%= task.name %>
+              <% end %>
+            </td>
+          <!--Criador/Responsável pela tarefa-->
+            <td class ="p-3 text-right">
+              <div class="td-icons-images">
+                <span>
+                  <% if task.user.photo.present?  %>
+                    <%= cl_image_tag task.user.photo.key, class: "avatar-large" %>
+                  <% else %>
+                  <%= image_tag "not_found.jpg", class: "avatar-large" %>
+                  <% end %>
+                </span>
+                <p><%= task.user.name %></p>
+              </div>
+            </td>
+
+            <!--Status-->
+            <td class ="py-4 px-3 text-center">
+                <p class ="tag-status <%= case task.status.titleize
+                                        when 'Não Iniciada' then 'gray-tag'
+                                        when 'Em Andamento' then 'light-green-tag'
+                                        when 'Revisão' then 'medium-green-tag'
+                                        when 'Finalizada' then 'green-tag'
+                                      end %>">
+                  <%= task.status.titleize %>
+                </p>
+            </td>
+
+            <!--Pontuação-->
+            <td class ="py-4 px-3 text-center" ><%= task.points %></td>
+
+            <!--Edição e Deletar-->
+            <td class ="py-4 px-3 text-center" >
+              <div class="td-icons-images">
+                <%= link_to edit_task_path(task) do %>
+                <i class="fa-solid fa-pen-to-square"></i>
+                <% end %>
+
+                <%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Tarefa?"}  do %>
+                <i class="fa-solid fa-trash"></i>
+                <% end %>
+              </div>
+            </td>
+
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <p class=" text-center">
+      <% if offset > 0 %>
+        <%= link_to sprint_path(set: offset-limit), class: "text_green" do %>
+          <i class="fa-solid fa-arrow-left"></i>
+        <% end %>
+      <% end %>
+      Página <%=(offset/limit)+1 %>
+      <% if offset+limit < @sprint.tasks.count %>
+        <%= link_to sprint_path(set: offset+limit), class: "text_green" do %>
+          <i class="fa-solid fa-arrow-right"></i>
+        <% end %>
+      <% end %>
+    </p>
   </div>
-  <button class = "btn"><%= link_to "Voltar às Sprints", project_sprints_path(@sprint) %></button>
 </div>

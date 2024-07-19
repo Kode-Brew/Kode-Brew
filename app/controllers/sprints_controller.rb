@@ -11,7 +11,9 @@ class SprintsController < ApplicationController
 
   # Displays detailed Sprint
   def show
-    # Pelo desenho feito anteriormente, não há necessidade de 'show de sprints'
+    add_breadcrumb @sprint.project.name, project_path(@sprint.project)
+    add_breadcrumb "Sprints", project_sprints_path(@sprint.project)
+    add_breadcrumb "Sprint #{@sprint.project.position(@sprint)}", sprint_path(@sprint)
   end
 
   # Form to create new Sprint
