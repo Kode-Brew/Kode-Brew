@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Clientes</h1>
+  <h1 class="text-center">Clientes</h1>
   <div class="card_main">
     <table class="low-profile-table">
       <thead>
@@ -17,7 +17,8 @@
       </thead>
 
       <tbody>
-        <% @clients.each do |client| %>
+      <% offset = params[:set].to_i || 0 %>
+        <% @clients.limit(10).offset(offset).each do |client| %>
           <tr>
             <td>
               <%= link_to client.name.titleize, client_path(client), class: "text-decoration-none text-left"%>
@@ -29,5 +30,17 @@
         <% end %>
       </tbody>
     </table>
+     <p class="text-center mt-2"> <% if offset > 0 %>
+                  <%= link_to clients_path(set: offset-10), class: "text_green" do %>
+                    <i class="fa-solid fa-arrow-left"></i>
+                  <% end %>
+                <% end %>
+                Página <%=(offset/10)+1 %>
+                <% if offset+10 < @clients.count %>
+                  <%= link_to clients_path(set: offset+10), class: "text_green" do %>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  <% end %>
+                <% end %>
+              </p>
   </div>
 </div>

@@ -78,7 +78,7 @@
             </tr>
           </thead>
           <tbody>
-          <% sprint.tasks.each do |task| %>
+          <% sprint.tasks.limit(5).each do |task| %>
             <tr>
             <!--Nome Tarefa-->
               <td class ="py-4 px-3" >
