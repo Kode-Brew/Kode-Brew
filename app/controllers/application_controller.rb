@@ -16,4 +16,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name role points photo])
     devise_parameter_sanitizer.permit(:account_update, keys: %i[name role points photo])
   end
+
+  private
+
+  def authenticate_admin
+    unless current_user&.is_admin
+      redirect_to root_path, alert: 'Você não está autorizado a acessar esta página.'
+    end
+  end
 end

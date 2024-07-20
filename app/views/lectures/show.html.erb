@@ -21,14 +21,15 @@
         <br>
         <p>Slide: </p>
       </div>
-      <div class="col-sm-6 icon-lg-right">
-         <%= link_to edit_lecture_path(@lecture), class:'text-decoration-none text_green' do %>
-                  <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;
-                  <% end %>
-         <%= link_to  lecture_path(@lecture), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Tarefa?"}, class:'text-danger'  do %>
-                  <i class="fa-solid fa-trash"></i>
-                  <% end %>
-
-      </div>
+      <% if current_user.is_admin? %>
+        <div class="col-sm-6 icon-lg-right">
+          <%= link_to edit_lecture_path(@lecture), class:'text-decoration-none text_green' do %>
+                    <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;
+                    <% end %>
+          <%= link_to  lecture_path(@lecture), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Tarefa?"}, class:'text-danger'  do %>
+                    <i class="fa-solid fa-trash"></i>
+                    <% end %>
+      <% end %>
+        </div>
       </div>
   </div>

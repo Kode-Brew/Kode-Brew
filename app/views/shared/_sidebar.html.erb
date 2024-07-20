@@ -35,20 +35,22 @@
           <% end %>
 
           <%# dropdown 2 %>
-          <li class="sidebar-item dropdown-list dropdown-item">
-            <%= link_to new_project_path, class: 'sidebar-link' do %>
-              <i class="fa-regular fa-pen-to-square"></i>
-              <span>Criar projeto</span>
-            <% end %>
-          </li>
+          <% if current_user.present? && current_user.is_admin? %> 
+            <li class="sidebar-item dropdown-list dropdown-item">
+              <%= link_to new_project_path, class: 'sidebar-link' do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+                <span>Criar projeto</span>
+              <% end %>
+            </li>
 
-          <%# dropdown 3 %>
-          <li class="sidebar-item dropdown-list dropdown-item">
-            <%= link_to projects_path, class: 'sidebar-link' do %>
-              <i class="bi bi-easel3-fill"></i>
-              <span>Todos os projetos</span>
-            <% end %>
-          </li>
+            <%# dropdown 3 %>
+            <li class="sidebar-item dropdown-list dropdown-item">
+              <%= link_to projects_path, class: 'sidebar-link' do %>
+                <i class="bi bi-easel3-fill"></i>
+                <span>Todos os projetos</span>
+              <% end %>
+            </li>
+          <% end %>
 
           <%# dropdown 4 %>
           <li class="sidebar-item dropdown-list dropdown-item">
@@ -62,12 +64,14 @@
       </li>
 
       <%# Clientes %>
-      <li class="sidebar-item title-path">
-        <%= link_to clients_path, class: 'sidebar-link' do %>
-          <i class="fa-solid fa-user-tie icon-path"></i>
-          <span class="title-path">Clientes</span>
-        <% end %>
-      </li>
+      <% if current_user.present? && current_user.is_admin? %>
+        <li class="sidebar-item title-path">
+          <%= link_to clients_path, class: 'sidebar-link' do %>
+            <i class="fa-solid fa-user-tie icon-path"></i>
+            <span class="title-path">Clientes</span>
+          <% end %>
+        </li>
+      <% end %>
 
       <%# Aulas %>
       <li class="sidebar-item title-path">
