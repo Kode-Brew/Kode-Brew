@@ -34,7 +34,8 @@ li {
 
 #sidebar.expand {
   width: 1450px;
-  min-width: 130px;
+  min-width: 170px;
+  max-width: fit-content;
 }
 
 #sidebar:not(.expand) .sidebar-logo,
