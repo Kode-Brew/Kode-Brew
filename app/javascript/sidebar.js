@@ -1,5 +1,5 @@
-const hamBurger = document.querySelector(".toggle");
+const closeMenu = document.querySelector(".toggle");
 
-hamBurger.addEventListener("click", function () {
+closeMenu.addEventListener("click", function () {
   document.querySelector("#sidebar").classList.toggle("expand");
 });
