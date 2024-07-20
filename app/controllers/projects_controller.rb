@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy advance_sprint finish_project]
   before_action :set_breadcrumbs, except: %i[myprojects update destroy advance_sprint finish_project]
+  before_action :authenticate_admin, only: %i[index new create edit update destroy]
 
   # helper :breadcrumbs
 
@@ -22,6 +23,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    add_breadcrumb "Meus projetos", myprojects_path
     add_breadcrumb @project.name, project_path(@project)
   end
 
@@ -94,7 +96,7 @@ class ProjectsController < ApplicationController
   end
 
   def set_breadcrumbs
-    add_breadcrumb "Projetos", projects_path
+    add_breadcrumb "Projetos", projects_path if current_user.present? && current_user.is_admin?
   end
 
   def project_params
