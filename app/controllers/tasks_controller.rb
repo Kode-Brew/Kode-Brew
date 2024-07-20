@@ -73,7 +73,7 @@ class TasksController < ApplicationController
   end
 
   def set_breadcrumbs
-    add_breadcrumb "Projetos", projects_path
+    add_breadcrumb "Projetos", projects_path if current_user.present? && current_user.is_admin?
     add_breadcrumb @task.sprint.project.name, project_path(@task.sprint.project)
     add_breadcrumb "Sprints", project_sprints_path(@task.sprint.project)
   end

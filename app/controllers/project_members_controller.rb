@@ -1,9 +1,11 @@
 class ProjectMembersController < ApplicationController
   before_action :set_project_member, only: %i[show edit update destroy]
+  before_action :set_breadcrumbs, only: %i[show]
 
   def index
     @project = Project.find(params[:project_id])
     @project_member = ProjectMember.new
+    add_breadcrumb "Membros do projeto", project_project_members_path
   end
 
   def show; end
@@ -46,6 +48,10 @@ class ProjectMembersController < ApplicationController
   end
 
   private
+
+  def set_breadcrumbs
+    add_breadcrumb "Projetos", projects_path if current_user.present? && current_user.is_admin?
+  end
 
   def set_project_member
     @project_member = ProjectMember.find(params[:id])

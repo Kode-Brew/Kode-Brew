@@ -4,7 +4,7 @@
         <ul class="p-0">
         <%# Rotas dos links %>
         <% routes = [] %>
-        <% if current_user.is_admin? %>
+        <% if current_user.present? && current_user.is_admin? %>
           <% routes << {
               name: "Clientes",
               path: clients_path,

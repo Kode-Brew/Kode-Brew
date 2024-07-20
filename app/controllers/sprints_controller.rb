@@ -76,7 +76,8 @@ class SprintsController < ApplicationController
   end
 
   def set_breadcrumbs
-    add_breadcrumb "Projetos", projects_path
+    add_breadcrumb "Projetos", projects_path if current_user.present? && current_user.is_admin?
+    add_breadcrumb "Meus projetos", myprojects_path
     add_breadcrumb @project.name, project_path(@project)
     add_breadcrumb "Sprints", project_sprints_path
   end
