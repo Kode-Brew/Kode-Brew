@@ -1,55 +1,74 @@
-<h1 class="my-4">Todos projetos</h1>
-<div class="card-btn  row my-4 ">
+<h1 class="text-center my-4">Todos projetos</h1>
+<div class=" card_main my-3">
+  <div class="card-btn  row m-4 ">
+    <div class="col-sm-3">
+      <%= link_to "Todos os projetos", projects_path, class: "h5 underline-offset #{'text-decoration-none' unless params[:filter].nil?}" %>
+    </div>
   <div class="col-sm-3">
-    <%= link_to "Todos os projetos", projects_path, class: "h5 underline-offset #{'text-decoration-none' unless params[:filter].nil?}" %>
+    <%= link_to "Projetos em andamento", projects_path(filter: "Iniciado"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == "Iniciado"}" %>
   </div>
   <div class="col-sm-3">
-    <%= link_to "Projetos em andamento", projects_path(filter: "Em andamento"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == 'Em andamento'}" %>
-  </div>
-  <div class="col-sm-3">
-    <%= link_to "Projetos finalizados", projects_path(filter: "finalizado"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == 'finalizado'}" %>
+    <%= link_to "Projetos finalizados", projects_path(filter: "Finalizado"), class: "h5 underline-offset #{'text-decoration-none' unless params[:filter] == "Finalizado"}" %>
   </div>
 </div>
 
-<div class="row">
-  <div  class="table-responsive col-10 px-0">
-    <table class="table table_main ">
-      <thead>
-        <tr>
-          <th >Projetos</th>
-          <th class='text-center' >Data de início</th>
-          <th class='text-center' >Data de Fim(Prévia)</th>
-          <th class='text-center d-none d-sm-table-cell' >Status</th>
-          <th class='text-center' >Cliente</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @projects.each do |project| %>
-            <tr>
-              <td><%= link_to project.name.titleize, project_path(project), class: "text-decoration-none text_dgray" %>
+  <div class="row m-4">
+    <div  class="table-responsive  px-0">
+      <table class="table table_main">
+        <thead>
+          <tr>
+            <th >Projetos</th>
+            <th class='text-center' >Data de início</th>
+            <th class='text-center' >Data de Fim(Prévia)</th>
+            <th class='text-center d-none d-sm-table-cell' >Status</th>
+            <th class='text-center' >Cliente</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+           <% offset = params[:set].to_i || 0 %>
+          <% @projects.limit(10).offset(offset).each do |project| %>
+              <tr>
+                <td><%= link_to project.name.titleize, project_path(project), class: "text-decoration-none text_dgray" %>
+
+                    <%= link_to project_project_members_path(project), class:'text-decoration-none text_green' do %>
+                      &nbsp;<i class="fa-solid fa-user-group"></i>
+                    <% end %>
+                </td>
+                <td class='text-center'><%= project.date_start_project&.strftime("%d/%m/%y") || "---" %></td>
+                <td class='text-center'><%= project.date_end_project&.strftime("%d/%m/%y") || "---" %></td>
+                <td class='text-center  d-none d-sm-table-cell'><p class ="tag-status <%= case project.status.titleize
+                                                    when 'Pendente' then 'gray-tag'
+                                                    when 'Iniciado' then 'medium-green-tag'
+                                                    when 'Finalizado' then 'green-tag'
+                                                  end %>">
+                                                  <%= project.status.titleize %></p>
+                                                  </td>
+                <td class='text-center'><%= project.client.name || "---" %></td>
+                <td>
                   <%= link_to edit_project_path(project), class:"text-decoration-none text_green" do %>
-                    &nbsp;&nbsp;<i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;
-                  <% end %>
-                  <%= link_to project_project_members_path(project), class:'text-decoration-none text_green' do %>
-                   <i class="fa-solid fa-user-group"></i>&nbsp;&nbsp;
+                    <i class="fa-solid fa-pen-to-square"></i>&nbsp;
                   <% end %>
                   <%= link_to project_path(project), data: {turbo_method: :delete}, class:'text-danger' do %>
                     <i class="far fa-trash-alt"></i>
                   <% end %>
-              </td>
-              <td class='text-center'><%= project.date_start_project&.strftime("%d/%m/%y") || "---" %></td>
-              <td class='text-center'><%= project.date_end_project&.strftime("%d/%m/%y") || "---" %></td>
-              <td class='text-center  d-none d-sm-table-cell'><p class ="tag-status <%= case project.status.titleize
-                                                   when 'Pendente' then 'gray-tag'
-                                                   when 'Iniciado' then 'medium-green-tag'
-                                                   when 'Finalizado' then 'green-tag'
-                                                 end %>">
-                                                 <%= project.status.titleize %></p>
-                                                 </td>
-              <td class='text-center'><%= project.client.name || "---" %></td>
-            </tr>
-        <% end %>
-      </tbody>
-    </table>
+                </td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
+   <p class="text-center mt-2"> <% if offset > 0 %>
+                  <%= link_to myprojects_path(set: offset-10), class: "text_green" do %>
+                    <i class="fa-solid fa-arrow-left"></i>
+                  <% end %>
+                <% end %>
+                Página <%=(offset/10)+1 %>
+                <% if offset+10 < @projects.size %>
+                  <%= link_to myprojects_path(set: offset+10), class: "text_green" do %>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  <% end %>
+                <% end %>
+              </p>
 </div>

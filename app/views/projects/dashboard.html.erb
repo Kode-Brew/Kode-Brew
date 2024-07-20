@@ -37,37 +37,49 @@
 
 
     <div class = 'card_main'>
-      <h2 class="px-5 mt-3"><i class="fa-regular fa-lightbulb"></i> &nbsp;&nbsp; Sprint &nbsp;&nbsp;#<%= @project.active_sprint %></h2>
-        <div class="table-responsive col-12 p-5">
-          <table class="table">
-            <thead>
+       <!--Div main card header-->
+      <div class="main-card-header">
+
+        <%= link_to project_sprints_path(@project, @project.sprints) do %>
+            <h2 style="color:#008100;"><i class="fa-regular fa-lightbulb"></i>
+            Sprint #<%= @project.active_sprint %> </h2>
+        <% end %>
+
+        <div class="sprint-date">
+          <p><%= @project.sprints[@project.active_sprint-1].date_start.strftime("%d/%m/%Y") %></p> a <p><%= @project.sprints[@project.active_sprint-1].date_end.strftime("%d/%m/%Y") %></p>
+        </div>
+      </div>
+
+      <div class="table-responsive col-12 p-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class='b_g_white px-3'>Tarefas</th>
+              <th class= 'b_g_white text-right'>Responsáveis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @project.sprints[@project.active_sprint-1].tasks.limit(5).each do |task|%>
               <tr>
-                <th class='b_g_white px-3'>Tarefas</th>
-                <th class= 'b_g_white text-right'>Responsáveis</th>
+                <td class ="py-4 px-3" ><%= link_to task.name,task_path(task), class: "text-decoration-none"  %></td>
+            <!--Criador/Responsável pela tarefa-->
+                <td class ="p-3 text-right">
+                  <div class="td-icons-images">
+                    <span>
+                      <% if task.user.photo.present?  %>
+                        <%= cl_image_tag task.user.photo.key, class: "avatar-large" %>
+                      <% else %>
+                      <%= image_tag "not_found.jpg", class: "avatar-large" %>
+                      <% end %>
+                    </span>
+                    <p><%= task.user.name %></p>
+                  </div>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              <% @project.sprints[@project.active_sprint-1].tasks.each do |task|%>
-                <tr>
-                  <td class ="py-4 px-3" ><%= link_to task.name,task_path(task), class: "text-decoration-none"  %></td>
-              <!--Criador/Responsável pela tarefa-->
-                  <td class ="p-3 text-right">
-                    <div class="td-icons-images">
-                      <span>
-                        <% if task.user.photo.present?  %>
-                          <%= cl_image_tag task.user.photo.key, class: "avatar-large" %>
-                        <% else %>
-                        <%= image_tag "not_found.jpg", class: "avatar-large" %>
-                        <% end %>
-                      </span>
-                      <p><%= task.user.name %></p>
-                    </div>
-                  </td>
-                </tr>
-              <% end %>
+            <% end %>
             </tbody>
           </table>
         </div>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
 </div>

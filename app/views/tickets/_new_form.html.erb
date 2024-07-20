@@ -7,6 +7,7 @@
                     label: "Suas Tarefas:",
                     collection: current_user.tasks.all.map { |u| [u.name, u.id] },
                     required: true,
+                    prompt: "Selecione a tarefa"
                     input_html: { class: "input" },
                     label_html: { class: "label" }%>
       <% end %>

@@ -49,4 +49,9 @@ class Project < ApplicationRecord
       .where(tasks: { status: 'Finalizada' })
       .count
   end
+
+  def position(sprint)
+    project_sprints = self.sprints.order(:date_start)
+    project_sprints.index(sprint) + 1
+  end
 end

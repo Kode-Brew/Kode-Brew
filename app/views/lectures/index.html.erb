@@ -7,7 +7,8 @@
     </a>
   </div>
   <div class="row">
-    <% @lectures.each do |lecture| %>
+    <% offset = params[:set].to_i || 0 %>
+    <% @lectures.limit(10).offset(offset).each do |lecture| %>
       <% video_id = lecture.video.split(".be/").last %>
       <% thumbnail_url = "https://img.youtube.com/vi/#{video_id}/hqdefault.jpg" %>
       <% tempo_total = LectureHelper.obter_tempo_total_video_youtube(video_id) %>
@@ -47,4 +48,17 @@
       </div>
     <% end %>
   </div>
+    <p class="mt-2">
+      <% if offset > 0 %>
+        <%= link_to lectures_path(set: offset-10), class: "text_green" do %>
+          <i class="fa-solid fa-arrow-left"></i>
+        <% end %>
+      <% end %>
+      Página <%=(offset/10)+1 %>
+      <% if offset+10 < @lectures.count %>
+        <%= link_to lectures_path(set: offset+10), class: "text_green" do %>
+          <i class="fa-solid fa-arrow-right"></i>
+        <% end %>
+      <% end %>
+    </p>
 </div>

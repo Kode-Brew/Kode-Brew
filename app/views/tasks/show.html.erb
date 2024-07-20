@@ -63,24 +63,27 @@
 
       <div class = 'task-item task-central'>
         <p>Status:</p>
-
+        <% if @task.user == current_user %>
           <%= simple_form_for @task do |f| %>
             <div class="task-inline form-alignement">
               <div class="select-input">
-                <%= f.input :status, as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"}, label: false %>
+                 <%= f.input :status, as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"}, label: false, prompt: "Selecione o status", %>
               </div>
               <div class="submit-button">
-                <%= f.button :submit, "Atualizar", class:'button_confirm' %>
+                <%= f.button :submit, "Atualizar", class: 'button_confirm' %>
               </div>
             </div>
           <% end %>
+        <% else %>
+          <h5><%= @task.status %></h5>
+        <% end %>
       </div>
 
 
       <div class = 'task-item task-central'>
         <p>Pontuação:</p>
 
-        <h5><%= @task.points %> pontos</h5>
+        <h5><%= pluralize(@task.points, 'ponto') %></h5>
       </div>
 
       <div class = 'task-item task-central'>
