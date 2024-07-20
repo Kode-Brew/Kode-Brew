@@ -9,24 +9,24 @@
     <ul class="sidebar-nav">
 
       <%# Dashboard %>
-      <li class="sidebar-item">
+      <li class="sidebar-item ">
         <%= link_to dashboard_path, class: 'sidebar-link' do %>
-          <i class="house bi bi-house-door"></i>
-          <span>Dashboard</span>
+          <i class="house bi bi-house-door icon-path"></i>
+          <span class="title-path">Dashboard</span>
         <% end %>
       </li>
 
       <%# Projetos e dropdown %>
-      <li class="sidebar-item">
+      <li class="sidebar-item title-path">
         <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse" data-bs-target="#projetos" aria-expanded="false" aria-controls="projetos">
-          <i class="kanban bi bi-kanban"></i>
-          <span>Projetos</span>
+          <i class="kanban bi bi-kanban icon-path"></i>
+          <span class="title-path">Projetos</span>
         </a>
         <ul id="projetos" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
 
           <%# dropdown 1 %>
           <% if @project %>
-            <li class="sidebar-item dropdown-list">
+            <li class="sidebar-item dropdown-list dropdown-item">
                 <%= link_to current_user.project_show_path(@project), class: 'sidebar-link' do %>
                   <i class="fa-regular fa-circle-dot"></i>
                   <span>Projeto atual</span>
@@ -35,16 +35,15 @@
           <% end %>
 
           <%# dropdown 2 %>
-          <li class="sidebar-item dropdown-list">
+          <li class="sidebar-item dropdown-list dropdown-item">
             <%= link_to new_project_path, class: 'sidebar-link' do %>
               <i class="fa-regular fa-pen-to-square"></i>
               <span>Criar projeto</span>
-              <span>[admin]</span>
             <% end %>
           </li>
 
           <%# dropdown 3 %>
-          <li class="sidebar-item dropdown-list">
+          <li class="sidebar-item dropdown-list dropdown-item">
             <%= link_to projects_path, class: 'sidebar-link' do %>
               <i class="bi bi-easel3-fill"></i>
               <span>Todos os projetos</span>
@@ -52,9 +51,9 @@
           </li>
 
           <%# dropdown 4 %>
-          <li class="sidebar-item dropdown-list">
+          <li class="sidebar-item dropdown-list dropdown-item">
             <%= link_to myprojects_path, class: 'sidebar-link' do %>
-              <i class="bi bi-easel3-fill"></i>
+              <i class="fa-regular fa-folder-open"></i>
               <span>Meus projetos</span>
             <% end %>
             </a>
@@ -63,34 +62,34 @@
       </li>
 
       <%# Clientes %>
-      <li class="sidebar-item">
+      <li class="sidebar-item title-path">
         <%= link_to clients_path, class: 'sidebar-link' do %>
-          <i class="fa-solid fa-user-tie"></i>
-          <span>Clientes</span>
+          <i class="fa-solid fa-user-tie icon-path"></i>
+          <span class="title-path">Clientes</span>
         <% end %>
       </li>
 
       <%# Aulas %>
-      <li class="sidebar-item">
+      <li class="sidebar-item title-path">
         <%= link_to lectures_path, class: 'sidebar-link' do %>
-          <i class="laptop bi bi-laptop"></i>
-          <span>Aulas</span>
+          <i class="laptop bi bi-laptop icon-path"></i>
+          <span class="title-path">Aulas</span>
         <% end %>
         </a>
       </li>
 
       <%# Tickets e dropdown %>
-      <li class="sidebar-item">
+      <li class="sidebar-item title-path">
         <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse" data-bs-target="#tickets" aria-expanded="false" aria-controls="tickets">
-          <i class="fa-solid fa-headset"></i>
-          <span>Tickets</span>
+          <i class="fa-solid fa-headset icon-path"></i>
+          <span class="title-path">Tickets</span>
         </a>
         <ul id="tickets" class="sidebar-dropdown list-unstyled pb-1 small collapse" data-bs-parent="#sidebar">
 
           <%# dropdown 1 %>
-          <li class="sidebar-item dropdown-list">
+          <li class="sidebar-item dropdown-list dropdown-item">
            <%= link_to tickets_path, class: 'sidebar-link' do %>
-              <i class="fa-solid fa-ticket"></i>
+              <i class="fa-solid fa-comment-dots"></i>
               <span>Todos os tickets</span>
             <% end %>
           </li>
@@ -98,7 +97,7 @@
           <%# dropdown 2 %>
           <li class="sidebar-item dropdown-list dropdown-item">
            <%= link_to mytickets_path, class: 'sidebar-link' do %>
-              <i class="fa-solid fa-ticket"></i>
+              <i class="fa-regular fa-comment-dots"></i>
               <span>Meus tickets</span>
             <% end %>
           </li>
