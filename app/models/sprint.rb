@@ -22,6 +22,6 @@ class Sprint < ApplicationRecord
         errors.add(:date_start, "A data de início da nova Sprint deve ser posterior a #{previous_sprint.date_end}.")
       end
     end
-  end
 
+  end
 end

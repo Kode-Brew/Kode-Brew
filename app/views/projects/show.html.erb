@@ -136,7 +136,7 @@
               <p class="mb-0"><%= member.user_type %></p>
             </div>
             <div class="col-md-4 text-md-end">
-              <%= link_to 'ver membro', project_project_member_path(@project.id, member.id), class: 'text-success' %>
+              <%= link_to 'ver membro', user_path(member.user.id), class: 'text-success' %>
             </div>
           </div>
           <hr class="my-2">
