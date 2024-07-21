@@ -1,86 +1,112 @@
-<div class="container p-0 mt-4 mx-1">
-  <div class="sidebar">
-      <div class="menu">
-        <ul class="p-0">
-        <%# Rotas dos links %>
-        <% routes = [] %>
-        <% if current_user.present? && current_user.is_admin? %>
-          <% routes << {
-              name: "Clientes",
-              path: clients_path,
-              class: "people fa-solid fa-people-group"
-          } %>
+<div class="wrapper">
+  <aside id="sidebar">
+    <div class="toggle">
+      <button id="toggle-btn" type="button">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <ul class="sidebar-nav">
+
+      <%# Dashboard %>
+      <li class="sidebar-item ">
+        <%= link_to dashboard_path, class: 'sidebar-link' do %>
+          <i class="house bi bi-house-door icon-path"></i>
+          <span class="title-path">Dashboard</span>
         <% end %>
+      </li>
 
-        <% routes += [
-          {
-            name: "Aulas",
-            path: lectures_path,
-            class: "laptop bi bi-laptop"
-          },
-          {
-            name: "Ticket",
-            path: tickets_path,
-            class: "fa-solid fa-ticket"
-          },
-          {
-            name: "Meus Tickets",
-            path: mytickets_path,
-            class: "fa-solid fa-ticket"
-          },
-          {
-            name: "Usuários",
-            path: "#",
-            class: "ninja fa-solid fa-user-ninja"
-          },
-        ] %>
+      <%# Projetos e dropdown %>
+      <li class="sidebar-item title-path">
+        <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse" data-bs-target="#projetos" aria-expanded="false" aria-controls="projetos">
+          <i class="kanban bi bi-kanban icon-path"></i>
+          <span class="title-path">Projetos</span>
+        </a>
+        <ul id="projetos" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
 
-        <%# Dashboard %>
-          <li class="sidebar-link <%= "link-active" if current_page? dashboard_path %>">
-            <i class="house bi bi-house-door"></i>
-            <%= link_to "Dashboard", dashboard_path, class: "text" %>
-          </li>
-
-         <%# Projetos e dropdown %>
-          <li>
-            <div class="link">
-              <i class="kanban bi bi-kanban"></i>
-              <%= link_to "Projetos", projects_path, class: "text" %>
-              <i class="arrow fa-solid fa-sort-down"></i>
-            </div>
-            <%# dropdown %>
-            <ul class="sub-menu p-0">
-              <li>
-                <i class="fa-regular fa-circle-dot"></i>
-                <%= link_to "Projeto atual", @projects_id_path, class: "text" %>
-              </li>
-              <% if current_user.present? && current_user.is_admin? %>
-                <li>
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <%= link_to "Criar projeto [admin]", new_project_path, class: "text" %>
-                </li>
-                <li>
-                  <i class="bi bi-easel3-fill"></i>
-                  <%= link_to "Todos os projetos", projects_path, class: "text" %>
-                </li>
+          <%# dropdown 1 %>
+          <% if @project %>
+            <li class="sidebar-item dropdown-list dropdown-item">
+                <%= link_to current_user.project_show_path(@project), class: 'sidebar-link' do %>
+                  <i class="fa-regular fa-circle-dot"></i>
+                  <span>Projeto atual</span>
                 <% end %>
-                <li>
+            </li>
+          <% end %>
+
+          <%# dropdown 2 %>
+          <% if current_user.present? && current_user.is_admin? %> 
+            <li class="sidebar-item dropdown-list dropdown-item">
+              <%= link_to new_project_path, class: 'sidebar-link' do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+                <span>Criar projeto</span>
+              <% end %>
+            </li>
+
+            <%# dropdown 3 %>
+            <li class="sidebar-item dropdown-list dropdown-item">
+              <%= link_to projects_path, class: 'sidebar-link' do %>
                 <i class="bi bi-easel3-fill"></i>
-                <%= link_to "Meus projetos", myprojects_path, class: "text" %>
-              </li>
-            </ul>
+                <span>Todos os projetos</span>
+              <% end %>
+            </li>
+          <% end %>
+
+          <%# dropdown 4 %>
+          <li class="sidebar-item dropdown-list dropdown-item">
+            <%= link_to myprojects_path, class: 'sidebar-link' do %>
+              <i class="fa-regular fa-folder-open"></i>
+              <span>Meus projetos</span>
+            <% end %>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <%# Clientes %>
+      <% if current_user.present? && current_user.is_admin? %>
+        <li class="sidebar-item title-path">
+          <%= link_to clients_path, class: 'sidebar-link' do %>
+            <i class="fa-solid fa-user-tie icon-path"></i>
+            <span class="title-path">Clientes</span>
+          <% end %>
+        </li>
+      <% end %>
+
+      <%# Aulas %>
+      <li class="sidebar-item title-path">
+        <%= link_to lectures_path, class: 'sidebar-link' do %>
+          <i class="laptop bi bi-laptop icon-path"></i>
+          <span class="title-path">Aulas</span>
+        <% end %>
+        </a>
+      </li>
+
+      <%# Tickets e dropdown %>
+      <li class="sidebar-item title-path">
+        <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse" data-bs-target="#tickets" aria-expanded="false" aria-controls="tickets">
+          <i class="fa-solid fa-headset icon-path"></i>
+          <span class="title-path">Tickets</span>
+        </a>
+        <ul id="tickets" class="sidebar-dropdown list-unstyled pb-1 small collapse" data-bs-parent="#sidebar">
+
+          <%# dropdown 1 %>
+          <li class="sidebar-item dropdown-list dropdown-item">
+           <%= link_to tickets_path, class: 'sidebar-link' do %>
+              <i class="fa-solid fa-comment-dots"></i>
+              <span>Todos os tickets</span>
+            <% end %>
           </li>
 
-        <%# Lógica dos links %>
-          <% routes.each do |route| %>
-            <%= link_to route[:path] do %>
-              <li class="sidebar-link <%= "link-active" if current_page?(route[:path]) %>">
-                <i class="<%= route[:class] %>"></i>
-                <span class="text"><%= route[:name] %></span>
-              </li>
+          <%# dropdown 2 %>
+          <li class="sidebar-item dropdown-list dropdown-item">
+           <%= link_to mytickets_path, class: 'sidebar-link' do %>
+              <i class="fa-regular fa-comment-dots"></i>
+              <span>Meus tickets</span>
             <% end %>
-          <% end %>
+          </li>
         </ul>
-      </div>
-  </div>
+      </li>
+    </ul>
+  </aside>
 </div>
