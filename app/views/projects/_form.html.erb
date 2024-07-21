@@ -11,27 +11,27 @@
                     input_html: {class: 'input'},
                     label_html: {class: 'label'} %>
 
-        <%= f.input :category, as: :select,
-                    label: 'Categoria',
-                    collection: Client::CATEGORIES,
-                    required: true,
-                    input_html: { class: "input" },
-                    label_html: { class: "label" },
-                    prompt: "Selecione a categoria" %>
+      <%= f.input :category, as: :select,
+                  label: 'Categoria',
+                  collection: Client::CATEGORIES,
+                  required: true,
+                  input_html: { class: "input" },
+                  label_html: { class: "label" },
+                  prompt: "Selecione a categoria" %>
 
-        <%= f.input :description, as: :text,
-                    label: 'Descrição',
-                    required: true,
-                    input_html: {class: 'input'},
-                    label_html: {class: 'label'} %>
+      <%= f.input :description, as: :text,
+                  label: 'Descrição',
+                  required: true,
+                  input_html: {class: 'input'},
+                  label_html: {class: 'label'} %>
 
-        <%= f.input :client_id, as: :select,
-                    label: 'Cliente',
-                    collection: Client.all.map { |u| [u.name, u.id] },
-                    required: true,
-                    prompt: "Selecione o cliente",
-                    input_html: { class: "input" },
-                    label_html: { class: "label" } %>
+      <%= f.input :client_id, as: :select,
+                  label: 'Cliente',
+                  collection: Client.all.map { |u| [u.name, u.id] },
+                  required: true,
+                  input_html: { class: "input" },
+                  label_html: { class: "label" },
+                  prompt: "Selecione o cliente" %>
 
         <div id="form-1" class="row align-items-center member-form">
           <%= f.simple_fields_for :project_members, @project.project_members.build do |pm| %>

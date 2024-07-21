@@ -1,79 +1,115 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 body {
   overflow: scroll;
   height: 100vh;
 }
 
+a {
+  text-decoration: none;
+}
 
-.sidebar {
-  width: 289;
-  padding-top: 16px;
-  flex-shrink: 0;
-  left: 0;
-  height: 90vh;
+li {
+  list-style: none;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: 600px;
+}
+
+
+#sidebar {
+  width: 60px;
+  min-width: 60px;
+  z-index: 1000;
+  transition: all .25s ease-in-out;
   display: flex;
   flex-direction: column;
-  background-color: #F1F3F3;
-  padding: 0px;
-  border-radius: 30px;
-  // position: fixed;
-  border-right: 1px red;
+  margin-top: 74px;
+  border-radius: 0 17px 17px 0;
+  background-color: white;
+  filter: drop-shadow(rgba(18, 1, 1, 0.329) 0rem 0rem 14px);
 }
 
-.menu ul li {
-  list-style: none;
-  margin-bottom: 5px;
-  padding-left: 1rem;
+#sidebar.expand {
+  width: 1450px;
+  min-width: 170px;
+  max-width: fit-content;
 }
 
-.sidebar-link {
-  text-decoration: none;
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
+  display: none;
+}
+
+.sidebar-nav {
+  padding: 1rem 0;
+  flex: 1 1 auto;
+  display: inline-grid;
+  justify-content: flex-start;
+}
+
+.sidebar-item {
+  position: relative;
+  display: block;
+}
+
+a.sidebar-link {
+  padding: .625rem;
+  color: #213A3F;
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 16px;
-  font-weight: 400;
-  color: #213A3F;
-  padding: 12px 8px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  border-left: 3px solid transparent;
+  text-decoration: none;
   border-radius: 24px;
   transition: all 0.3s;
 }
 
-.link-active {
+.sidebar-link i {
+  margin-right: .75rem;
+}
+
+a.sidebar-link:hover {
   color: white;
   background-color: rgba(0,129,0,0.5);
   text-decoration: none;
 }
 
-.house{
+.dropdown-list {
+  margin-left: 20px;
+  padding-left: 4px;
+  padding-top: 5px;
+  border-left: 1px solid #99b5ba;
+  display: -webkit-inline-box;
+}
+
+
+.dropdown-item i {
+  color: #008100;
+}
+
+.title-path span {
+  font-size: 15;
+}
+
+.icon-path {
   font-size: 20px;
 }
 
-.text{
-  flex: 1;
-  text-decoration: none;
-  gap: 10px;
-
+.toggle {
+  display: flex;
+  justify-content: right;
 }
 
-.menu ul li .arrow{
-  font-size: 14px;
-}
-
-.menu .sub-menu{
-  // display: none;
-  margin-left: 20px;
-  padding-left: 20px;
-  padding-top: 5px;
-  border-left: 1px solid #99b5ba;
-}
-
-.menu .sub-menu li .link{
-  padding: 10px 8px;
-  font-size: 13px;
+#toggle-btn {
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+  padding: 1rem 1.2rem;
+  display: flex;
+  justify-content: right;
+  color: #213a3f73;
 }

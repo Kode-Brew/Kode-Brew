@@ -10,4 +10,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  # Método da view de "Projeto atual"
+  def project_show_path(project_id)
+    project = projects.find_by(id: project_id)
+    if project
+      Rails.application.routes.url_helpers.project_path(project)
+    else
+      nil
+    end
+  end
 end

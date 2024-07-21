@@ -5,3 +5,4 @@ import "@popperjs/core"
 import "bootstrap"
 
 import "./form-1"
+import "./sidebar"
