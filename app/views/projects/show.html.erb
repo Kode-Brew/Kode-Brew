@@ -138,11 +138,13 @@
       <div class="row">
         <div class="col-md-12">
           <% @project.project_members.each do |member| %>
-            <div class="row align-items-center py-2">
+            <div class="row align-items-center py-3">
               <div class="col-md-4 d-flex align-items-center">
-                <img src="https://kitt.lewagon.com/placeholder/users/perrigii" <%# adicionar o caminho para a foto do membro%>
-                  alt="Foto do Membro" class="me-3"
-                  style="width: 50px; height: 50px; border-radius: 50%;">
+                <% if member.user.photo.present?  %>
+                  <%= cl_image_tag member.user.photo.key, class: "me-3 avatar-large"%>
+                <% else %>
+                  <%= image_tag "not_found.jpg", class: "me-3 avatar-large" %>
+                <% end %>
                 <h6 class="mb-0"><%= member.user.name %></h6>
               </div>
               <div class="col-md-4 text-md-center">
