@@ -5,6 +5,7 @@ class ProjectMembersController < ApplicationController
   def index
     @project = Project.find(params[:project_id])
     @project_member = ProjectMember.new
+    add_breadcrumb "Projeto #{@project.name}", project_path(@project)
     add_breadcrumb "Membros do projeto", project_project_members_path
   end
 
