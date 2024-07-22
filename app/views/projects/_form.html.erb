@@ -1,6 +1,4 @@
 
-<h2 class="title mt-4 text-center"> Novo Projeto</h2>
-
 <div class="form-container">
   <%= simple_form_for @project, local: true, html: { class:"form" } do |f| %>
     <%= f.error_notification %>
@@ -77,7 +75,7 @@
       <%= link_to :back do %>
         <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
       <% end %>
-      <%= f.button :submit, 'Criar Projeto', id: "submit", class: "submit" %>
+      <%= f.button :submit, 'Finalizar', id: "submit", class: "submit" %>
     </div>
   <% end %>
 </div>
