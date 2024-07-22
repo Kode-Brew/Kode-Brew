@@ -87,3 +87,10 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
 }
+
+// Classe usada no form de new_project
+.add-member-btn {
+  display: flex;
+  align-items: flex-start;
+  margin: 6px 6px 33px;
+}

@@ -1,15 +1,15 @@
 
-<h2 class="title mt-4 text-center">Novo Projeto</h2>
+<h2 class="title mt-4 text-center"> Novo Projeto</h2>
 
 <div class="form-container">
   <%= simple_form_for @project, local: true, html: { class:"form" } do |f| %>
-  <%= f.error_notification %>
-    <div class="form-inputs">
-      <%= f.input :name,
-                  label: 'Nome',
-                  required: true,
-                  input_html: {class: 'input'},
-                  label_html: {class: 'label'} %>
+    <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :name,
+                    label: 'Nome',
+                    required: true,
+                    input_html: {class: 'input'},
+                    label_html: {class: 'label'} %>
 
       <%= f.input :category, as: :select,
                   label: 'Categoria',
@@ -33,26 +33,51 @@
                   label_html: { class: "label" },
                   prompt: "Selecione o cliente" %>
 
-        <div class="row">
-          <div class="col-sm-6">
-            <%= f.simple_fields_for :project_member do |pm| %>
-              <%= pm.input :user_id, as: :check_boxes,
+        <div id="form-1" class="row align-items-center member-form">
+          <%= f.simple_fields_for :project_members, @project.project_members.build do |pm| %>
+            <div class="col-sm-5">
+              <%= pm.input :user_id, as: :select,
                             collection: User.all.map { |u| [u.name, u.id] },
-                            label: 'Selecione os membros',
+                            label: 'Membros',
                             required: true,
-                            label_html: {class: 'label'}%>
-            <% end %>
+                            input_html: { class: "input user-id" },
+                            label_html: {class: 'label'},
+                            prompt: "Selecione o membro" %>
+            </div>
+
+            <div class="col-sm-5">
+              <%= pm.input :user_type, as: :select,
+                            collection: ProjectMember.user_types.keys.map { |type| [type.humanize, type] },
+                            label: "Função:",
+                            required: true,
+                            input_html: { class: "input user-type" },
+                            label_html: { class: "label" },
+                            prompt: "Selecione a função" %>
+            </div>
+          <% end %>
+          <div class="col-sm-2 mt-3 trash">
+            <button id="trash-btn" type="button" class="remove-member-btn" style="border: 0; background-color: transparent;">
+              <i class="fa-regular fa-trash-can" style="color: #ee6868;"></i>
+            </button>
           </div>
         </div>
+        <div id="member-field" class="member-field">
+          <%# Aqui entra a cópia do formulário %>
+        </div>
+      <div>
+        <button id="add-member-btn" class="add-member-btn align-items-center" style="border: 0; background-color: transparent; color: #008000b0">
+          <i class="fa-solid fa-plus" style="padding-right: 7px;"></i>
+          <span>Adicionar um membro</span>
+        </button>
+      </div>
 
       <p class='text-center'>Campos marcados com "*" são obrigatórios.</p>
     </div>
-
     <div class="form-actions d-flex justify-content-between">
       <%= link_to :back do %>
         <i class="fa-solid fa-reply fs-2 mt-2" style="color: #008100;"></i>
       <% end %>
-      <%= f.button :submit, 'Criar Projeto', class: "submit" %>
+      <%= f.button :submit, 'Criar Projeto', id: "submit", class: "submit" %>
     </div>
   <% end %>
 </div>

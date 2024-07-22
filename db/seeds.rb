@@ -22,7 +22,7 @@ clients.each { |client| Client.create!(client) }
 users = [
   { email: 'john@example.com', password: 'password123', password_confirmation: 'password123', name: 'John Smith', role: 'TA', points: '0' },
   { email: 'jane@example.com', password: 'password123', password_confirmation: 'password123', name: 'Jane Smith', role: 'Teacher', points: '37' },
-  { email: 'karina@example.com', password: 'password123', password_confirmation: 'password123', name: 'Karina Smith', role: 'TA', points: '0' }
+  { email: 'karina@example.com', password: 'password123', password_confirmation: 'password123', name: 'Karina Smith', role: 'TA', points: '0', is_admin: 'true' }
 
 ]
 users.each { |user| User.create!(user) }
