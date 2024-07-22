@@ -1,13 +1,27 @@
 <div class="container text-center">
   <h1 class="mt-3">Aulas e materiais</h1>
-    <% if current_user.is_admin? %>
+  <div class="row justify-content-center">
+    <div class="col-sm-8 my-3">
+      <%= form_with url: lectures_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Pesquise por título ou tag"
+        %>
+      <button type="submit" class="btn_search ms-1">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <% end %>
+    </div>
+  </div>
+  <% if current_user.is_admin? %>
     <div class="d-flex justify-content-end">
       <a href="<%= new_lecture_path %>" class="Btn-create text-decoration-none text-reset">
       <div class="sign-create">+</div>
       <div class="text-create">Criar</div>
       </a>
     </div>
-    <% end %>
+  <% end %>
   <div class="row">
     <% offset = params[:set].to_i || 0 %>
     <% @lectures.limit(10).offset(offset).each do |lecture| %>
