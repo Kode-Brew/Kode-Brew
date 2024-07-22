@@ -36,21 +36,12 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project_member = ProjectMember.new
-    if @project.save
-      if params[:project][:project_member][:user_id].present?
-        params[:project][:project_member][:user_id].each do |user_id|
-          ProjectMember.create(
-            user_id: user_id,
-            project: @project,
-            user_type: params[:project][:project_member][:user_type]
-          )
-        end
-      end
 
-      redirect_to projects_path
+    if @project.save
+      create_project_members if project_members_params_present?
+      redirect_to projects_path, notice: 'Projeto criado com sucesso.'
     else
-      render :new, status: :unprocessable_entity, alert: "nao rolou"
+      render :new, status: :unprocessable_entity, notice: 'Não foi possível criar o projeto.'
     end
     puts @project.errors.full_messages
   end
@@ -100,12 +91,25 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:client_id, :name, :category, :description, :status, project_members_attributes: [:user_type, user_id: []])
+    params.require(:project).permit(:client_id, :name, :category, :description, :status, project_members_attributes: [:user_id, :user_type])
   end
 
   def filter_projects
     if params[:filter].present?
       @projects = @projects.select { |project| project.status == params[:filter] }
     end
+  end
+
+  def project_members_params_present?
+    params.dig(:project, :project_members_attributes, :user_id).present?
+  end
+
+  def create_project_members
+    project_member_params = params[:project][:project_members_attributes]
+    ProjectMember.create(
+      user_id: project_member_params[:user_id],
+      project: @project,
+      user_type: project_member_params[:user_type]
+    )
   end
 end
