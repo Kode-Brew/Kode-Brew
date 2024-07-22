@@ -25,10 +25,10 @@
             <% end %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Editar perfil", edit_user_registration_path, class: "dropdown-item" %>
               <% if current_user.present? && current_user.persisted? %>
                 <%= link_to "Meu perfil", user_path(current_user), class: "dropdown-item" %>
               <% end %>
+              <%= link_to "Editar perfil", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
