@@ -1,5 +1,5 @@
 <div class="container mt-2">
-  <h1>Dashboard</h1>
+  <h2 class="form-title mt-4 text-center">Dashboard</h2>
 
   <%if @project.nil? %>
     <div class="row justify-content-center my-5">
@@ -40,9 +40,9 @@
        <!--Div main card header-->
       <div class="main-card-header">
 
+        <h2><i class="fa-regular fa-lightbulb"></i> Sprint #<%= @project.active_sprint %> </h2>
         <%= link_to project_sprints_path(@project, @project.sprints) do %>
-            <h2 style="color:#008100;"><i class="fa-regular fa-lightbulb"></i>
-            Sprint #<%= @project.active_sprint %> </h2>
+        <p style="color:#008100; font-weight:bold;">Acesse todas as sprints</p>
         <% end %>
 
         <div class="sprint-date">

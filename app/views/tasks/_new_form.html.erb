@@ -1,4 +1,4 @@
-<h2 class="form-title mt-4 text-center">Cadastrar nova tarefa</h2>
+<h2 class="form-title mt-4 text-center">Cadastrar Nova tarefa</h2>
 
 <div class="form-container">
   <%= simple_form_for [@sprint.project, @sprint, @task], html: {class:'form'} do |f| %>
@@ -13,7 +13,6 @@
     <%= f.input :priority,
                 label: "Prioridade", as: :select, collection: [['Baixa', 'Baixa'], ['Média', 'Média'], ['Média-Alta', 'Média-Alta'], ['Alta', 'Alta']],
                 required: true,
-                required: true,
                 prompt: "Selecione a prioridade",
                 input_html: { class: "input" },
                 label_html: { class: "label" } %>
@@ -26,14 +25,14 @@
                 collection: @users.map { |u| [u.name, u.id] },
                 label: "Responsável pela task:",
                 required: true,
-                prompt: "Selecione o responsável"
+                prompt: "Selecione o responsável",
                 input_html: {class: 'input'},
                 label_html: {class: 'label'}%>
     <%= f.input :status, as: :select,
                 label: "Status",
                 collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']],
                 required: true,
-                prompt: "Selecione o responsável"
+                prompt: "Selecione o status",
                 input_html: {class: 'input'},
                 label_html: {class: 'label'} %>
     <%= f.input :points, as: :select,
