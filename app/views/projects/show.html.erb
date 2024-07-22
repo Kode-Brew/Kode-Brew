@@ -92,11 +92,13 @@
         <div class="col-md-6">
           <div class="d-flex align-items-center mb-3">
             <%= link_to client_path(@project), class: "text-decoration-none text-reset" do %>
-              <img src="https://kitt.lewagon.com/placeholder/users/thony-vieira" <%# adicionar o caminho para a foto da empresa%>
-                alt="Foto do Cliente" class="me-3"
-                style="width: 100px; height: 100px; border-radius: 10px;">
+              <% if @project.client.photo.present?  %>
+                <%= cl_image_tag @project.client.photo.key, width: 100, height: 100,  radius: 5, crop: :thumb %>
+              <% else %>
+                <%= image_tag "not_found.jpg", width: 100, height: 100 %>
+              <% end %>
             <% end %>
-            <div>
+            <div class="mx-3">
               <p>Contratado por</p>
               <h5><%= @project.client.name %></h5>
               <div class="d-flex align-items-center">
