@@ -2,8 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   before_action :set_sprint, only: %i[new create]
   before_action :set_breadcrumbs, only: %i[show]
-  before_action :check_sprint_status, only: [:new, :create]
-
+  before_action :check_sprint_status, only: %i[new create]
 
   # Displays a list of tasks
   def index
@@ -80,7 +79,7 @@ class TasksController < ApplicationController
 
   def check_sprint_status
     @sprint = Sprint.find(params[:sprint_id])
-    if @sprint.date_end < Date.today
+    if @sprint.date_end < Time.now
       redirect_to project_sprints_path(@sprint.project, @sprint), alert: "Sprint finalizada. Não há como adicionar novas Tarefas."
     end
   end

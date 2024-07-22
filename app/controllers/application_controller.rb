@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name role points photo])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[name role points photo])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name role points linkedin github photo])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name role points linkedin github photo])
   end
 
   private

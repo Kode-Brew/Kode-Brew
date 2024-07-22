@@ -1,0 +1,33 @@
+<div class="container mt-2">
+  <div class = 'card_main'>
+    <div class='user-header'>
+      <h2><%= @user.name %></h2>
+    </div>
+
+    <div class = 'user-content'>
+      <div class = 'profile-img-div'>
+        <% if @user.photo.present?  %>
+            <%= cl_image_tag @user.photo.key, width: 160, height: 160,  radius: 5, crop: :thumb, gravity: :face%>
+          <% else %>
+            <%= image_tag "not_found.jpg", width: 160, height: 160%>
+          <% end %>
+      </div>
+
+      <div class = 'user-links'>
+      <% if @user.github.present? %>
+        <a href="<%= @user.github %>" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github-alt"></i></a>
+      <% else %>
+        <i class="fa-brands fa-github-alt"></i>
+      <% end %>
+      <% if @user.linkedin.present? %>
+        <a href="<%= @user.github %>" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-linkedin"></i></a>
+      <% else %>
+        <i class="fa-brands fa-linkedin"></i>
+      <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

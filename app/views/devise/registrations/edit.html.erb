@@ -43,6 +43,18 @@
                   as: :select, collection: [['Sócio', 'Sócio'], ['Associado', 'Associado'],['Professor', 'Professor'], ['TA', 'TA'], ['Dev 1', 'Dev 1'], ['Dev 2', 'Dev 2'], ['Convidado', 'Convidado']],
                   input_html: { class: "input" },
                   label_html: { class: "label" } %>
+      <%= f.input :linkedin,
+                  label: 'Link para LinkedIn',
+                  hint: "Deixe em branco se não quiser alterar",
+                  required: false,
+                  input_html: { class: "input" },
+                  label_html: { class: "label" } %>
+      <%= f.input :github,
+                  label: 'Link para GitHub',
+                  hint: "Deixe em branco se não quiser alterar",
+                  required: false,
+                  input_html: { class: "input" },
+                  label_html: { class: "label" } %>
       <%= f.input :photo,
                   label: "Foto do perfil",
                   hint: "Deixe em branco se não quiser alterar",

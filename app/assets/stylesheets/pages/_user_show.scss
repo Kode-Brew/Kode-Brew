@@ -1,0 +1,31 @@
+.user-content {
+  height: auto;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  align-items:center;
+  justify-content: space-evenly;
+  i{
+    font-size: 52px;
+  }
+}
+
+.user-links{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 60px;
+  a {
+    color: $green;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $light-green;
+    }
+  }
+}
+
+.card_main .user-header{
+  margin: 16px 52px;
+  text-align: center;
+}
