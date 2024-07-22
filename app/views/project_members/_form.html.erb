@@ -13,7 +13,7 @@
         <%= f.input :user.name,  as: :select, collection: User.all.map { |u| [u.name, u.id] }, input_html: {class: "card_input_form"}, label: "Membro:", prompt: "Selecione o membro" %>
          <%= f.input :user_type, as: :select, collection: ProjectMember.user_types.keys.map { |type| [type.humanize, type] },input_html: {class: "card_input_form"}, label: "Função:", prompt: "Selecione a função" %>
          <div class='text-center'>
-         <%= f.button :submit,'Adcionar', class:'button_confirm' %>
+         <%= f.button :submit,'Adicionar', class:'button_confirm' %>
          </div>
       <% end %>
     </div>

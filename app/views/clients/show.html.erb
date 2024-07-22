@@ -1,7 +1,14 @@
 <div class="container mt-">
   <div class = 'card_main'>
     <div class="main-card-header">
-      <h2><i class="fa-solid fa-bars-progress"></i>  <%= @client.name %></h2>
+      <h2>
+        <i class="fa-solid fa-bars-progress"></i>  <%= @client.name %>
+        <% if current_user.is_admin? %>
+          <%= link_to edit_client_path(@client) , class:'text-decoration-none text_green' do %>
+            <i id="edit-icon-small"class="fa-solid fa-pen-to-square"></i>
+            <% end %>
+        <% end %>
+      </h2>
     </div>
 
 

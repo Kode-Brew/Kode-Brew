@@ -1,5 +1,5 @@
 <div class="container mt-2">
-  <h1>Tarefa</h1>
+  <h2 class="form-title mt-4 text-center">Tarefa</h2>
 
   <div class= "small-cards-container">
     <%# 1st small-card %>
@@ -57,7 +57,9 @@
             <%= image_tag "not_found.jpg", class: "avatar-large" %>
           <% end %>
 
-          <h5><%= @task.user.name %></h5>
+         <%= link_to user_path(@task.user) do %>
+          <h5 style="color:#008100;"><%= @task.user.name %></h5>
+         <% end %>
         </div>
       </div>
 

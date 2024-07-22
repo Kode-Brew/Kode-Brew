@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Sprints</h1>
+  <h2 class="form-title mt-4 text-center">Sprints</h2>
 
   <div class= "small-cards-container">
     <%# 1st small-card %>
@@ -98,7 +98,9 @@
                     <%= image_tag "not_found.jpg", class: "avatar-large" %>
                     <% end %>
                   </span>
-                  <p><%= task.user.name %></p>
+                  <%= link_to user_path(task.user) do%>
+                    <p><%= task.user.name %></p>
+                  <% end %>
                 </div>
               </td>
 
