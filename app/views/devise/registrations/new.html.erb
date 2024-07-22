@@ -48,6 +48,22 @@
                         input_html: { class: "login__input" },
                         label: false %>
           </div>
+          <div class="login__field">
+            <i class="login__icon fa-brands fa-linkedin"></i>
+            <%= f.input :linkedin,
+                        required: false,
+                        autofocus: true,
+                        input_html: { class: "login__input", placeholder: "Linkedin url" },
+                        label: false %>
+          </div>
+          <div class="login__field">
+            <i class="login__icon fa-brands fa-github-alt"></i>
+            <%= f.input :github,
+                        required: false,
+                        autofocus: true,
+                        input_html: { class: "login__input", placeholder: "Github url" },
+                        label: false %>
+          </div>
           <button class="button login__submit">
             <span class="button__text">Criar conta</span>
             <i class="button__icon fas fa-chevron-right"></i>
