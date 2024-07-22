@@ -67,7 +67,7 @@
           <%= simple_form_for @task do |f| %>
             <div class="task-inline form-alignement">
               <div class="select-input">
-                 <%= f.input :status, as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"}, label: false %>
+                 <%= f.input :status, as: :select, collection: [['Não Iniciada', 'Não Iniciada'], ['Em Andamento', 'Em Andamento'], ['Revisão', 'Revisão'], ['Finalizada', 'Finalizada']], input_html: {class: "card_input_form"}, label: false, prompt: "Selecione o status" %>
               </div>
               <div class="submit-button">
                 <%= f.button :submit, "Atualizar", class: 'button_confirm' %>

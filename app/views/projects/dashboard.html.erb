@@ -59,7 +59,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @project.sprints[@project.active_sprint-1].tasks.each do |task|%>
+            <% @project.sprints[@project.active_sprint-1].tasks.limit(5).each do |task|%>
               <tr>
                 <td class ="py-4 px-3" ><%= link_to task.name,task_path(task), class: "text-decoration-none"  %></td>
             <!--Criador/Responsável pela tarefa-->

@@ -1,6 +1,7 @@
 class LecturesController < ApplicationController
   before_action :set_lecture, only: %i[show edit update destroy]
   before_action :set_breadcrumbs, except: %i[show update destroy]
+  before_action :authenticate_admin, only: %i[new create edit update destroy]
 
   def index
     @lectures = Lecture.all
