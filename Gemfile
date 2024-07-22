@@ -34,6 +34,8 @@ gem 'wicked', '~> 1.3', '>= 1.3.4'
 
 gem "httparty"
 
+gem 'pg_search'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

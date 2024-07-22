@@ -4,7 +4,11 @@ class LecturesController < ApplicationController
   before_action :authenticate_admin, only: %i[new create edit update destroy]
 
   def index
-    @lectures = Lecture.all
+    if params[:query].present?
+      @lectures = Lecture.search_by_title_and_tag(params[:query])
+    else
+      @lectures = Lecture.all
+    end
   end
 
   def show

@@ -88,6 +88,24 @@
   transform: scale(1.05);
 }
 
+.btn_search {
+  background-color: #dad8d8;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+}
+
+.btn_search:hover {
+  background-color: #cccccc;
+  color: #000000;
+  transform: scale(1.05);
+}
+
 // Classe usada no form de new_project
 .add-member-btn {
   display: flex;
