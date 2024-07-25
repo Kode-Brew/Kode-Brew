@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
 
   def dashboard
     add_breadcrumb "Dashboard", dashboard_path
-    @project = current_user.projects.find_by(is_active?: true)
+    @project = current_user.projects.find_by(is_active: true)
   end
 
   def show
@@ -91,7 +91,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:client_id, :name, :category, :description, :status, project_members_attributes: [:user_id, :user_type])
+    params.require(:project).permit(:client_id, :name, :category, :description, :is_active, project_members_attributes: [:user_id, :user_type])
   end
 
   def filter_projects

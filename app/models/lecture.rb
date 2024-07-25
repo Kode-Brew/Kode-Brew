@@ -2,6 +2,7 @@ class Lecture < ApplicationRecord
   include PgSearch::Model
 
   belongs_to :user, optional: true
+  has_many :sprint_lectures, dependent: :destroy
   validates :title, :video, presence: true
 
   TAGS = %w[Front-end Back-end Full-stack Javascript CSS Deploy].sort

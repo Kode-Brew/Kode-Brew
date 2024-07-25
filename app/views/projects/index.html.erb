@@ -1,5 +1,5 @@
 <h1 class="text-center my-4">Todos projetos</h1>
-<div class=" card_main my-3">
+<div class=" card_main mx-auto my-3">
   <div class="card-btn  row m-4 ">
     <div class="col-sm-3">
       <%= link_to "Todos os projetos", projects_path, class: "h5 underline-offset #{'text-decoration-none' unless params[:filter].nil?}" %>
@@ -32,7 +32,14 @@
             <% paginated_projects.each do |project| %>
               <tr>
                 <td>
-                  <%= link_to project.name.titleize, project_path(project), class: "text-decoration-none text_dgray" %>
+                  <%= link_to project_path(project), class: "text-decoration-none text_dgray" do %>
+                   <%= project.name.titleize.truncate(20) %>
+                    <% if project.is_active? %>
+                      <i class="fa-regular fa-circle-check"></i>
+                    <% else %>
+                      <i class="fa-regular fa-circle-xmark text-danger"></i>
+                    <% end %>
+                  <% end %>
                   <%= link_to project_project_members_path(project), class: 'text-decoration-none text_green' do %>
                     &nbsp;<i class="fa-solid fa-user-group"></i>
                   <% end %>
@@ -48,7 +55,7 @@
                     <%= project.status.titleize %>
                   </p>
                 </td>
-                <td class='text-center'><%= project.client.name || "---" %></td>
+                <td class='text-center'><%= project.client.name.truncate(22)  || "---" %></td>
                 <td>
                   <%= link_to edit_project_path(project), class: "text-decoration-none text_green" do %>
                     <i class="fa-solid fa-pen-to-square"></i>&nbsp;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_19_175058) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_25_175001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,11 +80,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_175058) do
     t.string "name"
     t.string "category"
     t.string "description"
-    t.boolean "is_active?", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "active_sprint", default: 1
     t.integer "status", default: 0
+    t.boolean "is_active", default: true
     t.index ["client_id"], name: "index_projects_on_client_id"
   end
 
@@ -144,10 +144,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_175058) do
     t.string "name", null: false
     t.string "role", null: false
     t.string "points"
+    t.boolean "is_admin", default: false
     t.string "linkedin"
     t.string "slack"
     t.string "github"
-    t.boolean "is_admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

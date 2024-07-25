@@ -15,7 +15,9 @@
             <%= link_to "#", class: "nav-link me-2 fs-5" do %>
               <i class="fa-regular fa-bell" style="color: #303030;"></i>
             <% end %>
+
           </li>
+          <li class="nav-link me-2 fs-5">Olá, <%= current_user.name.split.first %></li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if current_user.photo.present?  %>
@@ -26,10 +28,16 @@
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <% if current_user.present? && current_user.persisted? %>
-                <%= link_to "Meu perfil", user_path(current_user), class: "dropdown-item" %>
+                <%= link_to  user_path(current_user), class: "dropdown-item" do %>
+                  <i class="fa-solid fa-user"></i>&nbsp;&nbsp;Meu perfil
+                <% end %>
               <% end %>
-              <%= link_to "Editar perfil", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+                <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Editar perfil
+              <% end %>
+              <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" do %>
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;&nbsp;Sair
+              <% end %>
             </div>
           </li>
         <% else %>

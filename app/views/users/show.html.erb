@@ -7,12 +7,16 @@
     <div class = 'user-content'>
       <div class = 'profile-img-div'>
         <% if @user.photo.present?  %>
-            <%= cl_image_tag @user.photo.key, width: 160, height: 160,  radius: 5, crop: :thumb, gravity: :face%>
+            <%= cl_image_tag @user.photo.key,class: "avatar-show"%>
           <% else %>
             <%= image_tag "not_found.jpg", width: 160, height: 160%>
           <% end %>
       </div>
-
+<div>
+<h2>Projetos</h2>
+Participação em projetos: <%=current_user.projects.count %> <br>
+Ultima posição: <%= current_user.project_members.last.user_type %>
+</div>
       <div class = 'user-links'>
       <% if @user.github.present? %>
         <a href="<%= @user.github %>" target="_blank" rel="noopener noreferrer">

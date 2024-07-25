@@ -2,14 +2,6 @@
   <%= simple_form_for @ticket, html: {class:'form'} do |f| %>
     <%= f.error_notification %>
     <div class='form-inputs'>
-      <% if f.object.new_record? %>
-        <%= f.input :task,  as: :select,
-                    label: "Suas Tarefas:",
-                    collection: current_user.tasks.all.map { |u| [u.name, u.id] },
-                    prompt: "Selecione a tarefa",
-                    input_html: { class: "input" },
-                    label_html: { class: "label" }%>
-      <% end %>
       <%= f.input :category,
                   label: "Categoria",
                   collection: Ticket.categories.keys.map { |type| [type.humanize, type] },
