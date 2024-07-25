@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
 
   def dashboard
     add_breadcrumb "Dashboard", dashboard_path
-    @project = current_user.projects.find_by(is_active?: true)
+    @project = current_user.projects.find_by(is_active: true)
   end
 
   def show

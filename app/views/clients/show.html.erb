@@ -48,7 +48,7 @@
             <% @client.projects.each do |project| %>
               <tr>
                 <td><%= link_to  project_path(project), class: "text-decoration-none" do %>
-                      <%= project.name.titleize %>
+                      <%= project.name.titleize.truncate(24) %>
                       <% if project.is_active? %>
                         <i class="fa-regular fa-circle-check"></i>
                       <% else %>

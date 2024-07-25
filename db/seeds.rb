@@ -29,17 +29,10 @@ users.each { |user| User.create!(user) }
 
 # Criando Projects
 projects = [
-  { client_id: Client.first.id, name: 'Project Alpha', category: 'Desenvolvimento de Software', description: 'Desenvolvimento de um novo sistema.', is_active?: true, active_sprint: 1 },
-  { client_id: Client.last.id, name: 'Project Beta', category: 'Pesquisa Médica', description: 'Pesquisa sobre novas terapias.', is_active?: true, active_sprint: 4 }
+  { client_id: Client.first.id, name: 'Project Alpha', category: 'Desenvolvimento de Software', description: 'Desenvolvimento de um novo sistema.', is_active: true, active_sprint: 1 },
+  { client_id: Client.last.id, name: 'Project Beta', category: 'Pesquisa Médica', description: 'Pesquisa sobre novas terapias.', is_active: true, active_sprint: 4 }
 ]
 projects.each { |project| Project.create!(project) }
-
-# Criando Project Members
-project_members = [
-  { user_id: User.first.id, project_id: Project.first.id, user_type: 1 },
-  { user_id: User.last.id, project_id: Project.last.id, user_type: 2 }
-]
-project_members.each { |project_member| ProjectMember.create!(project_member) }
 
 # Criando Sprints
 sprints = [
@@ -56,26 +49,5 @@ tasks = [
   { name: 'Research Topic A', priority: 'Média', description: 'Pesquisa sobre o tópico A', status: 'Em Progresso', points: 5, user_id: User.last.id, sprint_id: Sprint.last.id }
 ]
 tasks.each { |task| Task.create!(task) }
-
-# Criando Tickets
-tickets = [
-  { status: 'Aberto', user_id: User.first.id, task_id: Task.first.id },
-  { status: 'Fechado', user_id: User.last.id, task_id: Task.last.id }
-]
-tickets.each { |ticket| Ticket.create!(ticket) }
-
-# Criando Lectures
-lectures = [
-  { title: 'Introdução ao Rails', source: 'YouTube', video: 'link_do_video', slide: 'link_dos_slides' },
-  { title: 'Avançado em Rails', source: 'Vimeo', video: 'link_do_video', slide: 'link_dos_slides' }
-]
-lectures.each { |lecture| Lecture.create!(lecture) }
-
-# Criando Sprint Lectures
-sprint_lectures = [
-  { sprint_id: Sprint.first.id, lecture_id: Lecture.first.id, project_member_id: ProjectMember.first.id },
-  { sprint_id: Sprint.last.id, lecture_id: Lecture.last.id, project_member_id: ProjectMember.last.id }
-]
-sprint_lectures.each { |sprint_lecture| SprintLecture.create!(sprint_lecture) }
 
 puts "Database seeded successfully."

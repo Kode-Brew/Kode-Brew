@@ -16,6 +16,10 @@ class Project < ApplicationRecord
   accepts_nested_attributes_for :project_members
 
   # Métodos
+  def is_active?
+    is_active
+  end
+
   def date_end_project
     sprints.maximum(:date_end)
   end

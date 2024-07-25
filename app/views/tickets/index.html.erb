@@ -27,7 +27,7 @@
                     <div class="card_tickets border-dark ">
                     <div class="row">
                         <div class="col-md-3">
-                          <p><strong>Tarefa:</strong> <%= ticket.task.name %></p>
+                          <p><strong>Tarefa:</strong> <%= ticket.task.name.truncate(20) %></p>
                         </div>
                         <div class="col-md-3">
                           <p class=""><strong>Projeto:</strong> <%= ticket.task.sprint.project.name %></p>

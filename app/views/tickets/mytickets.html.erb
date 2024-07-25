@@ -44,11 +44,11 @@
           <div class="col-sm-10  mx-auto">
             <%= link_to ticket_path(ticket), class:"text-decoration-none" do%>
               <div class="card_tickets border-dark row">
-                  <div class="col-md-2 px-2">
+                  <div class="col-md-3 px-2">
                     <p><strong>Tarefa:</strong> <%= ticket.task.name %></p>
                   </div>
-                  <div class="col-md-4 px-2">
-                    <p class=""><strong>Projeto:</strong> <%= ticket.task.sprint.project.name %></p>
+                  <div class="col-md-3 px-2">
+                    <p class=""><strong>Projeto:</strong> <%= ticket.task.sprint.project.name.truncate(20) %></p>
                   </div>
                   <div class="col-md-3 px-2">
                     <p><strong>Aluno:</strong> <%= ticket.task.user.name %></p>
