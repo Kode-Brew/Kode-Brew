@@ -52,8 +52,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    is_active = ActiveRecord::Type::Boolean.new.cast(params[:project][:is_active])
-    @project.is_active = is_active
     if @project.update(project_params)
       flash[:notice] = "Projeto editado com sucesso."
 
@@ -93,7 +91,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:client_id, :name, :category, :description, project_members_attributes: [:user_id, :user_type])
+    params.require(:project).permit(:client_id, :name, :category, :description, :is_active, project_members_attributes: [:user_id, :user_type])
   end
 
   def filter_projects

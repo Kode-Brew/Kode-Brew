@@ -23,7 +23,7 @@
                   input_html: {class: 'input'},
                   label_html: {class: 'label'} %>
        <% unless f.object.new_record? %>
-        <%= f.input :is_active?, label: "Está ativo?", as: :radio_buttons %>
+        <%= f.input :is_active, label: "Está ativo?", as: :radio_buttons %>
       <% end %>
 
 

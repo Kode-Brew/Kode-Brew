@@ -1,8 +1,6 @@
 class Project < ApplicationRecord
   enum status: { Pendente: 0, Iniciado: 1, Finalizado: 2 }
 
-  attribute :is_active, :boolean, default: true
-
   belongs_to :client
   has_many :project_members, dependent: :destroy
   has_many :sprints, dependent: :destroy
