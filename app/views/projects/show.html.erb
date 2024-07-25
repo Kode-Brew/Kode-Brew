@@ -41,12 +41,14 @@
         <h4>Acessar <span style="color:#008100;">aulas</span> e materiais de apoio</h4>
       </div>
     <% end %>
-    <%= link_to new_ticket_path do %>
-      <div class= "small-card no-margin-top">
-        <p><i class="fa-regular fa-comments fs-3"></i></p>
-        <h4> Abrir um <span  style="color:#008100;">Ticket</span></h4>
-        <p id="small-subtitle">com um Professor ou T.A</p>
-      </div>
+     <% if @project.is_active? %>
+      <%= link_to new_ticket_path do %>
+        <div class= "small-card no-margin-top">
+          <p><i class="fa-regular fa-comments fs-3"></i></p>
+          <h4> Abrir um <span  style="color:#008100;">Ticket</span></h4>
+          <p id="small-subtitle">com um Professor ou T.A</p>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <div class='card_main mx-auto'>
