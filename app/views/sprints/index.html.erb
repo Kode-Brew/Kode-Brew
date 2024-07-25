@@ -133,7 +133,7 @@
                 <td class ="py-4 px-3 text-center" >
                   <div class="td-icons-images">
                     <%= link_to edit_task_path(task) do %>
-                    <i class="fa-solid fa-pen-to-square"></i>
+                    <i class="fa-solid fa-pen-to-square text-danger"></i>
                     <% end %>
 
                     <%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Tarefa?"}  do %>

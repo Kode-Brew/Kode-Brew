@@ -45,10 +45,10 @@
             <%= link_to ticket_path(ticket), class:"text-decoration-none" do%>
               <div class="card_tickets border-dark row">
                   <div class="col-md-3 px-2">
-                    <p><strong>Tarefa:</strong> <%= ticket.task.name %></p>
+                    <p><strong>Tarefa:</strong> <%= ticket.task.name.truncate(17) %></p>
                   </div>
                   <div class="col-md-3 px-2">
-                    <p class=""><strong>Projeto:</strong> <%= ticket.task.sprint.project.name.truncate(20) %></p>
+                    <p class=""><strong>Projeto:</strong> <%= ticket.task.sprint.project.name.truncate(18) %></p>
                   </div>
                   <div class="col-md-3 px-2">
                     <p><strong>Aluno:</strong> <%= ticket.task.user.name %></p>
