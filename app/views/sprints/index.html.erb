@@ -2,13 +2,16 @@
   <h2 class="form-title mt-4 text-center">Sprints</h2>
 
   <div class= "small-cards-container">
+
     <%# 1st small-card %>
-    <%= link_to new_ticket_path do %>
-      <div class= "small-card">
-        <p><i class="fa-regular fa-comments"></i> Tire dúvidas</p>
-        <h4 style="color:#008100;"> Abrir um Ticket</h4>
-        <%# <p id="small-subtitle">com um Professor ou TA</p> %>
-      </div>
+    <% if @project.is_active? %>
+      <%= link_to new_ticket_path do %>
+        <div class= "small-card">
+          <p><i class="fa-regular fa-comments"></i> Tire dúvidas</p>
+          <h4 style="color:#008100;"> Abrir um Ticket</h4>
+          <%# <p id="small-subtitle">com um Professor ou TA</p> %>
+        </div>
+      <% end %>
     <% end %>
 
     <%# 2nd small-card %>
@@ -21,11 +24,13 @@
     <% end %>
 
     <%# 3rd small-card %>
-    <%= link_to new_project_sprint_path(@project) do %>
-      <div class= "small-card">
-        <p><i class="fa-regular fa-square-plus"></i> Criar uma</p>
-        <h4 style="color:#008100;">Nova Sprint</h4>
-      </div>
+    <% if @project.is_active? %>
+      <%= link_to new_project_sprint_path(@project) do %>
+        <div class= "small-card">
+          <p><i class="fa-regular fa-square-plus"></i> Criar uma</p>
+          <h4 style="color:#008100;">Nova Sprint</h4>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <%# Progress bar %>
@@ -39,8 +44,10 @@
          <%= link_to sprint_path(sprint),class: 'text_dgray' do %>
           <i class="fa-regular fa-lightbulb"></i>
           Sprint #<%= @project.sprints.count - index %>
-          <%= link_to edit_sprint_path(sprint) , class:'text-decoration-none text_green' do %>
-          <i id="edit-icon-small"class="fa-solid fa-pen-to-square"></i>
+          <% if current_user.is_admin %>
+            <%= link_to edit_sprint_path(sprint) , class:'text-decoration-none text_green' do %>
+              <i id="edit-icon-small"class="fa-solid fa-pen-to-square"></i>
+            <% end %>
           <% end %>
        <% if sprint.sprint_lectures.any? %>
           <%= link_to project_sprint_sprint_lectures_path(sprint.project,sprint) do %>
@@ -76,7 +83,9 @@
               <th class= 'b_g_white px-3 text-right'>Responsável</th>
               <th class= 'b_g_white px-3 text-center'>Status</th>
               <th class= 'b_g_white px-3 text-center'>Pontuação</th>
-              <th class= 'b_g_white px-3 text-right'></th>
+              <% if current_user.is_admin? %>
+                <th class= 'b_g_white px-3 text-right'></th>
+              <% end %>
             </tr>
           </thead>
           <tbody>
@@ -109,7 +118,7 @@
                   <p class ="tag-status <%= case task.status.titleize
                                           when 'Não Iniciada' then 'gray-tag'
                                           when 'Em Andamento' then 'light-green-tag'
-                                          when 'Revisão' then 'medium-green-tag'
+                                          when 'Revisão' then 'orange-tag'
                                           when 'Finalizada' then 'green-tag'
                                         end %>">
                     <%= task.status.titleize %>
@@ -120,17 +129,19 @@
               <td class ="py-4 px-3 text-center" ><%= task.points %></td>
 
               <!--Edição e Deletar-->
-              <td class ="py-4 px-3 text-center" >
-                <div class="td-icons-images">
-                  <%= link_to edit_task_path(task) do %>
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  <% end %>
+               <% if current_user.is_admin? %>
+                <td class ="py-4 px-3 text-center" >
+                  <div class="td-icons-images">
+                    <%= link_to edit_task_path(task) do %>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <% end %>
 
-                  <%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Tarefa?"}  do %>
-                  <i class="fa-solid fa-trash"></i>
-                  <% end %>
-                </div>
-              </td>
+                    <%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer deletar esta Tarefa?"}  do %>
+                    <i class="fa-solid fa-trash"></i>
+                    <% end %>
+                  </div>
+                </td>
+              <% end %>
 
             </tr>
           <% end %>

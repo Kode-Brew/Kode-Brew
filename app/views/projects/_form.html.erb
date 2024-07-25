@@ -22,6 +22,10 @@
                   required: true,
                   input_html: {class: 'input'},
                   label_html: {class: 'label'} %>
+       <% unless f.object.new_record? %>
+        <%= f.input :is_active?, label: "Está ativo?", as: :radio_buttons %>
+      <% end %>
+
 
       <%= f.input :client_id, as: :select,
                   label: 'Cliente',
@@ -30,6 +34,8 @@
                   input_html: { class: "input" },
                   label_html: { class: "label" },
                   prompt: "Selecione o cliente" %>
+
+      <% if f.object.new_record? %>
 
         <div id="form-1" class="row align-items-center member-form">
           <%= f.simple_fields_for :project_members, @project.project_members.build do |pm| %>
@@ -62,12 +68,13 @@
         <div id="member-field" class="member-field">
           <%# Aqui entra a cópia do formulário %>
         </div>
-      <div>
-        <button id="add-member-btn" class="add-member-btn align-items-center" style="border: 0; background-color: transparent; color: #008000b0">
-          <i class="fa-solid fa-plus" style="padding-right: 7px;"></i>
-          <span>Adicionar um membro</span>
-        </button>
-      </div>
+        <div>
+          <button id="add-member-btn" class="add-member-btn align-items-center" style="border: 0; background-color: transparent; color: #008000b0">
+            <i class="fa-solid fa-plus" style="padding-right: 7px;"></i>
+            <span>Adicionar um membro</span>
+          </button>
+        </div>
+      <% end %>
 
       <p class='text-center'>Campos marcados com "*" são obrigatórios.</p>
     </div>
